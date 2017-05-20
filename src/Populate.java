@@ -1,7 +1,10 @@
+import oracle.sql.DATE;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDateTime;
 
 /**
  * Created by yaolan on 5/17/17.
@@ -33,6 +36,14 @@ public class Populate {
     private static final String TAB_VALUE = (Character.toString((char) 9));
 
 
+    private String transferValues(String line){
+        String values = line.replaceAll("'", "''");
+        values = values.replaceAll("\\$","\\\\\\$");
+        values = values.replaceAll(TAB_VALUE, "','");
+        values = "'" + values + "'";
+        return values.replaceAll("\\\\N", "");
+    }
+
     public void insertToDB(String filePath, String tableName) throws IOException {
 
         //initial the resultSet, connection and statement
@@ -61,22 +72,19 @@ public class Populate {
 
             try {
                 String sql_insert = SQL_INSERT.replaceFirst(TABLE_REGEX, tableName);
+                System.out.println(LocalDateTime.now());
                 while ((line = reader.readLine()) != null) {
-                    String values = line.replaceAll("'", "''");
-                    values = values.replaceAll(TAB_VALUE, "','");
-                    values = "'" + values + "'";
-                    values = values.replaceAll("\\\\N", "");
-
+                    String values = transferValues(line);
                     String sql = sql_insert.replaceFirst(VALUES_REGEX, values);
                     //stmt.executeUpdate(sql);
                     if (i == 134) {
                         System.out.println(sql);
                     }
                     stmt.executeQuery(sql);
-                    System.out.println(i + " ");
+                    //System.out.println(i + " ");
                     i++;
                 }
-                System.out.println();
+                System.out.println(LocalDateTime.now());
             } catch (Exception e) {
                 try {
                     conn.rollback();

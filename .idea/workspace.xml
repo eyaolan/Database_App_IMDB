@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="42b93bc9-920b-4c3c-93b0-c939d39d5201" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Coen280Assignment3/Db.class" afterPath="$PROJECT_DIR$/out/production/Coen280Assignment3/Db.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Coen280Assignment3/Populate.class" afterPath="$PROJECT_DIR$/out/production/Coen280Assignment3/Populate.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movies.dat" afterPath="$PROJECT_DIR$/movies.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/movies.dat" afterPath="$PROJECT_DIR$/resource/movies.dat" />
@@ -33,11 +32,21 @@
       <file leaf-file-name="Populate.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Populate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="64" column="63" selection-start-line="64" selection-start-column="63" selection-end-line="64" selection-end-column="63" />
+            <state relative-caret-position="299">
+              <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OracleStatementWrapper.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/Downloads/ojdbc6.jar!/oracle/jdbc/driver/OracleStatementWrapper.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="203" column="0" selection-start-line="203" selection-start-column="0" selection-end-line="203" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -87,8 +96,8 @@
       <file leaf-file-name="movies.dat" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/movies.dat">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="3725" column="8" selection-start-line="3725" selection-start-column="0" selection-end-line="3726" selection-end-column="0" />
+            <state relative-caret-position="449">
+              <caret line="10198" column="0" selection-start-line="10198" selection-start-column="0" selection-end-line="10198" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -97,8 +106,8 @@
       <file leaf-file-name="Db.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Db.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+            <state relative-caret-position="134">
+              <caret line="33" column="56" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -132,8 +141,8 @@
         <option value="$USER_HOME$/Documents/beifen.java" />
         <option value="$USER_HOME$/Downloads/ojdbc6.jar!/oracle/jdbc/driver/T4CTTIoer.class" />
         <option value="$PROJECT_DIR$/movies.dat" />
-        <option value="$PROJECT_DIR$/src/Populate.java" />
         <option value="$PROJECT_DIR$/src/Db.java" />
+        <option value="$PROJECT_DIR$/src/Populate.java" />
       </list>
     </option>
   </component>
@@ -227,7 +236,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Db">
+  <component name="RunManager" selected="Application.Populate">
     <configuration default="false" name="Populate" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="Populate" />
@@ -694,8 +703,8 @@
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Application.Db" />
-        <item index="1" class="java.lang.String" itemvalue="Application.Populate" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Populate" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Db" />
         <item index="2" class="java.lang.String" itemvalue="Application.Hw3" />
       </list>
     </recent_temporary>
@@ -714,7 +723,7 @@
       <workItem from="1495241445348" duration="191000" />
       <workItem from="1495242081244" duration="2888000" />
       <workItem from="1495255779914" duration="355000" />
-      <workItem from="1495256302596" duration="8491000" />
+      <workItem from="1495256302596" duration="10602000" />
     </task>
     <task id="LOCAL-00001" summary="executeQuery works">
       <created>1495261165929</created>
@@ -737,11 +746,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495262513212</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="insert until 3000+ lines, error occur">
+      <created>1495269575024</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1495269575025</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31457000" />
+    <option name="totallyTimeSpent" value="33568000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -815,7 +831,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="executeQuery works" />
     <MESSAGE value="insert two rows successfully" />
-    <option name="LAST_COMMIT_MESSAGE" value="insert two rows successfully" />
+    <MESSAGE value="insert until 3000+ lines, error occur" />
+    <option name="LAST_COMMIT_MESSAGE" value="insert until 3000+ lines, error occur" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1038,26 +1055,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/movies.dat">
+    <entry file="file://$PROJECT_DIR$/src/Db.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="3725" column="8" selection-start-line="3725" selection-start-column="0" selection-end-line="3726" selection-end-column="0" />
+        <state relative-caret-position="134">
+          <caret line="33" column="56" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Db.java">
+    <entry file="jar://$USER_HOME$/Downloads/ojdbc6.jar!/oracle/jdbc/driver/OracleStatementWrapper.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        <state relative-caret-position="197">
+          <caret line="203" column="0" selection-start-line="203" selection-start-column="0" selection-end-line="203" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/movies.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="10198" column="0" selection-start-line="10198" selection-start-column="0" selection-end-line="10198" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Populate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="64" column="63" selection-start-line="64" selection-start-column="63" selection-end-line="64" selection-end-column="63" />
+        <state relative-caret-position="299">
+          <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
