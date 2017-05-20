@@ -8,9 +8,9 @@ import java.sql.*;
  */
 public class Populate {
 
-    static final String url = "jdbc:oracle:thin:@localhost:49161:xe";
-    static final String user = "system";
-    static final String password = "oracle";
+    private static final String url = "jdbc:oracle:thin:@localhost:49161:xe";
+    private static final String user = "system";
+    private static final String password = "oracle";
 
     //path of data file
     private static final String MOVIES = "/Users/yaolan/Documents/movieDB/movies.dat";
@@ -60,32 +60,42 @@ public class Populate {
             }
 
             try {
-                while ((line = reader.readLine()) != null && i < 2) {
-                    String values = line.replaceAll(TAB_VALUE, "','");
+                String sql_insert = SQL_INSERT.replaceFirst(TABLE_REGEX, tableName);
+                while ((line = reader.readLine()) != null) {
+                    String values = line.replaceAll("'", "''");
+                    values = values.replaceAll(TAB_VALUE, "','");
                     values = "'" + values + "'";
-                    String sql = SQL_INSERT.replaceFirst(TABLE_REGEX, tableName);
-                    sql = sql.replaceFirst(VALUES_REGEX, values);
+                    values = values.replaceAll("\\\\N", "");
 
+                    String sql = sql_insert.replaceFirst(VALUES_REGEX, values);
                     //stmt.executeUpdate(sql);
+                    if (i == 134) {
+                        System.out.println(sql);
+                    }
                     stmt.executeQuery(sql);
-                    System.out.print(i);
+                    System.out.println(i + " ");
                     i++;
                 }
-            }catch(Exception e){
-                    try {
-                        conn.rollback();
-                    } catch (SQLException sqle) {
-                        System.out.println("There is a error in rollback!");
-                    }
-                } finally{
-                    try {
-                        conn.commit();
-                        conn.close();
-                        System.out.println("Disconnect to Database");
-                    } catch (SQLException sqle) {
-                        System.out.println("There is a error in commit!");
-                    }
+                System.out.println();
+            } catch (Exception e) {
+                try {
+                    conn.rollback();
+                    e.printStackTrace();
+                    System.out.println("Execution fails. Rollback!");
+                } catch (SQLException sqle) {
+                    sqle.printStackTrace();
+                    System.out.println("There is a error in rollback!");
                 }
+            } finally {
+                try {
+                    conn.commit();
+                    conn.close();
+                    System.out.println("Disconnect to Database");
+                } catch (SQLException sqle) {
+                    sqle.printStackTrace();
+                    System.out.println("There is a error in commit!");
+                }
+            }
 
             reader.close();
         } catch (SQLException se) {
