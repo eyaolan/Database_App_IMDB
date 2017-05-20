@@ -1,0 +1,25 @@
+CREATE TABLE MOVIE(
+id	INTEGER NOT NULL UNIQUE,
+title	varchar2(256),
+imdbID	INTEGER,
+spanishTitle varchar2(256),
+imdbPictureURL	varchar2(256),
+year	INTEGER,
+rtID	varchar2(256),
+rtAllCriticsRating	number,
+rtAllCriticsNumReviews	INTEGER,
+rtAllCriticsNumFresh	INTEGER,
+rtAllCriticsNumRotten	INTEGER,
+rtAllCriticsScore	  INTEGER,
+rtTopCriticsRating	  number,
+rtTopCriticsNumReviews	INTEGER,
+rtTopCriticsNumFresh	INTEGER,
+rtTopCriticsNumRotten	INTEGER,
+rtTopCriticsScore	    INTEGER,
+rtAudienceRating	   number,
+rtAudienceNumRatings	INTEGER,
+rtAudienceScore	       INTEGER,
+rtPictureURL  varchar2(256),
+PRIMARY KEY (imdbID)
+);
+
