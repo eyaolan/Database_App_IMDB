@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42b93bc9-920b-4c3c-93b0-c939d39d5201" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Coen280Assignment3/Populate.class" afterPath="$PROJECT_DIR$/out/production/Coen280Assignment3/Populate.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movies.dat" afterPath="$PROJECT_DIR$/movies.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/movies.dat" afterPath="$PROJECT_DIR$/resource/movies.dat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Populate.java" afterPath="$PROJECT_DIR$/src/Populate.java" />
     </list>
     <ignored path="Coen280Assignment3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,8 +30,8 @@
       <file leaf-file-name="Populate.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Populate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="164" column="0" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
+            <state relative-caret-position="347">
+              <caret line="162" column="56" selection-start-line="162" selection-start-column="56" selection-end-line="162" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -763,7 +761,7 @@
       <workItem from="1495241445348" duration="191000" />
       <workItem from="1495242081244" duration="2888000" />
       <workItem from="1495255779914" duration="355000" />
-      <workItem from="1495256302596" duration="19538000" />
+      <workItem from="1495256302596" duration="19584000" />
     </task>
     <task id="LOCAL-00001" summary="executeQuery works">
       <created>1495261165929</created>
@@ -807,11 +805,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495339515885</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="finished populate countries, directors, genres data">
+      <created>1495351741441</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1495351741441</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42504000" />
+    <option name="totallyTimeSpent" value="42550000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -888,7 +893,8 @@
     <MESSAGE value="insert until 3000+ lines, error occur" />
     <MESSAGE value="populate Movie successfully" />
     <MESSAGE value="finished populate actors data" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished populate actors data" />
+    <MESSAGE value="finished populate countries, directors, genres data" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished populate countries, directors, genres data" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1173,8 +1179,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Populate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="164" column="0" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
+        <state relative-caret-position="347">
+          <caret line="162" column="56" selection-start-line="162" selection-start-column="56" selection-end-line="162" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
