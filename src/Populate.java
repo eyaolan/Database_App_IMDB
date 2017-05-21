@@ -22,6 +22,7 @@ public class Populate {
     private static final String MOVIE_GENRES = "/Users/yaolan/Documents/movieDB/movie_genres.dat";
     private static final String MOVIE_LOCATIONS = "/Users/yaolan/Documents/movieDB/movie_locations.dat";
     private static final String MOVIE_TAGS = "/Users/yaolan/Documents/movieDB/movie_tags.dat";
+    private static final String TAGS = "/Users/yaolan/Documents/movieDB/tags.dat";
     private static final String URER_RATEDMOVIES_TIMESTAMPS = "/Users/yaolan/Documents/movieDB/user_ratedmovies-timestamps.dat";
     private static final String USER_RATEDMOVIES = "/Users/yaolan/Documents/movieDB/user_ratedmovies.dat";
     private static final String USER_TAGGEDMOVIES_TIMESTAMPS = "/Users/yaolan/Documents/movieDB/user_taggedmovies-timestamps.dat";
@@ -66,7 +67,6 @@ public class Populate {
             String countRecordsSQL = SQL_COUNT_RECORDS.replaceFirst(TABLE_REGEX, tableName);
             ResultSetMetaData tableMetaData = stmt.executeQuery(countRecordsSQL).getMetaData();
             int numOfColumns = tableMetaData.getColumnCount();
-            System.out.println(numOfColumns);
             for (int j = 0; j < numOfColumns - 1; j++) {
                 template += "?,";
             }
@@ -78,21 +78,18 @@ public class Populate {
 
                 String sql_insert = SQL_INSERT.replaceFirst(TABLE_REGEX, tableName);
                 sql_insert = sql_insert.replaceFirst(VALUES_REGEX, template);
-
-
                 PreparedStatement preparedStatement = conn.prepareStatement(sql_insert);
                 System.out.println(LocalDateTime.now());
-                System.out.println(sql_insert);
                 if ((line = reader.readLine()) != null) {
-
+                    System.out.println("Populating data into "+tableName+ "...");
                     //original idea of code in while loop comes from Xiaoxiao Shang
-                    while ((line = reader.readLine()) != null) {
+                    while ((line = reader.readLine()) != null && i <3) {
                         String[] values = line.split(TAB_VALUE);
-                       if(i == 1) {
+                       /*if(i == 1) {
                            for (int a = 0; a < values.length; a++) {
                                System.out.println(values[a]);
                            }
-                       }
+                       }*/
                         for (int h = 0; h < numOfColumns; h++) {
                             if (h >= values.length) {
                                 preparedStatement.setString(h + 1, null);
@@ -102,11 +99,12 @@ public class Populate {
                                 preparedStatement.setString(h + 1, values[h]);
                             }
                         }
-                        preparedStatement.executeUpdate();
-                        /*String values = transferValues(line);
-                        String sql = sql_insert.replaceFirst(VALUES_REGEX, values);
-                        stmt.executeQuery(sql);*/
-                       // System.out.println(i);
+
+                        try {
+                            preparedStatement.executeUpdate();
+                        }catch (SQLException sqle){
+                            sqle.printStackTrace();
+                        }
                         i++;
                     }
                 }
@@ -158,10 +156,17 @@ public class Populate {
         Populate populate = new Populate();
         //populate.insertToDB(MOVIES, "MOVIE");
         //populate.insertToDB(MOVIE_ACTORS, "Movie_actors");
-        populate.insertToDB(MOVIE_COUNTRIES, "Movie_countries");
-        populate.insertToDB(MOVIE_DIRECTORS, "Movie_directors");
-        populate.insertToDB(MOVIE_GENRES, "Movie_genres");
+        //populate.insertToDB(MOVIE_COUNTRIES, "Movie_countries");
+        //populate.insertToDB(MOVIE_DIRECTORS, "Movie_directors");
+        //populate.insertToDB(MOVIE_GENRES, "Movie_genres");
 
+        populate.insertToDB(MOVIE_LOCATIONS,"Movie_locations");
+        populate.insertToDB(MOVIE_TAGS,"Movie_tags");
+        populate.insertToDB(TAGS,"tags");
+        populate.insertToDB(URER_RATEDMOVIES_TIMESTAMPS,"user_ratedmovies_timestamps");
+        populate.insertToDB(USER_RATEDMOVIES,"user_ratedmovies");
+        populate.insertToDB(USER_TAGGEDMOVIES_TIMESTAMPS,"user_taggedmovies_timestamps");
+        populate.insertToDB(USER_TAGGEDMOVIES,"user_taggedmovies");
 
     }
 

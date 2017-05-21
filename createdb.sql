@@ -54,3 +54,72 @@ genre Varchar2(50),
 PRIMARY KEY(movieID,genre),
 FOREIGN KEY(movieID) REFERENCES MOVIE(id)
 );
+
+CREATE TABLE Movie_locations(
+MovieID Integer,
+location1 varchar2(50),
+location2 varchar2(50),
+location3 varchar2(50),
+location4 varchar2(128),
+FOREIGN KEY(movieID) REFERENCES MOVIE(id)
+);
+
+CREATE TABLE Movie_tags(
+movieID	Integer,
+tagID	Integer,
+tagWeight Integer,
+PRIMARY KEY(movieID,tagID),
+FOREIGN KEY(movieID) REFERENCES MOVIE(id)
+);
+
+CREATE TABLE tags(
+id Integer,
+value varchar2(128),
+PRIMARY KEY(id)
+);
+
+CREATE TABLE user_ratedmovies_timestamps(
+userID	Integer,
+movieID	Integer,
+rating number,
+timestamp Integer,
+PRIMARY KEY(userID,movieID),
+FOREIGN KEY(movieID) REFERENCES Movie(id)
+);
+
+CREATE TABLE user_ratedmovies(
+userID	Integer,
+movieID	Integer,
+rating	number,
+date_day	Integer,
+date_month	Integer,
+date_year	Integer,
+date_hour	Integer,
+date_minute	Integer,
+date_second Integer,
+PRIMARY KEY(userID,movieID),
+FOREIGN KEY(movieID) REFERENCES Movie(id)
+);
+
+CREATE TABLE user_taggedmovies_timestamps(
+userID	Integer,
+movieID	Integer,
+tagID	Integer,
+timestamp Integer,
+PRIMARY KEY(userID,movieID,tagID),
+FOREIGN KEY(movieID) REFERENCES Movie(id)
+);
+
+CREATE TABLE user_taggedmovies(
+userID	Integer,
+movieID	Integer,
+tagID	Integer,
+date_day	Integer,
+date_month	Integer,
+date_year	Integer,
+date_hour	Integer,
+date_minute	Integer,
+date_second Integer,
+PRIMARY KEY(userID,movieID,tagID),
+FOREIGN KEY(movieID) REFERENCES Movie(id)
+);

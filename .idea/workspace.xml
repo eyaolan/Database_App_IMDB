@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42b93bc9-920b-4c3c-93b0-c939d39d5201" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Coen280Assignment3/Populate.class" afterPath="$PROJECT_DIR$/out/production/Coen280Assignment3/Populate.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/createdb.sql" afterPath="$PROJECT_DIR$/createdb.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movies.dat" afterPath="$PROJECT_DIR$/movies.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/movies.dat" afterPath="$PROJECT_DIR$/resource/movies.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Populate.java" afterPath="$PROJECT_DIR$/src/Populate.java" />
     </list>
     <ignored path="Coen280Assignment3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,8 +31,8 @@
       <file leaf-file-name="Populate.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Populate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="162" column="56" selection-start-line="162" selection-start-column="56" selection-end-line="162" selection-end-column="56" />
+            <state relative-caret-position="-553">
+              <caret line="107" column="28" selection-start-line="107" selection-start-column="28" selection-end-line="107" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -95,9 +96,9 @@
         <entry file="file://$PROJECT_DIR$/createdb.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
               <folding>
-                <marker date="1495325488000" expanded="true" signature="0:31" ph="CREATE TABLE... MOVIE" />
+                <marker date="1495357994000" expanded="true" signature="0:31" ph="CREATE TABLE... MOVIE" />
               </folding>
             </state>
           </provider>
@@ -761,7 +762,7 @@
       <workItem from="1495241445348" duration="191000" />
       <workItem from="1495242081244" duration="2888000" />
       <workItem from="1495255779914" duration="355000" />
-      <workItem from="1495256302596" duration="19584000" />
+      <workItem from="1495256302596" duration="21013000" />
     </task>
     <task id="LOCAL-00001" summary="executeQuery works">
       <created>1495261165929</created>
@@ -812,11 +813,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495351741441</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="using preparestatement method">
+      <created>1495351781819</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1495351781819</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42550000" />
+    <option name="totallyTimeSpent" value="43979000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -829,7 +837,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27198124" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27198124" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -894,7 +902,8 @@
     <MESSAGE value="populate Movie successfully" />
     <MESSAGE value="finished populate actors data" />
     <MESSAGE value="finished populate countries, directors, genres data" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished populate countries, directors, genres data" />
+    <MESSAGE value="using preparestatement method" />
+    <option name="LAST_COMMIT_MESSAGE" value="using preparestatement method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -938,7 +947,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1495325488000" expanded="true" signature="0:31" ph="CREATE TABLE... MOVIE" />
+            <marker date="1495357994000" expanded="true" signature="0:31" ph="CREATE TABLE... MOVIE" />
           </folding>
         </state>
       </provider>
@@ -1106,9 +1115,9 @@
     <entry file="file://$PROJECT_DIR$/createdb.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
           <folding>
-            <marker date="1495325488000" expanded="true" signature="0:31" ph="CREATE TABLE... MOVIE" />
+            <marker date="1495357994000" expanded="true" signature="0:31" ph="CREATE TABLE... MOVIE" />
           </folding>
         </state>
       </provider>
@@ -1179,8 +1188,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Populate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="162" column="56" selection-start-line="162" selection-start-column="56" selection-end-line="162" selection-end-column="56" />
+        <state relative-caret-position="-553">
+          <caret line="107" column="28" selection-start-line="107" selection-start-column="28" selection-end-line="107" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
