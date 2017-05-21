@@ -29,15 +29,16 @@ public class Populate {
 
     //
     private static final String SQL_INSERT = "INSERT INTO ${table} VALUES (${values})";
+    private static final String SQL_COUNT_RECORDS = "SELECT * FROM ${table}";
     private static final String TABLE_REGEX = "\\$\\{table\\}";
     private static final String KEYS_REGEX = "\\$\\{keys\\}";
     private static final String VALUES_REGEX = "\\$\\{values\\}";
     private static final String TAB_VALUE = (Character.toString((char) 9));
 
 
-    private String transferValues(String line){
+    private String transferValues(String line) {
         String values = line.replaceAll("'", "''");
-        values = values.replaceAll("\\$","\\\\\\$");
+        values = values.replaceAll("\\$", "\\\\\\$");
         values = values.replaceAll(TAB_VALUE, "','");
         values = "'" + values + "'";
         return values.replaceAll("\\\\N", "");
@@ -49,6 +50,9 @@ public class Populate {
         ResultSet resultSet = null;
         Connection conn = null;
         Statement stmt = null;
+        String line = "";
+        int i = 1;
+        String template = "";
 
         try {
 
@@ -57,26 +61,54 @@ public class Populate {
             conn = DriverManager.getConnection(url, user, password);
             System.out.println("Connected database successfully...");
 
-            //executeQuery
+            //get table's number of columns
             stmt = conn.createStatement();
+            String countRecordsSQL = SQL_COUNT_RECORDS.replaceFirst(TABLE_REGEX, tableName);
+            ResultSetMetaData tableMetaData = stmt.executeQuery(countRecordsSQL).getMetaData();
+            int numOfColumns = tableMetaData.getColumnCount();
+            System.out.println(numOfColumns);
+            for (int j = 0; j < numOfColumns - 1; j++) {
+                template += "?,";
+            }
+            template += "?";
+
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
 
-            String line = "";
-            String keys = "";
-            int i = 1;
-            if ((line = reader.readLine()) != null) {
-                keys = line.replaceAll(TAB_VALUE, ",");
-            }
-
             try {
+
                 String sql_insert = SQL_INSERT.replaceFirst(TABLE_REGEX, tableName);
+                sql_insert = sql_insert.replaceFirst(VALUES_REGEX, template);
+
+
+                PreparedStatement preparedStatement = conn.prepareStatement(sql_insert);
                 System.out.println(LocalDateTime.now());
-                while ((line = reader.readLine()) != null) {
-                    String values = transferValues(line);
-                    String sql = sql_insert.replaceFirst(VALUES_REGEX, values);
-                    stmt.executeQuery(sql);
-                    System.out.println(i);
-                    i++;
+                System.out.println(sql_insert);
+                if ((line = reader.readLine()) != null) {
+
+                    //original idea of code in while loop comes from Xiaoxiao Shang
+                    while ((line = reader.readLine()) != null) {
+                        String[] values = line.split(TAB_VALUE);
+                       if(i == 1) {
+                           for (int a = 0; a < values.length; a++) {
+                               System.out.println(values[a]);
+                           }
+                       }
+                        for (int h = 0; h < numOfColumns; h++) {
+                            if (h >= values.length) {
+                                preparedStatement.setString(h + 1, null);
+                            } else if (tableMetaData.getColumnType(h + 1) == 2 && values[h].equals("\\N")) {
+                                preparedStatement.setString(h + 1, null);
+                            } else {
+                                preparedStatement.setString(h + 1, values[h]);
+                            }
+                        }
+                        preparedStatement.executeUpdate();
+                        /*String values = transferValues(line);
+                        String sql = sql_insert.replaceFirst(VALUES_REGEX, values);
+                        stmt.executeQuery(sql);*/
+                       // System.out.println(i);
+                        i++;
+                    }
                 }
                 System.out.println(LocalDateTime.now());
             } catch (Exception e) {
@@ -126,6 +158,9 @@ public class Populate {
         Populate populate = new Populate();
         //populate.insertToDB(MOVIES, "MOVIE");
         //populate.insertToDB(MOVIE_ACTORS, "Movie_actors");
+        populate.insertToDB(MOVIE_COUNTRIES, "Movie_countries");
+        populate.insertToDB(MOVIE_DIRECTORS, "Movie_directors");
+        populate.insertToDB(MOVIE_GENRES, "Movie_genres");
 
 
     }
