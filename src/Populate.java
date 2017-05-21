@@ -1,4 +1,3 @@
-import oracle.sql.DATE;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -64,10 +63,9 @@ public class Populate {
 
             String line = "";
             String keys = "";
-            int i = 0;
+            int i = 1;
             if ((line = reader.readLine()) != null) {
                 keys = line.replaceAll(TAB_VALUE, ",");
-                //System.out.print(keys);
             }
 
             try {
@@ -76,12 +74,8 @@ public class Populate {
                 while ((line = reader.readLine()) != null) {
                     String values = transferValues(line);
                     String sql = sql_insert.replaceFirst(VALUES_REGEX, values);
-                    //stmt.executeUpdate(sql);
-                    if (i == 134) {
-                        System.out.println(sql);
-                    }
                     stmt.executeQuery(sql);
-                    //System.out.println(i + " ");
+                    System.out.println(i);
                     i++;
                 }
                 System.out.println(LocalDateTime.now());
@@ -130,7 +124,8 @@ public class Populate {
     public static void main(String[] agrs) throws IOException {
 
         Populate populate = new Populate();
-        populate.insertToDB(MOVIES, "MOVIE");
+        //populate.insertToDB(MOVIES, "MOVIE");
+        //populate.insertToDB(MOVIE_ACTORS, "Movie_actors");
 
 
     }
