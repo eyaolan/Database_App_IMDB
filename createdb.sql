@@ -57,10 +57,10 @@ FOREIGN KEY(movieID) REFERENCES MOVIE(id)
 
 CREATE TABLE Movie_locations(
 MovieID Integer,
-location1 varchar2(50),
-location2 varchar2(50),
-location3 varchar2(50),
-location4 varchar2(128),
+location1 varchar2(256),
+location2 varchar2(256),
+location3 varchar2(256),
+location4 varchar2(256),
 FOREIGN KEY(movieID) REFERENCES MOVIE(id)
 );
 
@@ -74,7 +74,7 @@ FOREIGN KEY(movieID) REFERENCES MOVIE(id)
 
 CREATE TABLE tags(
 id Integer,
-value varchar2(128),
+value varchar2(256),
 PRIMARY KEY(id)
 );
 

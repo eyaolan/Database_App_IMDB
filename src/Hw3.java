@@ -1,12 +1,23 @@
+import javax.swing.*;
 import java.sql.*;
 
 /**
  * Created by yaolan on 5/18/17.
  */
 public class Hw3 {
+
+    //DB information
     static final String url = "jdbc:oracle:thin:@localhost:49161:xe";
     static final String user = "system";
     static final String password = "oracle";
+
+    //GUI
+    //main frame
+    private JFrame mainFrame;
+
+
+
+
 
     //code modified from https://www.tutorialspoint.com/jdbc/jdbc-select-records.htm
     static public ResultSet connectDB(String sql) {

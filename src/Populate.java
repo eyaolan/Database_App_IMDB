@@ -83,7 +83,7 @@ public class Populate {
                 if ((line = reader.readLine()) != null) {
                     System.out.println("Populating data into "+tableName+ "...");
                     //original idea of code in while loop comes from Xiaoxiao Shang
-                    while ((line = reader.readLine()) != null && i <3) {
+                    while ((line = reader.readLine()) != null) {
                         String[] values = line.split(TAB_VALUE);
                        /*if(i == 1) {
                            for (int a = 0; a < values.length; a++) {
@@ -105,7 +105,7 @@ public class Populate {
                         }catch (SQLException sqle){
                             sqle.printStackTrace();
                         }
-                        i++;
+                        //i++;
                     }
                 }
                 System.out.println(LocalDateTime.now());
@@ -148,6 +148,8 @@ public class Populate {
             }//end finally try
         }//end try
         System.out.println("Goodbye!");
+        System.out.println();
+        System.out.println();
     }
 
 
