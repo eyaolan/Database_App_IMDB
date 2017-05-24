@@ -294,7 +294,7 @@ public class ShowGUI {
     }
 
     public static void main(String[] args){
-        //ShowGUI gui = new ShowGUI();
+        ShowGUI gui = new ShowGUI();
     }
 
 

@@ -1,4 +1,4 @@
-CREATE TABLE MOVIE(
+CREATE TABLE MOVIES(
 id	INTEGER ,
 title	varchar2(256),
 imdbID	INTEGER,
@@ -64,18 +64,22 @@ location4 varchar2(256),
 FOREIGN KEY(movieID) REFERENCES MOVIE(id)
 );
 
+
+
+CREATE TABLE tags(
+id Integer,
+value varchar2(256),
+PRIMARY KEY(id)
+);
+
+
 CREATE TABLE Movie_tags(
 movieID	Integer,
 tagID	Integer,
 tagWeight Integer,
 PRIMARY KEY(movieID,tagID),
 FOREIGN KEY(movieID) REFERENCES MOVIE(id)
-);
-
-CREATE TABLE tags(
-id Integer,
-value varchar2(256),
-PRIMARY KEY(id)
+FOREIGN KEY(tagID) REFERENCES tags(id)
 );
 
 CREATE TABLE user_ratedmovies_timestamps(
@@ -108,6 +112,7 @@ tagID	Integer,
 timestamp Integer,
 PRIMARY KEY(userID,movieID,tagID),
 FOREIGN KEY(movieID) REFERENCES Movie(id)
+FOREIGN KEY(tagID) REFERENCES tags(id)
 );
 
 CREATE TABLE user_taggedmovies(
@@ -122,4 +127,5 @@ date_minute	Integer,
 date_second Integer,
 PRIMARY KEY(userID,movieID,tagID),
 FOREIGN KEY(movieID) REFERENCES Movie(id)
+FOREIGN KEY(tagID) REFERENCES tags(id)
 );

@@ -10,10 +10,7 @@ public class Main {
         Populate1 populate = new Populate1();
 
         if (args.length >0 ) {
-            for (int i = 0; i < args.length; i++) {
-                populate.insertToDB(args[i]);
-            }
-
+                populate.insertToDB(args);
         } else {
            // populate.insertToDB(MOVIES);
             //populate.insertToDB(MOVIES, "MOVIE");

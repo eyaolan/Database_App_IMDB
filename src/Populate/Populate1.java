@@ -45,60 +45,58 @@ public class Populate1 {
         return  tableName;
     }
 
-    private void deleteTable(String table) throws SQLException{
-        Statement deleteStament = conn.createStatement();
-        System.out.println("Deleting previous tuples ...");
-        deleteStament.executeUpdate("DELETE FROM " + table);
-        deleteStament.close();
+    private void deleteTable(String[] tables) throws SQLException{
+        for(int i = tables.length-1; i>=0 ;i--) {
+            String table = transferFilename(tables[i]);
+
+            Statement deleteStatement = conn.createStatement();
+            System.out.println("Deleting previous tuples in " + table + " ...");
+            deleteStatement.executeUpdate("DELETE FROM " + table);
+            deleteStatement.close();
+        }
     }
 
+    private void insertTuples(String[] tables, Connection conn){
 
-    public void insertToDB(String fifeName) throws IOException {
-
-        //initial the resultSet, connection and statement
-        String tableName = transferFilename(fifeName);
-        ResultSet resultSet = null;
-
-        Statement stmt = null;
-        String line = "";
-        int i = 1;
-        String template = "";
-
+        //delete previous tuples...
         try {
+            deleteTable(tables);
+        }catch (SQLException sqle){
+            sqle.printStackTrace();
+        }
 
-            //connect to DB
-            System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(url, user, password);
-            System.out.println("Connected database successfully...");
-
-            //get table's number of columns
-            stmt = conn.createStatement();
-            String countRecordsSQL = SQL_COUNT_RECORDS.replaceFirst(TABLE_REGEX, tableName);
-            ResultSetMetaData tableMetaData = stmt.executeQuery(countRecordsSQL).getMetaData();
-            int numOfColumns = tableMetaData.getColumnCount();
-            for (int j = 0; j < numOfColumns - 1; j++) {
-                template += "?,";
-            }
-            template += "?";
-
-            BufferedReader reader = new BufferedReader(new FileReader(fifeName));
-
+        for(String fileName: tables) {
+            //initial the resultSet, connection and statement
+            String tableName = transferFilename(fileName);
+            String line = "";
+            int i = 1;
+            String template = "";
             try {
+                //get table's number of columns
+                Statement stmt = conn.createStatement();
+                String countRecordsSQL = SQL_COUNT_RECORDS.replaceFirst(TABLE_REGEX, tableName);
+                ResultSetMetaData tableMetaData = stmt.executeQuery(countRecordsSQL).getMetaData();
+                int numOfColumns = tableMetaData.getColumnCount();
+                for (int j = 0; j < numOfColumns - 1; j++) {
+                    template += "?,";
+                }
+                template += "?";
 
-                //delete previous tuples...
-                deleteTable(tableName);
+                BufferedReader reader = new BufferedReader(new FileReader(fileName));
+
+                //print out start time
+                System.out.println(LocalDateTime.now());
 
                 //replace table name and template in sql sentence
                 String sql_insert = SQL_INSERT.replaceFirst(TABLE_REGEX, tableName);
                 sql_insert = sql_insert.replaceFirst(VALUES_REGEX, template);
                 PreparedStatement preparedStatement = conn.prepareStatement(sql_insert);
 
-                //print out start time
-                System.out.println(LocalDateTime.now());
+
                 if ((line = reader.readLine()) != null) {
                     System.out.println("Populating data into "+tableName+ "...");
                     //original idea of code in while loop comes from Xiaoxiao Shang
-                    while ((line = reader.readLine()) != null && i<2) {
+                    while ((line = reader.readLine()) != null&& i<6) {
                         String[] values = line.split(TAB_VALUE);
                         for (int h = 0; h < numOfColumns; h++) {
                             if (h >= values.length) {
@@ -118,6 +116,7 @@ public class Populate1 {
                         i++;
                     }
                 }
+                reader.close();
                 System.out.println(LocalDateTime.now());
             } catch (Exception e) {
                 try {
@@ -128,18 +127,44 @@ public class Populate1 {
                     sqle.printStackTrace();
                     System.out.println("There is a error in rollback!");
                 }
-            } finally {
-                try {
-                    conn.commit();
-                    conn.close();
-                    System.out.println("Disconnect to Database");
-                } catch (SQLException sqle) {
-                    sqle.printStackTrace();
-                    System.out.println("There is a error in commit!");
-                }
             }
+        }
+    }
 
-            reader.close();
+    private void closeConn(Connection conn){
+        try {
+            conn.commit();
+            conn.close();
+            System.out.println("Disconnect to Database");
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            System.out.println("There is a error in commit!");
+        }
+    }
+
+    public void insertToDB(String[] tables) throws IOException {
+
+        //initial the resultSet, connection and statement
+
+        ResultSet resultSet = null;
+
+        Statement stmt = null;
+        String line = "";
+        int i = 1;
+        String template = "";
+
+        try {
+
+            //connect to DB
+            System.out.println("Connecting to database...");
+            conn = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected database successfully...");
+
+            //insert data into tables
+            insertTuples(tables,conn);
+
+            closeConn(conn);
+
         } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
@@ -166,13 +191,11 @@ public class Populate1 {
     public static void main(String[] args) throws IOException {
 
         Populate1 populate = new Populate1();
-
         if (args.length >0 ) {
-            for (int i = 0; i < args.length; i++) {
-                populate.insertToDB(args[i]);
-            }
-
+                //populate.insertToDB(args);
         } else {
+
+            String[] tables = {MOVIES,TAGS,MOVIE_ACTORS,MOVIE_COUNTRIES,MOVIE_DIRECTORS,MOVIE_GENRES,MOVIE_LOCATIONS,MOVIE_TAGS,USER_RATEDMOVIES,URER_RATEDMOVIES_TIMESTAMPS,USER_TAGGEDMOVIES,USER_TAGGEDMOVIES_TIMESTAMPS};
             //populate.insertToDB(MOVIES);
             //populate.insertToDB(MOVIES, "MOVIE");
             //populate.insertToDB(MOVIE_ACTORS, "Movie_actors");
@@ -189,8 +212,14 @@ public class Populate1 {
             populate.insertToDB(USER_TAGGEDMOVIES, "user_taggedmovies");*/
 
         }
-        System.out.println(populate.transferFilename("Movie_ratted-user.dat"));
+        String[] tables = {MOVIES,TAGS,MOVIE_ACTORS,MOVIE_COUNTRIES,MOVIE_DIRECTORS,MOVIE_GENRES,MOVIE_LOCATIONS,MOVIE_TAGS,USER_RATEDMOVIES,URER_RATEDMOVIES_TIMESTAMPS,USER_TAGGEDMOVIES,USER_TAGGEDMOVIES_TIMESTAMPS};
+
+        for(String table: tables){
+            System.out.print(table+" ");
+        }
     }
+
+
 
 
 }
