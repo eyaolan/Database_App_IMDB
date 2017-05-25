@@ -8,9 +8,12 @@ import java.time.LocalDateTime;
 
 /**
  * Created by yaolan on 5/17/17.
+ * populate data into table, the parameter is the list of filename of data:
+ * movies.dat tags.dat movie_actors.dat movie_countries.dat movie_directors.dat movie_genres.dat movie_locations.dat movie_tags.dat user_ratedmovies.dat user_ratedmovies-timestamps.dat user_taggedmovies.dat user_taggedmovies-timestamps.dat
  */
 public class Populate1 {
 
+    //connection setting
     private static final String url = "jdbc:oracle:thin:@localhost:49161:xe";
     private static final String user = "system";
     private static final String password = "oracle";
@@ -30,7 +33,7 @@ public class Populate1 {
     private static final String USER_TAGGEDMOVIES_TIMESTAMPS = "user_taggedmovies-timestamps.dat";
     private static final String USER_TAGGEDMOVIES = "user_taggedmovies.dat";
 
-    //
+    //sql
     private static final String SQL_INSERT = "INSERT INTO ${table} VALUES (${values})";
     private static final String SQL_COUNT_RECORDS = "SELECT * FROM ${table}";
     private static final String TABLE_REGEX = "\\$\\{table\\}";
@@ -96,7 +99,7 @@ public class Populate1 {
                 if ((line = reader.readLine()) != null) {
                     System.out.println("Populating data into "+tableName+ "...");
                     //original idea of code in while loop comes from Xiaoxiao Shang
-                    while ((line = reader.readLine()) != null&& i<6) {
+                    while ((line = reader.readLine()) != null) {
                         String[] values = line.split(TAB_VALUE);
                         for (int h = 0; h < numOfColumns; h++) {
                             if (h >= values.length) {
@@ -191,35 +194,11 @@ public class Populate1 {
     public static void main(String[] args) throws IOException {
 
         Populate1 populate = new Populate1();
-        if (args.length >0 ) {
-                //populate.insertToDB(args);
+        if (args.length <0 ) {
+                populate.insertToDB(args);
         } else {
-
             String[] tables = {MOVIES,TAGS,MOVIE_ACTORS,MOVIE_COUNTRIES,MOVIE_DIRECTORS,MOVIE_GENRES,MOVIE_LOCATIONS,MOVIE_TAGS,USER_RATEDMOVIES,URER_RATEDMOVIES_TIMESTAMPS,USER_TAGGEDMOVIES,USER_TAGGEDMOVIES_TIMESTAMPS};
-            //populate.insertToDB(MOVIES);
-            //populate.insertToDB(MOVIES, "MOVIE");
-            //populate.insertToDB(MOVIE_ACTORS, "Movie_actors");
-            //populate.insertToDB(MOVIE_COUNTRIES, "Movie_countries");
-            //populate.insertToDB(MOVIE_DIRECTORS, "Movie_directors");
-            //populate.insertToDB(MOVIE_GENRES, "Movie_genres");
-
-           /* populate.insertToDB(MOVIE_LOCATIONS, "Movie_locations");
-            populate.insertToDB(MOVIE_TAGS, "Movie_tags");
-            populate.insertToDB(TAGS, "tags");
-            populate.insertToDB(URER_RATEDMOVIES_TIMESTAMPS, "user_ratedmovies_timestamps");
-            populate.insertToDB(USER_RATEDMOVIES, "user_ratedmovies");
-            populate.insertToDB(USER_TAGGEDMOVIES_TIMESTAMPS, "user_taggedmovies_timestamps");
-            populate.insertToDB(USER_TAGGEDMOVIES, "user_taggedmovies");*/
-
-        }
-        String[] tables = {MOVIES,TAGS,MOVIE_ACTORS,MOVIE_COUNTRIES,MOVIE_DIRECTORS,MOVIE_GENRES,MOVIE_LOCATIONS,MOVIE_TAGS,USER_RATEDMOVIES,URER_RATEDMOVIES_TIMESTAMPS,USER_TAGGEDMOVIES,USER_TAGGEDMOVIES_TIMESTAMPS};
-
-        for(String table: tables){
-            System.out.print(table+" ");
+            populate.insertToDB(tables);
         }
     }
-
-
-
-
 }

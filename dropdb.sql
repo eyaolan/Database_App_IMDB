@@ -9,5 +9,5 @@ drop table Movie_genres;
 drop table Movie_directors;
 drop table Movie_countries;
 drop table Movie_actors;
-drop table Movie;
+drop table Movies;
 commit;

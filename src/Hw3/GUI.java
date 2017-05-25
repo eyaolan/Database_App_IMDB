@@ -67,14 +67,11 @@ public class GUI {
     }
 
     private void prepareGUI(){
-        mainFrame = new JFrame();
+        mainFrame = new JFrame("fsdfsf");
         mainFrame.setSize(FRAME_SIZE);
-        mainFrame.setLayout(new BorderLayout());
+        mainFrame.setLayout(new BorderLayout(3,3));
         mainFrame.setVisible(true);
         mainFrame.setBackground(Color.black);
-
-
-
 
         setTopPanel();
         mainFrame.add(topPanel,BorderLayout.NORTH);
@@ -87,10 +84,10 @@ public class GUI {
         topPanel.setLayout(new BorderLayout());
 
         attributesPanel = new JPanel();
-        attributesPanel.setPreferredSize(ATTRIBUTES_PANEL_SIZE);
+        attributesPanel.setSize(ATTRIBUTES_PANEL_SIZE);
 
         queryPanel = new JPanel();
-        queryPanel.setPreferredSize(QUERY_PANEL);
+        queryPanel.setSize(QUERY_PANEL);
         queryPanel.setBackground(Color.black);
 
         topPanel.add(attributesPanel,BorderLayout.WEST);
