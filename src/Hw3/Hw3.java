@@ -152,6 +152,7 @@ public class Hw3 {
         private JPanel actorsPanel;
         private JPanel directorPanel;
         //textfields and lebals for castPanel
+        private static final int TEXT_FIELD_SIZE = 14;
         private JTextField actor1Textfield;
         private JTextField actor2Textfield;
         private JTextField actor3Textfield;
@@ -196,7 +197,7 @@ public class Hw3 {
 
 
         //basic constants
-        private static final int BASE = 34;
+        private static final int BASE = 33;
 
         //Dimension constants of panels
         private static final Dimension FRAME_SIZE = new Dimension(BASE * 40, BASE * 24);
@@ -214,8 +215,8 @@ public class Hw3 {
         private static final Dimension TITLE_PANEL_SIZE = new Dimension(BASE * 40, BASE * 1);
         private static final Dimension QUERY_TEXT_SIZE = new Dimension(BASE * 8, BASE * 13);
         private static final Dimension EXECUTE_QUERY_PANEL_SIZE = new Dimension(BASE * 8, BASE * 1);
-        private static final Dimension ACTORS_PANEL_SIZE = new Dimension(BASE * 7, BASE * 8);
-        private static final Dimension DIRSCTOR_PANEL_SIZE = new Dimension(BASE * 7, BASE * 4);
+        private static final Dimension ACTORS_PANEL_SIZE = new Dimension(BASE * 7, BASE * 9);
+        private static final Dimension DIRECTOR_PANEL_SIZE = new Dimension(BASE * 7, BASE * 3);
 
 
         //Color Constants
@@ -342,7 +343,7 @@ public class Hw3 {
             tagScrollPanel.setPreferredSize(TAG_PANEL_SIZE);
             yearPanel.setPreferredSize(YEAR_PANEL_SIZE);
             actorsPanel.setPreferredSize(ACTORS_PANEL_SIZE);
-            directorPanel.setPreferredSize(DIRSCTOR_PANEL_SIZE);
+            directorPanel.setPreferredSize(DIRECTOR_PANEL_SIZE);
 
             firstAttriPanel.setLayout(new BoxLayout(firstAttriPanel, BoxLayout.Y_AXIS));
             firstAttriPanel.add(genresScrollPanel);
@@ -363,6 +364,31 @@ public class Hw3 {
             yearPanel.add(fromYearComboBox);
             yearPanel.add(toYearLabel);
             yearPanel.add(toYearComboBox);
+
+            actor1Textfield = new JTextField(TEXT_FIELD_SIZE);
+            actor2Textfield = new JTextField(TEXT_FIELD_SIZE);
+            actor3Textfield = new JTextField(TEXT_FIELD_SIZE);
+            actor4Textfield = new JTextField(TEXT_FIELD_SIZE);
+            directorTextfield = new JTextField(TEXT_FIELD_SIZE);
+            ImageIcon searchIcon = new ImageIcon("searching-icon.png");
+            searchActorLabel1 = new JLabel(searchIcon);
+            searchActorLabel2 = new JLabel(searchIcon);
+            searchActorLabel3 = new JLabel(searchIcon);
+            searchActorLabel4 = new JLabel(searchIcon);
+            searchDirectorLabel = new JLabel(searchIcon);
+
+            actorsPanel.setLayout(new FlowLayout());
+            actorsPanel.add(actor1Textfield);
+            actorsPanel.add(searchActorLabel1);
+            actorsPanel.add(actor2Textfield);
+            actorsPanel.add(searchActorLabel2);
+            actorsPanel.add(actor3Textfield);
+            actorsPanel.add(searchActorLabel3);
+            actorsPanel.add(actor4Textfield);
+            actorsPanel.add(searchActorLabel4);
+
+            directorPanel.add(directorTextfield);
+            directorPanel.add(searchDirectorLabel);
 
             String[] andOr = new String[]{"AND","OR"};
             selectAndOrComboBox = new JComboBox(andOr);

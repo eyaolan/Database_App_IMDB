@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42b93bc9-920b-4c3c-93b0-c939d39d5201" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/searching-icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/searching-icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movies.dat" afterPath="$PROJECT_DIR$/movies.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/movies.dat" afterPath="$PROJECT_DIR$/resource/movies.dat" />
@@ -44,14 +46,38 @@
       <file leaf-file-name="Hw3.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="169" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
+            <state relative-caret-position="495">
+              <caret line="227" column="24" selection-start-line="227" selection-start-column="24" selection-end-line="227" selection-end-column="24" />
               <folding>
                 <element signature="e#899#900#0" expanded="true" />
                 <element signature="method#main#0;class#Hw3#0" expanded="false" />
                 <element signature="method#prepareGUI#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
-                <element signature="method#setAttributesPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
+                <element signature="method#setQueryPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="searching-icon.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/searching-icon.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="searching-icon.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/searching-icon.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Container.java" pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/src.zip!/java/awt/Container.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="363">
+              <caret line="1096" column="0" selection-start-line="1096" selection-start-column="0" selection-end-line="1096" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -86,23 +112,6 @@
                 <element signature="method#closeDB#0;class#DBconnection#0" expanded="false" />
                 <element signature="method#connectDB#1;class#DBconnection#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user_ratedmovies.dat" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/user_ratedmovies.dat">
-          <provider selected="true" editor-type-id="LargeFileEditor">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tags.dat" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tags.dat">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198120">
-              <caret line="13208" column="31" selection-start-line="13208" selection-start-column="31" selection-end-line="13208" selection-end-column="31" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -250,24 +259,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Coen280Assignment3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Coen280Assignment3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hw3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -289,6 +280,9 @@
     <property name="js.eslint.eslintPackage" value="" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="Hw3" />
     </key>
@@ -854,7 +848,7 @@
       <workItem from="1495672769114" duration="1185000" />
       <workItem from="1495756298323" duration="5523000" />
       <workItem from="1495773786729" duration="1679000" />
-      <workItem from="1495778493796" duration="13084000" />
+      <workItem from="1495778493796" duration="14584000" />
     </task>
     <task id="LOCAL-00001" summary="executeQuery works">
       <created>1495261165929</created>
@@ -968,11 +962,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495817541995</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="added execute buttons">
+      <created>1495827064607</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1495827064607</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94963000" />
+    <option name="totallyTimeSpent" value="96463000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1062,7 +1063,8 @@
     <MESSAGE value="changed populate" />
     <MESSAGE value="finished main panel design, added the all list of genres and countries" />
     <MESSAGE value="added initial labelList into countryPanel and tagPanel, added two panel into castPanel" />
-    <option name="LAST_COMMIT_MESSAGE" value="added initial labelList into countryPanel and tagPanel, added two panel into castPanel" />
+    <MESSAGE value="added execute buttons" />
+    <option name="LAST_COMMIT_MESSAGE" value="added execute buttons" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1075,27 +1077,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Populate/Populate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/src.zip!/java/lang/StringBuilder.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/src.zip!/java/lang/AbstractStringBuilder.java" />
     <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
@@ -1314,15 +1295,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/src.zip!/java/awt/Container.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="1096" column="0" selection-start-line="1096" selection-start-column="0" selection-end-line="1096" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/searching-icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/searching-icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="169" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
+        <state relative-caret-position="495">
+          <caret line="227" column="24" selection-start-line="227" selection-start-column="24" selection-end-line="227" selection-end-column="24" />
           <folding>
             <element signature="e#899#900#0" expanded="true" />
             <element signature="method#main#0;class#Hw3#0" expanded="false" />
             <element signature="method#prepareGUI#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
-            <element signature="method#setAttributesPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
+            <element signature="method#setQueryPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
           </folding>
         </state>
       </provider>
