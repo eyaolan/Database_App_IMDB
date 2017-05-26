@@ -48,7 +48,7 @@ public class Populate {
         return  tableName;
     }
 
-    private void deleteTable(String[] tables) throws SQLException{
+    private void deleteTuples(String[] tables) throws SQLException{
         for(int i = tables.length-1; i>=0 ;i--) {
             String table = transferFilename(tables[i]);
 
@@ -63,7 +63,7 @@ public class Populate {
 
         //delete previous tuples...
         try {
-            deleteTable(tables);
+            deleteTuples(tables);
         }catch (SQLException sqle){
             sqle.printStackTrace();
         }
@@ -157,7 +157,6 @@ public class Populate {
         String template = "";
 
         try {
-
             //connect to DB
             System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(url, user, password);

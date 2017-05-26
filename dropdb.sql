@@ -1,3 +1,9 @@
+DROP INDEX GENRE ;
+DROP INDEX COUNTRY ;
+DROP INDEX ACTOR_NAME ;
+DROP INDEX TAG_VALUE;
+DROP INDEX DIRECTOR_NAME ;
+
 drop table user_taggedmovies;
 drop table user_taggedmovies_timestamps;
 drop table user_ratedmovies;

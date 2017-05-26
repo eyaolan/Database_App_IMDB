@@ -1,99 +1,339 @@
 package Hw3;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * Created by yaolan on 5/18/17.
  */
 public class Hw3 {
 
-    //DB information
-    static final String url = "jdbc:oracle:thin:@localhost:49161:xe";
-    static final String user = "system";
-    static final String password = "oracle";
+    //gui
+    private Hw3GUI gui;
 
-    //GUI
-    //main frame
-    private JFrame mainFrame;
+    //check boxs list for Attributes panels
+    private ArrayList<JCheckBox> genresCheckBox = new ArrayList<>();
+    private ArrayList<JCheckBox> coutriesCheckBox = new ArrayList<>();
+    private ArrayList<JCheckBox> tagsCheckBock = new ArrayList<>();
+    //store actors name depends on check box
+    private ArrayList<String> actorsList = new ArrayList<>();
 
+    //sql constant
+    private static final String selectAllSQL = "SELECT DISTINCT ${columns} FROM ${table} WHERE ${columns} is NOT NULL";
+    private static final String COLUMNS_REGEX = "\\$\\{columns\\}";
+    private static final String TABLE_REGEX = "\\$\\{table\\}";
 
-    //code modified from https://www.tutorialspoint.com/jdbc/jdbc-select-records.htm
-    static public ResultSet connectDB(String sql) {
-
-        //initial the resultSet, connection and statement
-        ResultSet resultSet = null;
-        Connection conn = null;
-        Statement stmt = null;
-
-        try {
-
-            //connect to DB
-            System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(url, user, password);
-            System.out.println("Connected database successfully...");
-            conn.setAutoCommit(false);
-
-            //executeQuery
-            stmt = conn.createStatement();
-            System.out.println(stmt.toString());
-            //
-            try {
-                //stmt.executeUpdate(sql);
-                resultSet = stmt.executeQuery(sql);
-            } catch (Exception e) {
-                try {
-                    conn.rollback();
-                } catch (SQLException sqle) {
-                    System.out.println("There is a error in rollback!");
-                }
-            } finally {
-                try {
-                    conn.commit();
-                    conn.close();
-                } catch (SQLException sqle) {
-                    System.out.println("There is a error in commit!");
-                }
-            }
-            System.out.println("Created table in given database...");
-
-        } catch (SQLException se) {
-            //Handle errors for JDBC
-            se.printStackTrace();
-        } finally {
-            //finally block used to close resources
-            try {
-                if (stmt != null)
-                    conn.close();
-            } catch (SQLException se) {
-            }// do nothing
-            try {
-                if (conn != null)
-                    conn.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }//end finally try
-        }//end try
-        System.out.println("Goodbye!");
-        return resultSet;
+    public Hw3(){
+        gui = new Hw3GUI();
     }
 
-    public  static  void  main(String[] args){
 
+    public void initialPanels() {
+        Connection conn = null;
+        try {
+            conn = DBconnection.connectDB();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
 
-        String sql = "CREATE TABLE REGISTRATION " +
-                "(id INTEGER not NULL, " +
-                " first VARCHAR(255), " +
-                " last VARCHAR(255), " +
-                " age INTEGER, " +
-                " PRIMARY KEY ( id ))";
-
-        String sql2 = "Drop table Registration";
-
-        ResultSet resultSet = Hw3.connectDB(sql);
-        Hw3.connectDB(sql2);
-
-
+        addCheckBoxToPanel(conn,"GENRE","MOVIE_GENRES",gui.genrePanel);
         System.out.println();
+        addCheckBoxToPanel(conn,"COUNTRY","MOVIE_COUNTRIES",gui.countryPanel);
+
+
+        try {
+            conn.close();
+        } catch (SQLException sqle){
+            sqle.printStackTrace();
+        }
+    }
+
+    public void addCheckBoxToPanel(Connection conn,String columns, String table, JPanel panel){
+        String sql = selectAllSQL.replaceAll(COLUMNS_REGEX,columns);
+        sql = sql.replaceFirst(TABLE_REGEX,table);
+        ResultSet resultSet;
+        genresCheckBox.clear();
+        try {
+            resultSet = DBconnection.executeSQL(conn, sql);
+            while (resultSet.next()){
+                //if(resultSet.getString(1) !=null) {
+                    genresCheckBox.add(new JCheckBox(resultSet.getString(1)));
+                    System.out.println(resultSet.getString(1));
+                //}
+            }
+        }catch (SQLException sqle){
+            sqle.printStackTrace();
+        }
+
+        for(JCheckBox checkBox: genresCheckBox){
+            panel.add(checkBox);
+        }
+
+
+    }
+
+    public static void main(String[] args) {
+
+        Hw3 hw3 = new Hw3();
+        hw3.initialPanels();
+        //JButton testButton = new JButton();
+       // hw3.gui.genresScrollPanel.add(testButton);
+       // hw3.gui.genresScrollPanel.setBackground(Color.black);
+
+        //Hw3GUI gui = new Hw3GUI();
+
+    }
+
+    public static class Hw3GUI {
+        private JFrame mainFrame;
+
+        //the 2 basic genrePanel
+        private JPanel topPanel;
+        private JPanel bottomPanel;
+        //private JPanel tablePanel;
+
+        //sub panels of topPanel
+        private JPanel titlePanel;
+
+        //Selections genrePanel
+        private JPanel attributesPanel;
+        private JPanel selectionsPanel;
+
+        //5 panels for selections genrePanel
+        private JScrollPane genresScrollPanel;
+        private JScrollPane countryScrollPanel;
+        private JScrollPane castPanel;
+        private JScrollPane tagScrollPanel;
+        private JPanel yearPanel;
+        private JPanel firstAttriPanel;
+        private JPanel genrePanel;
+        private JPanel countryPanel;
+        private JPanel tagsPanel;
+
+        //box for 3 Attributes genrePanel: genres, country, tag
+
+
+
+        //select AND OR genrePanel
+        private JPanel selectAndOrPanel;
+
+        //query genrePanel
+        private JPanel queryPanel;
+        private JTextField showQuery;
+        private JPanel executeQueryPanel;
+
+        //2 results panels
+        private JScrollPane movieResultPanel;
+        private JScrollPane userResultPanel;
+
+        //Font Constants
+        private static final Font SUB_TITLE_FONT = new Font("SansSerif", Font.PLAIN, 18);
+        private static final Font LABEL_FONT = new Font("SansSerif", Font.PLAIN, 14);
+        private static final Font TITLE_FONT = new Font("SansSerif", Font.BOLD, 18);
+
+
+        //basic constants
+        private static final int BASE = 30;
+
+        //Dimension constants of panels
+        private static final Dimension FRAME_SIZE = new Dimension(BASE * 40, BASE * 24);
+        private static final Dimension TOP_PANEL_SIZE = new Dimension(BASE * 40, BASE * 16);
+        private static final Dimension BOTTOM_PANEL_SIZE = new Dimension(BASE * 40, BASE * 7);
+        private static final Dimension ATTRIBUTES_PANEL_SIZE = new Dimension(BASE * 28, BASE * 15);
+        private static final Dimension SELECTIONS_PANEL_SIZE = new Dimension(BASE * 28, BASE * 12);
+        private static final Dimension GENRE_PANEL_SIZE = new Dimension(BASE * 7, BASE * 9);
+        private static final Dimension YEAR_PANEL_SIZE = new Dimension(BASE * 7, BASE * 3);
+        private static final Dimension COUNTRY_PANEL_SIZE = new Dimension(BASE * 7, BASE * 12);
+        private static final Dimension CAST_PANEL_SIZE = new Dimension(BASE * 7, BASE * 12);
+        private static final Dimension TAG_PANEL_SIZE = new Dimension(BASE * 7, BASE * 12);
+        private static final Dimension QUERY_PANEL_SIZE = new Dimension(BASE * 12, BASE * 15);
+        private static final Dimension SELECT_AND_OR_PANEL = new Dimension(BASE * 28, BASE * 2);
+        private static final Dimension TITLE_PANEL_SIZE = new Dimension(BASE * 40, BASE * 1);
+        private static final Dimension QUERY_TEXT_SIZE = new Dimension(BASE * 8, BASE * 12);
+        private static final Dimension EXECUTE_QUERY_PANEL_SIZE = new Dimension(BASE * 8, BASE * 2);
+
+
+        //Color Constants
+        //private static final Color BORDER_COLOR = new Color(199, 0, 57);
+        // private static final Color PANEL_TITLE_COLOR = new Color(255,80,60);
+        //private static final Color TITLE_COLOR = new Color(144, 12, 63);
+        private static final Color TITLE_COLOR = new Color(0,128,128);
+        private static final Color BORDER_COLOR = new Color(0,160,128);
+        private static final Color PANEL_TITLE_COLOR = new Color(0,180,128);
+        private static final Color BACKGROUND_COLOR = new Color(255,255,255);
+
+
+        //Name Constants
+        private static final String TITLE = "";
+
+        public Hw3GUI() {
+            prepareGUI();
+            mainFrame.setVisible(true);
+        }
+
+        //prepare the 4 basic panels(top, center(tablePanel), right, bottom)
+        private void prepareGUI() {
+
+            mainFrame = new JFrame();
+
+            mainFrame.setSize(FRAME_SIZE);
+            mainFrame.setBackground(Color.black);
+            mainFrame.setLayout(new BorderLayout(2, 2));
+
+            //init the basic 4 panels with the size and background color
+            topPanel = new JPanel();
+            topPanel.setPreferredSize(TOP_PANEL_SIZE);
+            bottomPanel = new JPanel();
+            bottomPanel.setPreferredSize(BOTTOM_PANEL_SIZE);
+
+            mainFrame.add(topPanel, BorderLayout.NORTH);
+            mainFrame.add(bottomPanel, BorderLayout.SOUTH);
+
+            setTopPanel();
+            setBottomPanel();
+            //setPanelBorderColor(BORDER_COLOR);
+            setPanelBorderTitledBorder();
+
+            //setPanelBackgroundColor(PANEL_BACKGROUND_COLOR);
+
+        }
+
+        private void setPanelBorderColor(Color color) {
+            bottomPanel.setBorder(BorderFactory.createLineBorder(color));
+        }
+
+        //set background for every sub panels
+        private void setPanelBackgroundColor(Color color) {
+
+        }
+
+        //set borders with titles for each genrePanel
+        private void setPanelBorderTitledBorder() {
+            TitledBorder bottomPanelBorder = BorderFactory.createTitledBorder(null, "Show Results", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, SUB_TITLE_FONT, BORDER_COLOR);
+            TitledBorder attributesPanelBorder = BorderFactory.createTitledBorder(null, "Movies Attributes", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, SUB_TITLE_FONT, BORDER_COLOR);
+            TitledBorder queryPanelBorder = BorderFactory.createTitledBorder(null, "Show Query", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, SUB_TITLE_FONT, BORDER_COLOR);
+            TitledBorder genresPanelBorder = BorderFactory.createTitledBorder(null, "Genres", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, LABEL_FONT, PANEL_TITLE_COLOR);
+            TitledBorder countryPanelBorder = BorderFactory.createTitledBorder(null, "Country", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, LABEL_FONT, PANEL_TITLE_COLOR);
+            TitledBorder CastPanelBorder = BorderFactory.createTitledBorder(null, "Cast", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, LABEL_FONT, PANEL_TITLE_COLOR);
+            TitledBorder tagPanelBorder = BorderFactory.createTitledBorder(null, "Tag ids and values", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, LABEL_FONT, PANEL_TITLE_COLOR);
+            TitledBorder yearPanelBorder = BorderFactory.createTitledBorder(null, "Movie Year", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, LABEL_FONT, PANEL_TITLE_COLOR);
+            TitledBorder movieResultPanelBorder = BorderFactory.createTitledBorder(null, "Movie Results", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, LABEL_FONT, PANEL_TITLE_COLOR);
+            TitledBorder userResultPanelBorder = BorderFactory.createTitledBorder(null, "User Results", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, LABEL_FONT, PANEL_TITLE_COLOR);
+
+            bottomPanel.setBorder(bottomPanelBorder);
+            attributesPanel.setBorder(attributesPanelBorder);
+            queryPanel.setBorder(queryPanelBorder);
+            genresScrollPanel.setBorder(genresPanelBorder);
+            countryScrollPanel.setBorder(countryPanelBorder);
+            castPanel.setBorder(CastPanelBorder);
+            tagScrollPanel.setBorder(tagPanelBorder);
+            yearPanel.setBorder(yearPanelBorder);
+            movieResultPanel.setBorder(movieResultPanelBorder);
+            userResultPanel.setBorder(userResultPanelBorder);
+
+        }
+
+        private void setTitlePanel() {
+            titlePanel = new JPanel();
+            titlePanel.setPreferredSize(TITLE_PANEL_SIZE);
+            titlePanel.setBackground(TITLE_COLOR);
+            JLabel title = new JLabel(TITLE);
+            title.setFont(TITLE_FONT);
+            titlePanel.add(title);
+        }
+
+        private void setAttributesPanel() {
+            attributesPanel = new JPanel();
+            attributesPanel.setPreferredSize(ATTRIBUTES_PANEL_SIZE);
+            attributesPanel.setLayout(new BorderLayout());
+
+            selectionsPanel = new JPanel();
+            selectionsPanel.setPreferredSize(SELECTIONS_PANEL_SIZE);
+            selectionsPanel.setLayout(new BoxLayout(selectionsPanel, BoxLayout.X_AXIS));
+
+            genrePanel = new JPanel();
+            countryPanel = new JPanel();
+            tagsPanel = new JPanel();
+            genrePanel.setLayout(new BoxLayout(genrePanel,BoxLayout.Y_AXIS));
+            countryPanel.setLayout(new BoxLayout(countryPanel,BoxLayout.Y_AXIS));
+            tagsPanel.setLayout(new BoxLayout(tagsPanel,BoxLayout.Y_AXIS));
+            genrePanel.setBackground(BACKGROUND_COLOR);
+            countryPanel.setBackground(BACKGROUND_COLOR);
+            tagsPanel.setBackground(BACKGROUND_COLOR);
+
+            genresScrollPanel = new JScrollPane(genrePanel);
+            countryScrollPanel = new JScrollPane(countryPanel);
+            castPanel = new JScrollPane();
+            tagScrollPanel = new JScrollPane(tagsPanel);
+            firstAttriPanel = new JPanel();
+            yearPanel = new JPanel();
+
+            genresScrollPanel.setPreferredSize(GENRE_PANEL_SIZE);
+            countryScrollPanel.setPreferredSize(COUNTRY_PANEL_SIZE);
+            castPanel.setPreferredSize(CAST_PANEL_SIZE);
+            tagScrollPanel.setPreferredSize(TAG_PANEL_SIZE);
+            yearPanel.setPreferredSize(YEAR_PANEL_SIZE);
+
+            firstAttriPanel.setLayout(new BoxLayout(firstAttriPanel,BoxLayout.Y_AXIS));
+            firstAttriPanel.add(genresScrollPanel);
+            firstAttriPanel.add(yearPanel);
+
+            selectionsPanel.add(firstAttriPanel);
+            selectionsPanel.add(countryScrollPanel);
+            selectionsPanel.add(castPanel);
+            selectionsPanel.add(tagScrollPanel);
+
+            selectAndOrPanel = new JPanel();
+            selectAndOrPanel.setPreferredSize(SELECT_AND_OR_PANEL);
+
+            attributesPanel.add(selectionsPanel, BorderLayout.NORTH);
+            attributesPanel.add(selectAndOrPanel, BorderLayout.SOUTH);
+
+
+
+        }
+
+        private void setQueryPanel() {
+            queryPanel = new JPanel();
+            queryPanel.setPreferredSize(QUERY_PANEL_SIZE);
+            queryPanel.setLayout(new BoxLayout(queryPanel, BoxLayout.Y_AXIS));
+
+            showQuery = new JTextField();
+            showQuery.setPreferredSize(QUERY_TEXT_SIZE);
+
+            executeQueryPanel = new JPanel();
+            executeQueryPanel.setPreferredSize(EXECUTE_QUERY_PANEL_SIZE);
+
+            queryPanel.add(showQuery);
+            queryPanel.add(executeQueryPanel);
+        }
+
+        private void setTopPanel() {
+            //init the 3 sub panels of topPanel
+            setTitlePanel();
+            setAttributesPanel();
+            setQueryPanel();
+
+            //manage topPanel, add 3 sub panels to it
+            topPanel.setLayout(new BorderLayout(2, 2));
+            topPanel.add(titlePanel, BorderLayout.NORTH);
+            topPanel.add(attributesPanel, BorderLayout.CENTER);
+            topPanel.add(queryPanel, BorderLayout.EAST);
+        }
+
+
+        private void setBottomPanel() {
+            bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS));
+
+            movieResultPanel = new JScrollPane();
+            userResultPanel = new JScrollPane();
+
+            bottomPanel.add(movieResultPanel);
+            bottomPanel.add(userResultPanel);
+        }
+
     }
 }
