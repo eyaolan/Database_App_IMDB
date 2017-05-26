@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="42b93bc9-920b-4c3c-93b0-c939d39d5201" name="Default" comment="changed populate">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Hw3/DBconnection.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Hw3/Db.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Hw3/GUI.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Hw3/Hw3GUI.java" afterPath="" />
+    <list default="true" id="42b93bc9-920b-4c3c-93b0-c939d39d5201" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/createdb.sql" afterPath="$PROJECT_DIR$/createdb.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/createdb1.sql" afterPath="$PROJECT_DIR$/createdb1.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dropdb.sql" afterPath="$PROJECT_DIR$/dropdb.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movies.dat" afterPath="$PROJECT_DIR$/movies.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/movies.dat" afterPath="$PROJECT_DIR$/resource/movies.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Hw3/Hw3.java" afterPath="$PROJECT_DIR$/src/Hw3/Hw3.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Populate/Populate.java" afterPath="$PROJECT_DIR$/src/Populate/Populate.java" />
     </list>
     <ignored path="Coen280Assignment3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,12 +30,10 @@
       <file leaf-file-name="Populate.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Populate/Populate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
+            <state relative-caret-position="-27">
               <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="false" />
                 <element signature="method#deleteTuples#0;class#Populate#0" expanded="false" />
-                <element signature="method#insertTuples#0;class#Populate#0" expanded="false" />
                 <element signature="method#closeConn#0;class#Populate#0" expanded="false" />
                 <marker date="1495753379000" expanded="true" signature="2677:2689" ph="DELETE FROM " />
               </folding>
@@ -54,9 +44,12 @@
       <file leaf-file-name="Hw3.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="276" column="60" selection-start-line="276" selection-start-column="60" selection-end-line="276" selection-end-column="60" />
+            <state relative-caret-position="391">
+              <caret line="203" column="25" selection-start-line="203" selection-start-column="25" selection-end-line="203" selection-end-column="25" />
               <folding>
+                <element signature="method#initialPanels#0;class#Hw3#0" expanded="false" />
+                <element signature="method#addCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
+                <element signature="method#addLabelListToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#main#0;class#Hw3#0" expanded="false" />
                 <element signature="method#prepareGUI#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
               </folding>
@@ -77,8 +70,8 @@
       <file leaf-file-name="DBconnection.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Hw3/DBconnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="38" column="50" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
+            <state relative-caret-position="121">
+              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding>
                 <element signature="method#connectDB#0;class#DBconnection#0" expanded="false" />
                 <element signature="method#closeDB#0;class#DBconnection#0" expanded="false" />
@@ -864,7 +857,7 @@
       <workItem from="1495672769114" duration="1185000" />
       <workItem from="1495756298323" duration="5523000" />
       <workItem from="1495773786729" duration="1679000" />
-      <workItem from="1495778493796" duration="5643000" />
+      <workItem from="1495778493796" duration="8797000" />
     </task>
     <task id="LOCAL-00001" summary="executeQuery works">
       <created>1495261165929</created>
@@ -964,11 +957,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495752689680</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="finished main panel design, added the all list of genres and countries">
+      <created>1495784837390</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1495784837391</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87522000" />
+    <option name="totallyTimeSpent" value="90676000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1056,7 +1056,8 @@
     <MESSAGE value="modified gui but doesn't work,created dropdb.sql" />
     <MESSAGE value="finished data populating used populate1.java. created Hw3GUI" />
     <MESSAGE value="changed populate" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed populate" />
+    <MESSAGE value="finished main panel design, added the all list of genres and countries" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished main panel design, added the all list of genres and countries" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1218,9 +1219,7 @@
         <state relative-caret-position="90">
           <caret line="101" column="61" selection-start-line="101" selection-start-column="61" selection-end-line="101" selection-end-column="61" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#deleteTuples#0;class#Populate#0" expanded="false" />
-            <element signature="method#insertTuples#0;class#Populate#0" expanded="false" />
             <element signature="method#closeConn#0;class#Populate#0" expanded="false" />
             <marker date="1495753379000" expanded="true" signature="2677:2689" ph="DELETE FROM " />
           </folding>
@@ -1248,32 +1247,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Populate/Populate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="method#deleteTuples#0;class#Populate#0" expanded="false" />
-            <element signature="method#insertTuples#0;class#Populate#0" expanded="false" />
-            <element signature="method#closeConn#0;class#Populate#0" expanded="false" />
-            <marker date="1495753379000" expanded="true" signature="2677:2689" ph="DELETE FROM " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Hw3/DBconnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="38" column="50" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
-          <folding>
-            <element signature="method#connectDB#0;class#DBconnection#0" expanded="false" />
-            <element signature="method#closeDB#0;class#DBconnection#0" expanded="false" />
-            <element signature="method#connectDB#1;class#DBconnection#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1311,11 +1284,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Populate/Populate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-27">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding>
+            <element signature="method#deleteTuples#0;class#Populate#0" expanded="false" />
+            <element signature="method#closeConn#0;class#Populate#0" expanded="false" />
+            <marker date="1495753379000" expanded="true" signature="2677:2689" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Hw3/DBconnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding>
+            <element signature="method#connectDB#0;class#DBconnection#0" expanded="false" />
+            <element signature="method#closeDB#0;class#DBconnection#0" expanded="false" />
+            <element signature="method#connectDB#1;class#DBconnection#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="276" column="60" selection-start-line="276" selection-start-column="60" selection-end-line="276" selection-end-column="60" />
+        <state relative-caret-position="391">
+          <caret line="203" column="25" selection-start-line="203" selection-start-column="25" selection-end-line="203" selection-end-column="25" />
           <folding>
+            <element signature="method#initialPanels#0;class#Hw3#0" expanded="false" />
+            <element signature="method#addCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
+            <element signature="method#addLabelListToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#main#0;class#Hw3#0" expanded="false" />
             <element signature="method#prepareGUI#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
           </folding>

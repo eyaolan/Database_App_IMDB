@@ -15,14 +15,14 @@ public class Hw3 {
     private Hw3GUI gui;
 
     //check boxs list for Attributes panels
-    private ArrayList<JCheckBox> genresCheckBox = new ArrayList<>();
-    private ArrayList<JCheckBox> coutriesCheckBox = new ArrayList<>();
+    private ArrayList<JCheckBox> checkBoxList = new ArrayList<>();
+    private ArrayList<JLabel> labelArrayList = new ArrayList<>();
     private ArrayList<JCheckBox> tagsCheckBock = new ArrayList<>();
     //store actors name depends on check box
     private ArrayList<String> actorsList = new ArrayList<>();
 
     //sql constant
-    private static final String selectAllSQL = "SELECT DISTINCT ${columns} FROM ${table} WHERE ${columns} is NOT NULL";
+    private static final String selectAllSQL = "SELECT DISTINCT ${columns} FROM ${table} ORDER BY ${columns}";
     private static final String COLUMNS_REGEX = "\\$\\{columns\\}";
     private static final String TABLE_REGEX = "\\$\\{table\\}";
 
@@ -41,9 +41,8 @@ public class Hw3 {
 
         addCheckBoxToPanel(conn,"GENRE","MOVIE_GENRES",gui.genrePanel);
         System.out.println();
-        addCheckBoxToPanel(conn,"COUNTRY","MOVIE_COUNTRIES",gui.countryPanel);
-
-
+        addLabelListToPanel(conn,"COUNTRY","MOVIE_COUNTRIES",gui.countryPanel);
+        addLabelListToPanel(conn,"id, value","TAGS",gui.tagsPanel);
         try {
             conn.close();
         } catch (SQLException sqle){
@@ -55,24 +54,53 @@ public class Hw3 {
         String sql = selectAllSQL.replaceAll(COLUMNS_REGEX,columns);
         sql = sql.replaceFirst(TABLE_REGEX,table);
         ResultSet resultSet;
-        genresCheckBox.clear();
+        checkBoxList.clear();
         try {
             resultSet = DBconnection.executeSQL(conn, sql);
             while (resultSet.next()){
                 //if(resultSet.getString(1) !=null) {
-                    genresCheckBox.add(new JCheckBox(resultSet.getString(1)));
-                    System.out.println(resultSet.getString(1));
+                    checkBoxList.add(new JCheckBox(resultSet.getString(1)));
                 //}
             }
         }catch (SQLException sqle){
             sqle.printStackTrace();
         }
 
-        for(JCheckBox checkBox: genresCheckBox){
+        for(JCheckBox checkBox: checkBoxList){
             panel.add(checkBox);
         }
+        panel.revalidate();
+        panel.repaint();
+    }
 
+    public void addLabelListToPanel(Connection conn,String columns, String table, JPanel panel){
+        String sql = selectAllSQL.replaceAll(COLUMNS_REGEX,columns);
+        sql = sql.replaceFirst(TABLE_REGEX,table);
+        ResultSet resultSet;
+        labelArrayList.clear();
+        int i =0;
+        try {
+            resultSet = DBconnection.executeSQL(conn, sql);
+            ResultSetMetaData metaData = resultSet.getMetaData();
+            while (resultSet.next()&& i<100){
+                if(metaData.getColumnCount()>1){
+                    labelArrayList.add(new JLabel(resultSet.getInt(1)+"  "+resultSet.getString(2)));
+                }else {
+                    labelArrayList.add(new JLabel(resultSet.getString(1)));
+                }
+                //if(resultSet.getString(1) !=null) {
+                i++;
+                //}
+            }
+        }catch (SQLException sqle){
+            sqle.printStackTrace();
+        }
 
+        for(JLabel checkBox: labelArrayList){
+            panel.add(checkBox);
+        }
+        panel.revalidate();
+        panel.repaint();
     }
 
     public static void main(String[] args) {
@@ -105,15 +133,17 @@ public class Hw3 {
         //5 panels for selections genrePanel
         private JScrollPane genresScrollPanel;
         private JScrollPane countryScrollPanel;
-        private JScrollPane castPanel;
+        private JPanel castPanel;
         private JScrollPane tagScrollPanel;
         private JPanel yearPanel;
         private JPanel firstAttriPanel;
+        //panels for 3 Attributes genrePanel: genres, country, tag
         private JPanel genrePanel;
         private JPanel countryPanel;
         private JPanel tagsPanel;
+        private JPanel actorsPanel;
+        private JPanel directorPanel;
 
-        //box for 3 Attributes genrePanel: genres, country, tag
 
 
 
@@ -154,6 +184,8 @@ public class Hw3 {
         private static final Dimension TITLE_PANEL_SIZE = new Dimension(BASE * 40, BASE * 1);
         private static final Dimension QUERY_TEXT_SIZE = new Dimension(BASE * 8, BASE * 12);
         private static final Dimension EXECUTE_QUERY_PANEL_SIZE = new Dimension(BASE * 8, BASE * 2);
+        private static final Dimension ACTORS_PANEL_SIZE = new Dimension(BASE * 7, BASE * 8);
+        private static final Dimension DIRSCTOR_PANEL_SIZE = new Dimension(BASE * 7, BASE * 4);
 
 
         //Color Constants
@@ -222,6 +254,8 @@ public class Hw3 {
             TitledBorder yearPanelBorder = BorderFactory.createTitledBorder(null, "Movie Year", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, LABEL_FONT, PANEL_TITLE_COLOR);
             TitledBorder movieResultPanelBorder = BorderFactory.createTitledBorder(null, "Movie Results", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, LABEL_FONT, PANEL_TITLE_COLOR);
             TitledBorder userResultPanelBorder = BorderFactory.createTitledBorder(null, "User Results", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, LABEL_FONT, PANEL_TITLE_COLOR);
+            TitledBorder actorsPanelBorder = BorderFactory.createTitledBorder(null, "Actor / Actress", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, LABEL_FONT, PANEL_TITLE_COLOR);
+            TitledBorder diresctorPanelBorder = BorderFactory.createTitledBorder(null, "Director", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, LABEL_FONT, PANEL_TITLE_COLOR);
 
             bottomPanel.setBorder(bottomPanelBorder);
             attributesPanel.setBorder(attributesPanelBorder);
@@ -233,6 +267,8 @@ public class Hw3 {
             yearPanel.setBorder(yearPanelBorder);
             movieResultPanel.setBorder(movieResultPanelBorder);
             userResultPanel.setBorder(userResultPanelBorder);
+            actorsPanel.setBorder(actorsPanelBorder);
+            directorPanel.setBorder(diresctorPanelBorder);
 
         }
 
@@ -266,20 +302,29 @@ public class Hw3 {
 
             genresScrollPanel = new JScrollPane(genrePanel);
             countryScrollPanel = new JScrollPane(countryPanel);
-            castPanel = new JScrollPane();
+            castPanel = new JPanel();
             tagScrollPanel = new JScrollPane(tagsPanel);
             firstAttriPanel = new JPanel();
             yearPanel = new JPanel();
+            actorsPanel = new JPanel();
+            directorPanel = new JPanel();
 
             genresScrollPanel.setPreferredSize(GENRE_PANEL_SIZE);
             countryScrollPanel.setPreferredSize(COUNTRY_PANEL_SIZE);
             castPanel.setPreferredSize(CAST_PANEL_SIZE);
             tagScrollPanel.setPreferredSize(TAG_PANEL_SIZE);
             yearPanel.setPreferredSize(YEAR_PANEL_SIZE);
+            actorsPanel.setPreferredSize(ACTORS_PANEL_SIZE);
+            directorPanel.setPreferredSize(DIRSCTOR_PANEL_SIZE);
 
             firstAttriPanel.setLayout(new BoxLayout(firstAttriPanel,BoxLayout.Y_AXIS));
             firstAttriPanel.add(genresScrollPanel);
             firstAttriPanel.add(yearPanel);
+
+            castPanel.setLayout(new BoxLayout(castPanel,BoxLayout.Y_AXIS));
+            castPanel.add(actorsPanel);
+            castPanel.add(directorPanel);
+
 
             selectionsPanel.add(firstAttriPanel);
             selectionsPanel.add(countryScrollPanel);
