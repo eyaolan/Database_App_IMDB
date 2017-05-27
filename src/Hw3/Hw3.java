@@ -27,6 +27,8 @@ public class Hw3 {
 
     //
     private String attributesRelation;
+    private int fromYear;
+    private int toYear;
 
     //sql constant
     private static final String selectAllSQL = "SELECT DISTINCT ${columns} FROM ${table} ORDER BY ${columns}";
@@ -36,6 +38,7 @@ public class Hw3 {
     public Hw3() {
         gui = new Hw3GUI();
         attributesRelation = "AND";
+        setActionListenerForComboBoxes();
     }
 
 
@@ -60,6 +63,34 @@ public class Hw3 {
         } finally {
             DBconnection.closeDB(conn);
         }
+    }
+
+    public void setActionListenerForComboBoxes(){
+        gui.fromYearComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fromYear = (int)gui.fromYearComboBox.getSelectedItem();
+                System.out.println(fromYear);
+            }
+        });
+
+        gui.toYearComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                toYear = (int) gui.toYearComboBox.getSelectedItem();
+                System.out.println(toYear);
+            }
+        });
+
+        gui.selectAndOrComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                attributesRelation = gui.selectAndOrComboBox.getSelectedItem().toString();
+                generateCountriesCheckBoxToPanel();
+            }
+        });
+
+
     }
 
     public void setGenresCheckBoxToPanel(ResultSet resultSet, JPanel panel) throws SQLException {
@@ -120,6 +151,10 @@ public class Hw3 {
         } finally {
             DBconnection.closeDB(conn);
         }
+    }
+
+    public void generateActorsList(){
+
     }
 
     private ArrayList<String> getSelectedCheckBox(ArrayList<JCheckBox> checkBoxsList) {
@@ -257,6 +292,7 @@ public class Hw3 {
 
         //Array[] store years,labels for yearPanel
         private ArrayList<Integer> years_tmp = new ArrayList<>();
+        private ArrayList<Integer> years_tmp_decs = new ArrayList<>();
         private JLabel fromYearLabel = new JLabel("        From ");
         private JLabel toYearLabel = new JLabel("        To");
 
@@ -428,8 +464,12 @@ public class Hw3 {
                 years_tmp.add(years);
             }
 
+            for (int years = Calendar.getInstance().get(Calendar.YEAR); years >=1900; years--) {
+                years_tmp_decs.add(years);
+            }
+
             fromYearComboBox = new JComboBox(years_tmp.toArray());
-            toYearComboBox = new JComboBox(years_tmp.toArray());
+            toYearComboBox = new JComboBox(years_tmp_decs.toArray());
             yearPanel.add(fromYearLabel);
             yearPanel.add(fromYearComboBox);
             yearPanel.add(toYearLabel);

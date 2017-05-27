@@ -44,12 +44,19 @@
       <file leaf-file-name="Hw3.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="41" column="33" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
+            <state relative-caret-position="334">
+              <caret line="156" column="8" selection-start-line="156" selection-start-column="8" selection-end-line="156" selection-end-column="8" />
               <folding>
-                <element signature="e#2199#2200#0" expanded="true" />
-                <element signature="e#2265#2266#0" expanded="true" />
-                <element signature="e#4507#4515#0" expanded="true" />
+                <element signature="method#initialPanels#0;class#Hw3#0" expanded="false" />
+                <element signature="method#setGenresCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
+                <element signature="e#3252#3253#0" expanded="true" />
+                <element signature="e#3318#3319#0" expanded="true" />
+                <element signature="method#setCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
+                <element signature="method#generateCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
+                <element signature="method#getSelectedCheckBox#0;class#Hw3#0" expanded="false" />
+                <element signature="e#5614#5622#0" expanded="true" />
+                <element signature="method#addCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
+                <element signature="method#addLabelListToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#main#0;class#Hw3#0" expanded="false" />
                 <element signature="class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#prepareGUI#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
@@ -822,7 +829,7 @@
       <workItem from="1495672769114" duration="1185000" />
       <workItem from="1495756298323" duration="5523000" />
       <workItem from="1495773786729" duration="1679000" />
-      <workItem from="1495778493796" duration="20464000" />
+      <workItem from="1495778493796" duration="21604000" />
     </task>
     <task id="LOCAL-00001" summary="executeQuery works">
       <created>1495261165929</created>
@@ -957,11 +964,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495860462076</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="fix the problem of query coutries from genres">
+      <created>1495862204751</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1495862204751</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102343000" />
+    <option name="totallyTimeSpent" value="103483000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1054,7 +1068,8 @@
     <MESSAGE value="added execute buttons" />
     <MESSAGE value="added textfield to castpanel" />
     <MESSAGE value="added generate countries, but someproblem in query" />
-    <option name="LAST_COMMIT_MESSAGE" value="added generate countries, but someproblem in query" />
+    <MESSAGE value="fix the problem of query coutries from genres" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix the problem of query coutries from genres" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1304,12 +1319,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="41" column="33" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
+        <state relative-caret-position="334">
+          <caret line="156" column="8" selection-start-line="156" selection-start-column="8" selection-end-line="156" selection-end-column="8" />
           <folding>
-            <element signature="e#2199#2200#0" expanded="true" />
-            <element signature="e#2265#2266#0" expanded="true" />
-            <element signature="e#4507#4515#0" expanded="true" />
+            <element signature="method#initialPanels#0;class#Hw3#0" expanded="false" />
+            <element signature="method#setGenresCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
+            <element signature="e#3252#3253#0" expanded="true" />
+            <element signature="e#3318#3319#0" expanded="true" />
+            <element signature="method#setCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
+            <element signature="method#generateCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
+            <element signature="method#getSelectedCheckBox#0;class#Hw3#0" expanded="false" />
+            <element signature="e#5614#5622#0" expanded="true" />
+            <element signature="method#addCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
+            <element signature="method#addLabelListToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#main#0;class#Hw3#0" expanded="false" />
             <element signature="class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#prepareGUI#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
