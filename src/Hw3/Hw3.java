@@ -5,6 +5,8 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,7 +40,7 @@ public class Hw3 {
     public Hw3() {
         gui = new Hw3GUI();
         attributesRelation = "AND";
-        setActionListenerForComboBoxes();
+        setActionListeners();
         fromYear = (int) gui.fromYearComboBox.getSelectedItem();
         toYear = (int) gui.toYearComboBox.getSelectedItem();
 
@@ -68,7 +70,7 @@ public class Hw3 {
         }
     }
 
-    public void setActionListenerForComboBoxes() {
+    public void setActionListeners() {
         gui.fromYearComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -98,6 +100,25 @@ public class Hw3 {
             }
         });
 
+        MouseAdapter searchActorsListener = new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                JFrame searchActorsFrame = new JFrame("Actors/Actresses");
+                JComboBox actorsCombomBox = new JComboBox(actorsList.toArray());
+                JPanel panel = new JPanel();
+                panel.add(actorsCombomBox);
+                searchActorsFrame.add(panel);
+                searchActorsFrame.setPreferredSize( new Dimension(30,20));
+                searchActorsFrame.setVisible(true);
+            }
+        };
+
+        gui.searchActorLabel1.addMouseListener(searchActorsListener);
+        gui.searchActorLabel2.addMouseListener(searchActorsListener);
+        gui.searchActorLabel3.addMouseListener(searchActorsListener);
+        gui.searchActorLabel4.addMouseListener(searchActorsListener);
+
 
     }
 
@@ -124,7 +145,7 @@ public class Hw3 {
 
     public void generateCountriesCheckBoxToPanel() {
 
-        if(getSelectedCheckBox(genresCheckBoxList).size()>0) {
+        if (getSelectedCheckBox(genresCheckBoxList).size() > 0) {
             Connection conn = null;
             ResultSet countries = null;
 
@@ -160,7 +181,7 @@ public class Hw3 {
 
     public void generateActorsList() {
 
-        if(getSelectedCheckBox(countriesCheckBoxList).size() >0) {
+        if (getSelectedCheckBox(countriesCheckBoxList).size() > 0) {
             Connection conn = null;
             ResultSet actors = null;
 
@@ -185,11 +206,10 @@ public class Hw3 {
                 System.out.println(sql + "\n");
                 actors = DBconnection.executeSQL(conn, sql);
 
+                actorsList.clear();
                 while (actors.next()) {
                     System.out.println(actors.getMetaData().getColumnCount());
-                /*if (actors.getString(1) != null) {
-                    System.out.println(actors.getString(1));
-                }*/
+                    actorsList.add(actors.getString(1));
                 }
 
                 // setCountriesCheckBoxToPanel(countries, gui.countryPanel);
