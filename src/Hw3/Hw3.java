@@ -3,6 +3,8 @@ package Hw3;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,11 +18,15 @@ public class Hw3 {
     private Hw3GUI gui;
 
     //check boxs list for Attributes panels
-    private ArrayList<JCheckBox> checkBoxList = new ArrayList<>();
+    private ArrayList<JCheckBox> genresCheckBoxList = new ArrayList<>();
     private ArrayList<JLabel> labelArrayList = new ArrayList<>();
+    private ArrayList<JCheckBox> countriesCheckBoxList = new ArrayList<>();
     private ArrayList<JCheckBox> tagsCheckBock = new ArrayList<>();
     //store actors name depends on check box
     private ArrayList<String> actorsList = new ArrayList<>();
+
+    //
+    private String attributesRelation;
 
     //sql constant
     private static final String selectAllSQL = "SELECT DISTINCT ${columns} FROM ${table} ORDER BY ${columns}";
@@ -29,6 +35,7 @@ public class Hw3 {
 
     public Hw3() {
         gui = new Hw3GUI();
+        attributesRelation = "OR";
     }
 
 
@@ -36,49 +43,109 @@ public class Hw3 {
         Connection conn = null;
         try {
             conn = DBconnection.connectDB();
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        }
 
-        setCheckBoxToPanel(conn, "GENRE", "MOVIE_GENRES", gui.genrePanel);
-        System.out.println();
-        addLabelListToPanel(conn, "COUNTRY", "MOVIE_COUNTRIES", gui.countryPanel);
-        addLabelListToPanel(conn, "id, value", "TAGS", gui.tagsPanel);
-        try {
-            conn.close();
+            String sql = selectAllSQL.replaceAll(COLUMNS_REGEX, "GENRE");
+            sql = sql.replaceFirst(TABLE_REGEX, "MOVIE_GENRES");
+            ResultSet resultSet;
+
+            resultSet = DBconnection.executeSQL(conn, sql);
+
+            setGenresCheckBoxToPanel(resultSet, gui.genrePanel);
+            System.out.println();
+            addLabelListToPanel(conn, "COUNTRY", "MOVIE_COUNTRIES", gui.countryPanel);
+            addLabelListToPanel(conn, "id, value", "TAGS", gui.tagsPanel);
+
         } catch (SQLException sqle) {
             sqle.printStackTrace();
+        } finally {
+            DBconnection.closeDB(conn);
         }
     }
 
-    public void setCheckBoxToPanel(Connection conn, String columns, String table, JPanel panel) {
-        String sql = selectAllSQL.replaceAll(COLUMNS_REGEX, columns);
-        sql = sql.replaceFirst(TABLE_REGEX, table);
-        ResultSet resultSet;
+    public void setGenresCheckBoxToPanel(ResultSet resultSet, JPanel panel) throws SQLException {
+        ActionListener genreCheckboxActionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                generateCountriesCheckBoxToPanel();
+            }
+        };
+        addCheckBoxToPanel(resultSet, panel, genresCheckBoxList, genreCheckboxActionListener);
 
-        try {
-            resultSet = DBconnection.executeSQL(conn, sql);
-            addCheckBoxToPanel(resultSet, panel);
+    }
 
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
+    public void setCountriesCheckBoxToPanel(ResultSet resultSet, JPanel panel) throws SQLException {
+        ActionListener countryCheckboxActionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        };
+        addCheckBoxToPanel(resultSet, panel, countriesCheckBoxList, countryCheckboxActionListener);
+    }
+
+    public void generateCountriesCheckBoxToPanel() {
+        ArrayList<String> selectedGenresList = getSelectedCheckBox(genresCheckBoxList);
+
+        Connection conn = null;
+        ResultSet countries = null;
+
+
+        StringBuilder queryCountries = new StringBuilder();
+        queryCountries.append("SELECT DISTINCT country\n" +
+                "FROM MOVIE_GENRES MG, MOVIE_COUNTRIES MC\n" +
+                "WHERE MG.movieID = MC.movieID \n");
+
+        if (selectedGenresList.size() != 0) {
+            queryCountries.append("AND (\n");
+            for (int i = 0; i < selectedGenresList.size(); i++) {
+                if (i != 0) {
+                    queryCountries.append(" " + attributesRelation + "\n");
+                }
+                queryCountries.append("MG.genre like " + "'%" + selectedGenresList.get(i) + "%'");
+            }
+            queryCountries.append("\n)");
         }
 
-        for (JCheckBox checkBox : checkBoxList) {
+        try {
+            conn = DBconnection.connectDB();
+            String sql = queryCountries.toString();
+            System.out.println(sql + "\n");
+            countries = DBconnection.executeSQL(conn, sql);
+            setCountriesCheckBoxToPanel(countries, gui.countryPanel);
+        } catch (SQLException sqle) {
+            System.err.println("Errors occurs when communicating with the Database sever: " + sqle.getMessage());
+        } finally {
+            DBconnection.closeDB(conn);
+        }
+    }
+
+    private ArrayList<String> getSelectedCheckBox(ArrayList<JCheckBox> checkBoxsList) {
+        ArrayList<String> selectedList = new ArrayList<String>();
+
+        for (int i = 0; i < checkBoxsList.size(); i++) {
+            if (checkBoxsList.get(i).isSelected()) {
+                selectedList.add(checkBoxsList.get(i).getText());
+            }
+        }
+
+        return selectedList;
+    }
+
+    public void addCheckBoxToPanel(ResultSet resultSet, JPanel panel, ArrayList<JCheckBox> checkBoxs, ActionListener actionListener) throws SQLException {
+        checkBoxs.clear();
+        panel.removeAll();
+        while (resultSet.next()) {
+            if(resultSet.getString(1) !=null) {
+            JCheckBox newCheckBox = new JCheckBox(resultSet.getString(1));
+            newCheckBox.addActionListener(actionListener);
+            checkBoxs.add(newCheckBox);
+            }
+        }
+        for (JCheckBox checkBox : checkBoxs) {
             panel.add(checkBox);
         }
         panel.revalidate();
         panel.repaint();
-    }
-
-    public void addCheckBoxToPanel(ResultSet resultSet, JPanel panel) throws SQLException {
-        checkBoxList.clear();
-        while (resultSet.next()) {
-            //if(resultSet.getString(1) !=null) {
-            checkBoxList.add(new JCheckBox(resultSet.getString(1)));
-
-            //}
-        }
     }
 
     public void addLabelListToPanel(Connection conn, String columns, String table, JPanel panel) {
@@ -353,7 +420,7 @@ public class Hw3 {
             castPanel.add(actorsPanel);
             castPanel.add(directorPanel);
 
-            yearPanel.setLayout(new GridLayout(2,2));
+            yearPanel.setLayout(new GridLayout(2, 2));
             for (int years = 1900; years <= Calendar.getInstance().get(Calendar.YEAR); years++) {
                 years_tmp.add(years);
             }
@@ -390,7 +457,7 @@ public class Hw3 {
             directorPanel.add(directorTextfield);
             directorPanel.add(searchDirectorLabel);
 
-            String[] andOr = new String[]{"AND","OR"};
+            String[] andOr = new String[]{"AND", "OR"};
             selectAndOrComboBox = new JComboBox(andOr);
             selectAndOrPanel.add(selectAndOrLabel);
             selectAndOrPanel.add(selectAndOrComboBox);
