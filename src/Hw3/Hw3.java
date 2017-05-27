@@ -35,7 +35,7 @@ public class Hw3 {
 
     public Hw3() {
         gui = new Hw3GUI();
-        attributesRelation = "OR";
+        attributesRelation = "AND";
     }
 
 
@@ -92,8 +92,11 @@ public class Hw3 {
 
         StringBuilder queryCountries = new StringBuilder();
         queryCountries.append("SELECT DISTINCT country\n" +
-                "FROM MOVIE_GENRES MG, MOVIE_COUNTRIES MC\n" +
-                "WHERE MG.movieID = MC.movieID \n");
+                "FROM MOVIE_COUNTRIES MC,\n" +
+                "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
+                "FROM MOVIE_GENRES MG  \n" +
+                "GROUP BY MOVIEID) G\n" +
+                "WHERE MC.movieID = G.movieID\n");
 
         if (selectedGenresList.size() != 0) {
             queryCountries.append("AND (\n");
@@ -101,7 +104,7 @@ public class Hw3 {
                 if (i != 0) {
                     queryCountries.append(" " + attributesRelation + "\n");
                 }
-                queryCountries.append("MG.genre like " + "'%" + selectedGenresList.get(i) + "%'");
+                queryCountries.append("G.genre like " + "'%" + selectedGenresList.get(i) + "%'");
             }
             queryCountries.append("\n)");
         }

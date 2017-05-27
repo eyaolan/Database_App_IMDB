@@ -44,12 +44,12 @@
       <file leaf-file-name="Hw3.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+            <state relative-caret-position="360">
+              <caret line="41" column="33" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
               <folding>
-                <element signature="e#2198#2199#0" expanded="true" />
-                <element signature="e#2264#2265#0" expanded="true" />
-                <element signature="e#4324#4332#0" expanded="true" />
+                <element signature="e#2199#2200#0" expanded="true" />
+                <element signature="e#2265#2266#0" expanded="true" />
+                <element signature="e#4507#4515#0" expanded="true" />
                 <element signature="method#main#0;class#Hw3#0" expanded="false" />
                 <element signature="class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#prepareGUI#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
@@ -822,7 +822,7 @@
       <workItem from="1495672769114" duration="1185000" />
       <workItem from="1495756298323" duration="5523000" />
       <workItem from="1495773786729" duration="1679000" />
-      <workItem from="1495778493796" duration="20069000" />
+      <workItem from="1495778493796" duration="20464000" />
     </task>
     <task id="LOCAL-00001" summary="executeQuery works">
       <created>1495261165929</created>
@@ -950,11 +950,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495836153983</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="added generate countries, but someproblem in query">
+      <created>1495860462076</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1495860462076</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101948000" />
+    <option name="totallyTimeSpent" value="102343000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1046,7 +1053,8 @@
     <MESSAGE value="added initial labelList into countryPanel and tagPanel, added two panel into castPanel" />
     <MESSAGE value="added execute buttons" />
     <MESSAGE value="added textfield to castpanel" />
-    <option name="LAST_COMMIT_MESSAGE" value="added textfield to castpanel" />
+    <MESSAGE value="added generate countries, but someproblem in query" />
+    <option name="LAST_COMMIT_MESSAGE" value="added generate countries, but someproblem in query" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1296,12 +1304,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+        <state relative-caret-position="360">
+          <caret line="41" column="33" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
           <folding>
-            <element signature="e#2198#2199#0" expanded="true" />
-            <element signature="e#2264#2265#0" expanded="true" />
-            <element signature="e#4324#4332#0" expanded="true" />
+            <element signature="e#2199#2200#0" expanded="true" />
+            <element signature="e#2265#2266#0" expanded="true" />
+            <element signature="e#4507#4515#0" expanded="true" />
             <element signature="method#main#0;class#Hw3#0" expanded="false" />
             <element signature="class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#prepareGUI#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
