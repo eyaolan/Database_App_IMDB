@@ -44,15 +44,15 @@
       <file leaf-file-name="Hw3.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="649">
-              <caret line="271" column="31" selection-start-line="271" selection-start-column="31" selection-end-line="271" selection-end-column="31" />
+            <state relative-caret-position="284">
+              <caret line="84" column="51" selection-start-line="84" selection-start-column="51" selection-end-line="84" selection-end-column="51" />
               <folding>
                 <element signature="method#setGenresCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-                <element signature="e#3252#3253#0" expanded="true" />
-                <element signature="e#3318#3319#0" expanded="true" />
+                <element signature="e#3482#3483#0" expanded="true" />
+                <element signature="e#3548#3549#0" expanded="true" />
                 <element signature="method#setCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#getSelectedCheckBox#0;class#Hw3#0" expanded="false" />
-                <element signature="e#7414#7422#0" expanded="true" />
+                <element signature="e#7791#7799#0" expanded="true" />
                 <element signature="method#addCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setLabelListToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#main#0;class#Hw3#0" expanded="false" />
@@ -844,7 +844,7 @@
       <workItem from="1495672769114" duration="1185000" />
       <workItem from="1495756298323" duration="5523000" />
       <workItem from="1495773786729" duration="1679000" />
-      <workItem from="1495778493796" duration="24094000" />
+      <workItem from="1495778493796" duration="24773000" />
     </task>
     <task id="LOCAL-00001" summary="executeQuery works">
       <created>1495261165929</created>
@@ -993,11 +993,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495863524741</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="added weight Panel">
+      <created>1495870002761</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1495870002762</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105973000" />
+    <option name="totallyTimeSpent" value="106652000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1092,7 +1099,8 @@
     <MESSAGE value="added generate countries, but someproblem in query" />
     <MESSAGE value="fix the problem of query coutries from genres" />
     <MESSAGE value="added Actionlistener to combombox" />
-    <option name="LAST_COMMIT_MESSAGE" value="added Actionlistener to combombox" />
+    <MESSAGE value="added weight Panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="added weight Panel" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1343,15 +1351,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="649">
-          <caret line="271" column="31" selection-start-line="271" selection-start-column="31" selection-end-line="271" selection-end-column="31" />
+        <state relative-caret-position="284">
+          <caret line="84" column="51" selection-start-line="84" selection-start-column="51" selection-end-line="84" selection-end-column="51" />
           <folding>
             <element signature="method#setGenresCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-            <element signature="e#3252#3253#0" expanded="true" />
-            <element signature="e#3318#3319#0" expanded="true" />
+            <element signature="e#3482#3483#0" expanded="true" />
+            <element signature="e#3548#3549#0" expanded="true" />
             <element signature="method#setCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#getSelectedCheckBox#0;class#Hw3#0" expanded="false" />
-            <element signature="e#7414#7422#0" expanded="true" />
+            <element signature="e#7791#7799#0" expanded="true" />
             <element signature="method#addCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#setLabelListToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#main#0;class#Hw3#0" expanded="false" />

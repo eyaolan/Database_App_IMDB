@@ -39,6 +39,9 @@ public class Hw3 {
         gui = new Hw3GUI();
         attributesRelation = "AND";
         setActionListenerForComboBoxes();
+        fromYear = (int)gui.fromYearComboBox.getSelectedItem();
+        toYear = (int) gui.toYearComboBox.getSelectedItem();
+
     }
 
 
@@ -70,6 +73,7 @@ public class Hw3 {
             @Override
             public void actionPerformed(ActionEvent e) {
                 fromYear = (int)gui.fromYearComboBox.getSelectedItem();
+                generateCountriesCheckBoxToPanel();
                 System.out.println(fromYear);
             }
         });
@@ -78,6 +82,7 @@ public class Hw3 {
             @Override
             public void actionPerformed(ActionEvent e) {
                 toYear = (int) gui.toYearComboBox.getSelectedItem();
+                generateCountriesCheckBoxToPanel();
                 System.out.println(toYear);
             }
         });
@@ -122,12 +127,12 @@ public class Hw3 {
 
 
         StringBuilder queryCountries = new StringBuilder();
-        queryCountries.append("SELECT DISTINCT country\n" +
-                "FROM MOVIE_COUNTRIES MC,\n" +
+        queryCountries.append("SELECT DISTINCT MC.country\n" +
+                "FROM MOVIE_COUNTRIES MC, MOVIES M,\n" +
                 "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
                 "FROM MOVIE_GENRES MG  \n" +
-                "GROUP BY MOVIEID) G\n" +
-                "WHERE MC.movieID = G.movieID\n");
+                "GROUP BY MG.MOVIEID) G\n" +
+                "WHERE MC.MOVIEID = G.MOVIEID AND M.ID = MC.MOVIEID \n");
 
         if (selectedGenresList.size() != 0) {
             queryCountries.append("AND (\n");
@@ -139,6 +144,8 @@ public class Hw3 {
             }
             queryCountries.append("\n)");
         }
+
+        queryCountries.append("AND (M.YEAR > " +fromYear+ attributesRelation +" M.YEAR < " + toYear+ ")");
 
         try {
             conn = DBconnection.connectDB();
