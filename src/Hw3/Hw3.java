@@ -39,7 +39,7 @@ public class Hw3 {
         gui = new Hw3GUI();
         attributesRelation = "AND";
         setActionListenerForComboBoxes();
-        fromYear = (int)gui.fromYearComboBox.getSelectedItem();
+        fromYear = (int) gui.fromYearComboBox.getSelectedItem();
         toYear = (int) gui.toYearComboBox.getSelectedItem();
 
     }
@@ -68,12 +68,13 @@ public class Hw3 {
         }
     }
 
-    public void setActionListenerForComboBoxes(){
+    public void setActionListenerForComboBoxes() {
         gui.fromYearComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                fromYear = (int)gui.fromYearComboBox.getSelectedItem();
+                fromYear = (int) gui.fromYearComboBox.getSelectedItem();
                 generateCountriesCheckBoxToPanel();
+                generateActorsList();
                 System.out.println(fromYear);
             }
         });
@@ -83,6 +84,7 @@ public class Hw3 {
             public void actionPerformed(ActionEvent e) {
                 toYear = (int) gui.toYearComboBox.getSelectedItem();
                 generateCountriesCheckBoxToPanel();
+                generateActorsList();
                 System.out.println(toYear);
             }
         });
@@ -92,6 +94,7 @@ public class Hw3 {
             public void actionPerformed(ActionEvent e) {
                 attributesRelation = gui.selectAndOrComboBox.getSelectedItem().toString();
                 generateCountriesCheckBoxToPanel();
+                generateActorsList();
             }
         });
 
@@ -113,96 +116,124 @@ public class Hw3 {
         ActionListener countryCheckboxActionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                generateActorsList();
             }
         };
         addCheckBoxToPanel(resultSet, panel, countriesCheckBoxList, countryCheckboxActionListener);
     }
 
     public void generateCountriesCheckBoxToPanel() {
-        ArrayList<String> selectedGenresList = getSelectedCheckBox(genresCheckBoxList);
 
-        Connection conn = null;
-        ResultSet countries = null;
+        if(getSelectedCheckBox(genresCheckBoxList).size()>0) {
+            Connection conn = null;
+            ResultSet countries = null;
+
+            StringBuilder queryCountries = new StringBuilder();
+            queryCountries.append("SELECT DISTINCT MC.country\n" +
+                    "FROM MOVIE_COUNTRIES MC, MOVIES M,\n" +
+                    "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
+                    "FROM MOVIE_GENRES MG  \n" +
+                    "GROUP BY MG.MOVIEID) G\n" +
+                    "WHERE MC.MOVIEID = G.MOVIEID AND M.ID = MC.MOVIEID \n");
 
 
-        StringBuilder queryCountries = new StringBuilder();
-        queryCountries.append("SELECT DISTINCT MC.country\n" +
-                "FROM MOVIE_COUNTRIES MC, MOVIES M,\n" +
-                "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
-                "FROM MOVIE_GENRES MG  \n" +
-                "GROUP BY MG.MOVIEID) G\n" +
-                "WHERE MC.MOVIEID = G.MOVIEID AND M.ID = MC.MOVIEID \n");
+            appendSelectedGenres(queryCountries);
+            appendSelectedYear(queryCountries);
 
-        if (selectedGenresList.size() != 0) {
-            queryCountries.append("AND (\n");
-            for (int i = 0; i < selectedGenresList.size(); i++) {
-                if (i != 0) {
-                    queryCountries.append(" " + attributesRelation + "\n");
-                }
-                queryCountries.append("G.genre like " + "'%" + selectedGenresList.get(i) + "%'");
-            }
-            queryCountries.append("\n)");
-        }
-
-        queryCountries.append("AND (M.YEAR > " +fromYear+" "+ attributesRelation +" M.YEAR < " + toYear+ ")");
-
-        try {
-            conn = DBconnection.connectDB();
-            String sql = queryCountries.toString();
-            System.out.println(sql + "\n");
-            countries = DBconnection.executeSQL(conn, sql);
-            //if(selectedGenresList.size() >0) {
+            try {
+                conn = DBconnection.connectDB();
+                String sql = queryCountries.toString();
+                System.out.println(sql + "\n");
+                countries = DBconnection.executeSQL(conn, sql);
+                //if(selectedGenresList.size() >0) {
                 setCountriesCheckBoxToPanel(countries, gui.countryPanel);
            /* }else {
                 setLabelListToPanel(conn, "COUNTRY", "MOVIE_COUNTRIES", gui.countryPanel);
             }*/
-        } catch (SQLException sqle) {
-            System.err.println("Errors occurs when communicating with the Database sever: " + sqle.getMessage());
-        } finally {
-            DBconnection.closeDB(conn);
+            } catch (SQLException sqle) {
+                System.err.println("Errors occurs when communicating with the Database sever: " + sqle.getMessage());
+            } finally {
+                DBconnection.closeDB(conn);
+            }
         }
     }
 
-    public void generateActorsList(){
+    public void generateActorsList() {
+
+        if(getSelectedCheckBox(countriesCheckBoxList).size() >0) {
+            Connection conn = null;
+            ResultSet actors = null;
+
+            StringBuilder queryActors = new StringBuilder();
+            queryActors.append("SELECT DISTINCT MA.actorName\n" +
+                    "FROM MOVIE_ACTORS MA,MOVIES M,\n" +
+                    "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
+                    "FROM MOVIE_GENRES MG  \n" +
+                    "GROUP BY MG.MOVIEID) G,\n" +
+                    "(SELECT MC.MOVIEID AS MOVIEID, LISTAGG(COUNTRY,',') WITHIN GROUP (ORDER BY MC.COUNTRY) AS COUNTRY\n" +
+                    "FROM MOVIE_COUNTRIES MC\n" +
+                    "GROUP BY MC.MOVIEID) C\n" +
+                    "WHERE MA.MOVIEID = G.MOVIEID AND C.MOVIEID = MA.MOVIEID AND M.ID = MA.MOVIEID\n");
+
+            appendSelectedGenres(queryActors);
+            appendSelectedYear(queryActors);
+            appendSelectCountries(queryActors);
+
+            try {
+                conn = DBconnection.connectDB();
+                String sql = queryActors.toString();
+                System.out.println(sql + "\n");
+                actors = DBconnection.executeSQL(conn, sql);
+
+                while (actors.next()) {
+                    System.out.println(actors.getMetaData().getColumnCount());
+                /*if (actors.getString(1) != null) {
+                    System.out.println(actors.getString(1));
+                }*/
+                }
+
+                // setCountriesCheckBoxToPanel(countries, gui.countryPanel);
+            } catch (SQLException sqle) {
+                System.err.println("Errors occurs when communicating with the Database sever: " + sqle.getMessage());
+            } finally {
+                DBconnection.closeDB(conn);
+            }
+        }
+
+    }
+
+    public void appendSelectedGenres(StringBuilder stringBuilder) {
         ArrayList<String> selectedGenresList = getSelectedCheckBox(genresCheckBoxList);
-        ArrayList<String> selectedCountriesList = getSelectedCheckBox(countriesCheckBoxList);
-
-        Connection conn = null;
-        ResultSet actors = null;
-
-
-        StringBuilder queryCountries = new StringBuilder();
-        queryCountries.append("SELECT DISTINCT MC.country\n" +
-                "FROM MOVIE_COUNTRIES MC,\n" +
-                "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
-                "FROM MOVIE_GENRES MG  \n" +
-                "GROUP BY MOVIEID) G\n" +
-                "WHERE MC.movieID = G.movieID\n");
-
         if (selectedGenresList.size() != 0) {
-            queryCountries.append("AND (\n");
+            stringBuilder.append("AND (\n");
             for (int i = 0; i < selectedGenresList.size(); i++) {
                 if (i != 0) {
-                    queryCountries.append(" " + attributesRelation + "\n");
+                    stringBuilder.append(" " + attributesRelation + "\n");
                 }
-                queryCountries.append("G.genre like " + "'%" + selectedGenresList.get(i) + "%'");
+                stringBuilder.append("G.genre like " + "'%" + selectedGenresList.get(i) + "%'");
             }
-            queryCountries.append("\n)");
+            stringBuilder.append("\n)");
         }
 
-        try {
-            conn = DBconnection.connectDB();
-            String sql = queryCountries.toString();
-            System.out.println(sql + "\n");
-            actors = DBconnection.executeSQL(conn, sql);
-           // setCountriesCheckBoxToPanel(countries, gui.countryPanel);
-        } catch (SQLException sqle) {
-            System.err.println("Errors occurs when communicating with the Database sever: " + sqle.getMessage());
-        } finally {
-            DBconnection.closeDB(conn);
-        }
+    }
 
+    public void appendSelectedYear(StringBuilder stringBuilder) {
+        stringBuilder.append("AND (M.YEAR > " + fromYear + " " + attributesRelation + " M.YEAR < " + toYear + ")");
+    }
+
+    public void appendSelectCountries(StringBuilder stringBuilder) {
+        ArrayList<String> selectedCountriesList = getSelectedCheckBox(countriesCheckBoxList);
+
+        if (selectedCountriesList.size() != 0) {
+            stringBuilder.append("AND (\n");
+            for (int i = 0; i < selectedCountriesList.size(); i++) {
+                if (i != 0) {
+                    stringBuilder.append(" " + attributesRelation + "\n");
+                }
+                stringBuilder.append("C.COUNTRY like " + "'%" + selectedCountriesList.get(i) + "%'");
+            }
+            stringBuilder.append("\n)");
+        }
     }
 
     private ArrayList<String> getSelectedCheckBox(ArrayList<JCheckBox> checkBoxsList) {
@@ -221,10 +252,10 @@ public class Hw3 {
         checkBoxs.clear();
         panel.removeAll();
         while (resultSet.next()) {
-            if(resultSet.getString(1) !=null) {
-            JCheckBox newCheckBox = new JCheckBox(resultSet.getString(1));
-            newCheckBox.addActionListener(actionListener);
-            checkBoxs.add(newCheckBox);
+            if (resultSet.getString(1) != null) {
+                JCheckBox newCheckBox = new JCheckBox(resultSet.getString(1));
+                newCheckBox.addActionListener(actionListener);
+                checkBoxs.add(newCheckBox);
             }
         }
         for (JCheckBox checkBox : checkBoxs) {
@@ -520,7 +551,7 @@ public class Hw3 {
                 years_tmp.add(years);
             }
 
-            for (int years = Calendar.getInstance().get(Calendar.YEAR); years >=1900; years--) {
+            for (int years = Calendar.getInstance().get(Calendar.YEAR); years >= 1900; years--) {
                 years_tmp_decs.add(years);
             }
 
@@ -557,10 +588,10 @@ public class Hw3 {
             directorPanel.add(searchDirectorLabel);
 
             forthAttriPanel = new JPanel();
-            forthAttriPanel.setLayout(new BoxLayout(forthAttriPanel,BoxLayout.Y_AXIS));
+            forthAttriPanel.setLayout(new BoxLayout(forthAttriPanel, BoxLayout.Y_AXIS));
             weightPanel = new JPanel();
             weightPanel.setPreferredSize(WEIGHT_PANEL_SIZE);
-            String[] tagWeight = new String[]{"=",">","<"};
+            String[] tagWeight = new String[]{"=", ">", "<"};
             weightComboBox = new JComboBox(tagWeight);
             weightValueTextField = new JTextField(8);
             weightPanel.setLayout(new FlowLayout());
