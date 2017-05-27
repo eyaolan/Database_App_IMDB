@@ -55,8 +55,8 @@ public class Hw3 {
 
             setGenresCheckBoxToPanel(resultSet, gui.genrePanel);
             System.out.println();
-            addLabelListToPanel(conn, "COUNTRY", "MOVIE_COUNTRIES", gui.countryPanel);
-            addLabelListToPanel(conn, "id, value", "TAGS", gui.tagsPanel);
+            setLabelListToPanel(conn, "COUNTRY", "MOVIE_COUNTRIES", gui.countryPanel);
+            setLabelListToPanel(conn, "id, value", "TAGS", gui.tagsPanel);
 
         } catch (SQLException sqle) {
             sqle.printStackTrace();
@@ -145,7 +145,11 @@ public class Hw3 {
             String sql = queryCountries.toString();
             System.out.println(sql + "\n");
             countries = DBconnection.executeSQL(conn, sql);
-            setCountriesCheckBoxToPanel(countries, gui.countryPanel);
+            //if(selectedGenresList.size() >0) {
+                setCountriesCheckBoxToPanel(countries, gui.countryPanel);
+           /* }else {
+                setLabelListToPanel(conn, "COUNTRY", "MOVIE_COUNTRIES", gui.countryPanel);
+            }*/
         } catch (SQLException sqle) {
             System.err.println("Errors occurs when communicating with the Database sever: " + sqle.getMessage());
         } finally {
@@ -154,6 +158,43 @@ public class Hw3 {
     }
 
     public void generateActorsList(){
+        ArrayList<String> selectedGenresList = getSelectedCheckBox(genresCheckBoxList);
+        ArrayList<String> selectedCountriesList = getSelectedCheckBox(countriesCheckBoxList);
+
+        Connection conn = null;
+        ResultSet actors = null;
+
+
+        StringBuilder queryCountries = new StringBuilder();
+        queryCountries.append("SELECT DISTINCT MC.country\n" +
+                "FROM MOVIE_COUNTRIES MC,\n" +
+                "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
+                "FROM MOVIE_GENRES MG  \n" +
+                "GROUP BY MOVIEID) G\n" +
+                "WHERE MC.movieID = G.movieID\n");
+
+        if (selectedGenresList.size() != 0) {
+            queryCountries.append("AND (\n");
+            for (int i = 0; i < selectedGenresList.size(); i++) {
+                if (i != 0) {
+                    queryCountries.append(" " + attributesRelation + "\n");
+                }
+                queryCountries.append("G.genre like " + "'%" + selectedGenresList.get(i) + "%'");
+            }
+            queryCountries.append("\n)");
+        }
+
+        try {
+            conn = DBconnection.connectDB();
+            String sql = queryCountries.toString();
+            System.out.println(sql + "\n");
+            actors = DBconnection.executeSQL(conn, sql);
+           // setCountriesCheckBoxToPanel(countries, gui.countryPanel);
+        } catch (SQLException sqle) {
+            System.err.println("Errors occurs when communicating with the Database sever: " + sqle.getMessage());
+        } finally {
+            DBconnection.closeDB(conn);
+        }
 
     }
 
@@ -186,7 +227,7 @@ public class Hw3 {
         panel.repaint();
     }
 
-    public void addLabelListToPanel(Connection conn, String columns, String table, JPanel panel) {
+    public void setLabelListToPanel(Connection conn, String columns, String table, JPanel panel) {
         String sql = selectAllSQL.replaceAll(COLUMNS_REGEX, columns);
         sql = sql.replaceFirst(TABLE_REGEX, table);
         ResultSet resultSet;
@@ -250,12 +291,15 @@ public class Hw3 {
         private JScrollPane tagScrollPanel;
         private JPanel yearPanel;
         private JPanel firstAttriPanel;
+        private JPanel forthAttriPanel;
         //panels for 3 Attributes genrePanel: genres, country, tag
         private JPanel genrePanel;
         private JPanel countryPanel;
         private JPanel tagsPanel;
         private JPanel actorsPanel;
         private JPanel directorPanel;
+        private JPanel weightPanel;
+
         //textfields and lebals for castPanel
         private static final int TEXT_FIELD_SIZE = 14;
         private JTextField actor1Textfield;
@@ -290,6 +334,10 @@ public class Hw3 {
         private JComboBox fromYearComboBox;
         private JComboBox toYearComboBox;
 
+        //JcomboBox and textfield for weightPanel
+        private JComboBox weightComboBox;
+        private JTextField weightValueTextField;
+
         //Array[] store years,labels for yearPanel
         private ArrayList<Integer> years_tmp = new ArrayList<>();
         private ArrayList<Integer> years_tmp_decs = new ArrayList<>();
@@ -313,9 +361,10 @@ public class Hw3 {
         private static final Dimension SELECTIONS_PANEL_SIZE = new Dimension(BASE * 28, BASE * 12);
         private static final Dimension GENRE_PANEL_SIZE = new Dimension(BASE * 6, BASE * 9);
         private static final Dimension YEAR_PANEL_SIZE = new Dimension(BASE * 6, BASE * 3);
-        private static final Dimension COUNTRY_PANEL_SIZE = new Dimension(BASE * 7, BASE * 12);
+        private static final Dimension COUNTRY_PANEL_SIZE = new Dimension(BASE * 8, BASE * 12);
         private static final Dimension CAST_PANEL_SIZE = new Dimension(BASE * 7, BASE * 12);
-        private static final Dimension TAG_PANEL_SIZE = new Dimension(BASE * 8, BASE * 12);
+        private static final Dimension TAG_PANEL_SIZE = new Dimension(BASE * 7, BASE * 10);
+        private static final Dimension WEIGHT_PANEL_SIZE = new Dimension(BASE * 7, BASE * 2);
         private static final Dimension QUERY_PANEL_SIZE = new Dimension(BASE * 12, BASE * 14);
         private static final Dimension SELECT_AND_OR_PANEL = new Dimension(BASE * 28, BASE * 1);
         private static final Dimension TITLE_PANEL_SIZE = new Dimension(BASE * 40, BASE * 1);
@@ -396,7 +445,7 @@ public class Hw3 {
             genresScrollPanel.setBorder(genresPanelBorder);
             countryScrollPanel.setBorder(countryPanelBorder);
             castPanel.setBorder(CastPanelBorder);
-            tagScrollPanel.setBorder(tagPanelBorder);
+            forthAttriPanel.setBorder(tagPanelBorder);
             yearPanel.setBorder(yearPanelBorder);
             movieResultPanel.setBorder(movieResultPanelBorder);
             userResultPanel.setBorder(userResultPanelBorder);
@@ -500,6 +549,23 @@ public class Hw3 {
             directorPanel.add(directorTextfield);
             directorPanel.add(searchDirectorLabel);
 
+            forthAttriPanel = new JPanel();
+            forthAttriPanel.setLayout(new BoxLayout(forthAttriPanel,BoxLayout.Y_AXIS));
+            weightPanel = new JPanel();
+            weightPanel.setPreferredSize(WEIGHT_PANEL_SIZE);
+            String[] tagWeight = new String[]{"=",">","<"};
+            weightComboBox = new JComboBox(tagWeight);
+            weightValueTextField = new JTextField(8);
+            weightPanel.setLayout(new FlowLayout());
+            weightPanel.add(new JLabel("      Tag Weight:    "));
+            weightPanel.add(weightComboBox);
+            weightPanel.add(new JLabel("    Value: "));
+            weightPanel.add(weightValueTextField);
+
+
+            forthAttriPanel.add(tagScrollPanel);
+            forthAttriPanel.add(weightPanel);
+
             String[] andOr = new String[]{"AND", "OR"};
             selectAndOrComboBox = new JComboBox(andOr);
             selectAndOrPanel.add(selectAndOrLabel);
@@ -508,7 +574,7 @@ public class Hw3 {
             selectionsPanel.add(firstAttriPanel);
             selectionsPanel.add(countryScrollPanel);
             selectionsPanel.add(castPanel);
-            selectionsPanel.add(tagScrollPanel);
+            selectionsPanel.add(forthAttriPanel);
 
             selectAndOrPanel.setPreferredSize(SELECT_AND_OR_PANEL);
 
