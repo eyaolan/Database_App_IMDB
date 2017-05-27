@@ -145,7 +145,7 @@ public class Hw3 {
             queryCountries.append("\n)");
         }
 
-        queryCountries.append("AND (M.YEAR > " +fromYear+ attributesRelation +" M.YEAR < " + toYear+ ")");
+        queryCountries.append("AND (M.YEAR > " +fromYear+" "+ attributesRelation +" M.YEAR < " + toYear+ ")");
 
         try {
             conn = DBconnection.connectDB();
