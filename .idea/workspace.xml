@@ -44,30 +44,50 @@
       <file leaf-file-name="Hw3.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="782" column="0" selection-start-line="782" selection-start-column="0" selection-end-line="782" selection-end-column="0" />
+            <state relative-caret-position="301">
+              <caret line="650" column="92" selection-start-line="650" selection-start-column="92" selection-end-line="650" selection-end-column="92" />
               <folding>
-                <element signature="method#createNewComboxFrame#0;class#Hw3#0" expanded="false" />
                 <element signature="method#promptMessageFrame#0;class#Hw3#0" expanded="false" />
-                <element signature="e#6152#6153#0" expanded="true" />
-                <element signature="e#6206#6207#0" expanded="true" />
+                <element signature="e#7964#7965#0" expanded="true" />
+                <element signature="e#8018#8019#0" expanded="true" />
+                <element signature="method#setGenresCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
+                <element signature="class#8448:8671" expanded="false" />
                 <element signature="method#setCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-                <element signature="e#7220#7221#0" expanded="true" />
-                <element signature="e#7284#7285#0" expanded="true" />
+                <element signature="e#9032#9033#0" expanded="true" />
+                <element signature="e#9096#9097#0" expanded="true" />
+                <element signature="method#generateCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#generateActorsAndDirectorsList#0;class#Hw3#0" expanded="false" />
                 <element signature="method#clearAllTextFields#0;class#Hw3#0" expanded="false" />
                 <element signature="method#appendSelectedGenres#0;class#Hw3#0" expanded="false" />
                 <element signature="method#appendSelectedYear#0;class#Hw3#0" expanded="false" />
                 <element signature="method#appendSelectCountries#0;class#Hw3#0" expanded="false" />
                 <element signature="method#getSelectedCheckBox#0;class#Hw3#0" expanded="false" />
-                <element signature="e#13953#13961#0" expanded="true" />
-                <element signature="method#addCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
+                <element signature="e#18997#19005#0" expanded="true" />
                 <element signature="method#setLabelListToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#main#0;class#Hw3#0" expanded="false" />
-                <element signature="class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#prepareGUI#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setQueryPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AquaComboBoxUI.class" pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/rt.jar!/com/apple/laf/AquaComboBoxUI.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="969">
+              <caret line="344" column="0" selection-start-line="344" selection-start-column="0" selection-end-line="344" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="createdb.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/createdb.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="451">
+              <caret line="141" column="7" selection-start-line="141" selection-start-column="7" selection-end-line="141" selection-end-column="7" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -85,10 +105,11 @@
       <file leaf-file-name="DBconnection.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Hw3/DBconnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+            <state relative-caret-position="90">
+              <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
               <folding>
                 <element signature="method#connectDB#0;class#DBconnection#0" expanded="false" />
+                <element signature="method#closeDB#0;class#DBconnection#0" expanded="false" />
                 <element signature="method#connectDB#1;class#DBconnection#0" expanded="false" />
               </folding>
             </state>
@@ -272,7 +293,7 @@
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../往届作业/Homework/3/Project/query" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Coen275OOPLeynaCotran/Assignment 2" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -852,7 +873,7 @@
       <workItem from="1495672769114" duration="1185000" />
       <workItem from="1495756298323" duration="5523000" />
       <workItem from="1495773786729" duration="1679000" />
-      <workItem from="1495778493796" duration="34393000" />
+      <workItem from="1495778493796" duration="43006000" />
     </task>
     <task id="LOCAL-00001" summary="executeQuery works">
       <created>1495261165929</created>
@@ -1043,11 +1064,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496033453452</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="fixed select actor and director function">
+      <created>1496036413571</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1496036413571</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116272000" />
+    <option name="totallyTimeSpent" value="124885000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1122,7 +1150,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="insert two rows successfully" />
     <MESSAGE value="insert until 3000+ lines, error occur" />
     <MESSAGE value="populate Movie successfully" />
     <MESSAGE value="finished populate actors data" />
@@ -1147,11 +1174,12 @@
     <MESSAGE value="added generate actors list function" />
     <MESSAGE value="added new frame when click search actors label, but the size is not right" />
     <MESSAGE value="added generating function of actorslist and directorslist" />
-    <option name="LAST_COMMIT_MESSAGE" value="added generating function of actorslist and directorslist" />
+    <MESSAGE value="fixed select actor and director function" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed select actor and director function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="61" />
+      <option name="time" value="67" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1160,7 +1188,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/src.zip!/java/lang/StringBuilder.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/src.zip!/java/lang/AbstractStringBuilder.java" />
     <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1284,13 +1311,6 @@
     <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3GUI.java" />
     <entry file="file://$PROJECT_DIR$/src/Hw3/Db.java" />
     <entry file="file://$PROJECT_DIR$/src/Hw3/GUI.java" />
-    <entry file="file://$PROJECT_DIR$/createdb.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="141" column="7" selection-start-line="141" selection-start-column="7" selection-end-line="141" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/createdb1.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="511">
@@ -1372,17 +1392,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Hw3/DBconnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-          <folding>
-            <element signature="method#connectDB#0;class#DBconnection#0" expanded="false" />
-            <element signature="method#connectDB#1;class#DBconnection#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/movies.dat">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="565">
@@ -1396,29 +1405,57 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/createdb.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="141" column="7" selection-start-line="141" selection-start-column="7" selection-end-line="141" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Hw3/DBconnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+          <folding>
+            <element signature="method#connectDB#0;class#DBconnection#0" expanded="false" />
+            <element signature="method#closeDB#0;class#DBconnection#0" expanded="false" />
+            <element signature="method#connectDB#1;class#DBconnection#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/rt.jar!/com/apple/laf/AquaComboBoxUI.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="344" column="0" selection-start-line="344" selection-start-column="0" selection-end-line="344" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="782" column="0" selection-start-line="782" selection-start-column="0" selection-end-line="782" selection-end-column="0" />
+        <state relative-caret-position="301">
+          <caret line="650" column="92" selection-start-line="650" selection-start-column="92" selection-end-line="650" selection-end-column="92" />
           <folding>
-            <element signature="method#createNewComboxFrame#0;class#Hw3#0" expanded="false" />
             <element signature="method#promptMessageFrame#0;class#Hw3#0" expanded="false" />
-            <element signature="e#6152#6153#0" expanded="true" />
-            <element signature="e#6206#6207#0" expanded="true" />
+            <element signature="e#7964#7965#0" expanded="true" />
+            <element signature="e#8018#8019#0" expanded="true" />
+            <element signature="method#setGenresCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
+            <element signature="class#8448:8671" expanded="false" />
             <element signature="method#setCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-            <element signature="e#7220#7221#0" expanded="true" />
-            <element signature="e#7284#7285#0" expanded="true" />
+            <element signature="e#9032#9033#0" expanded="true" />
+            <element signature="e#9096#9097#0" expanded="true" />
+            <element signature="method#generateCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#generateActorsAndDirectorsList#0;class#Hw3#0" expanded="false" />
             <element signature="method#clearAllTextFields#0;class#Hw3#0" expanded="false" />
             <element signature="method#appendSelectedGenres#0;class#Hw3#0" expanded="false" />
             <element signature="method#appendSelectedYear#0;class#Hw3#0" expanded="false" />
             <element signature="method#appendSelectCountries#0;class#Hw3#0" expanded="false" />
             <element signature="method#getSelectedCheckBox#0;class#Hw3#0" expanded="false" />
-            <element signature="e#13953#13961#0" expanded="true" />
-            <element signature="method#addCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
+            <element signature="e#18997#19005#0" expanded="true" />
             <element signature="method#setLabelListToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#main#0;class#Hw3#0" expanded="false" />
-            <element signature="class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#prepareGUI#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#setQueryPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
           </folding>

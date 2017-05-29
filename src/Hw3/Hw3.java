@@ -2,6 +2,8 @@ package Hw3;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
@@ -20,7 +22,7 @@ public class Hw3 {
     private ArrayList<JCheckBox> genresCheckBoxList = new ArrayList<>();
     private ArrayList<JLabel> labelArrayList = new ArrayList<>();
     private ArrayList<JCheckBox> countriesCheckBoxList = new ArrayList<>();
-    private ArrayList<JCheckBox> tagsCheckBock = new ArrayList<>();
+    private ArrayList<JCheckBox> tagsCheckBoxList = new ArrayList<>();
     //store actors name depends on check box
     private ArrayList<String> actorsList = new ArrayList<>();
     private ArrayList<String> directorsList = new ArrayList<>();
@@ -29,6 +31,10 @@ public class Hw3 {
     private String attributesRelation;
     private int fromYear;
     private int toYear;
+
+    //store selected actors and director
+    private ArrayList<String> selectedactors = new ArrayList<>();
+    private String director = "";
 
     //sql constant
     private static final String selectAllSQL = "SELECT DISTINCT ${columns} FROM ${table} ORDER BY ${columns}";
@@ -134,25 +140,69 @@ public class Hw3 {
             }
         });
 
+        /*gui.actor1Textfield.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addSelectActorToList(gui.actor1Textfield);
+                generateTagsCheckBoxToPanel();
+            }
+        });*/
 
+        gui.actor1Textfield.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                /*Timer timer = new Timer(300, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        addSelectActorToList(gui.actor1Textfield);
+                        generateTagsCheckBoxToPanel();
+                    }
+                });
+                timer.setRepeats(false);
+                timer.start();*/
+                addSelectActorToList(gui.actor1Textfield);
+                generateTagsCheckBoxToPanel();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+            }
+        });
+    }
+
+    public  void  addSelectActorToList(JTextField textField){
+        if (textField.getText() != ""){
+            selectedactors.add(textField.getText());
+        }
     }
 
     public void createNewComboxFrame(ArrayList<String> arrayList, Point position, String name, JTextField textField) {
-        if(arrayList.size()>0) {
-            JFrame searchActorsFrame = new JFrame(name);
-            JComboBox combomBox = new JComboBox(arrayList.toArray());
-            searchActorsFrame.add(combomBox);
-            searchActorsFrame.setLocation(position);
-            searchActorsFrame.pack();
-            searchActorsFrame.setVisible(true);
-            combomBox.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    textField.setText(combomBox.getSelectedItem().toString());
-                }
-            });
+        if(getSelectedCheckBox(countriesCheckBoxList).size()>0) {
+            if(arrayList.size()>0) {
+                JFrame searchActorsFrame = new JFrame(name);
+                JComboBox combomBox = new JComboBox(arrayList.toArray());
+                searchActorsFrame.add(combomBox);
+                searchActorsFrame.setLocation(position);
+                searchActorsFrame.pack();
+                searchActorsFrame.setVisible(true);
+                combomBox.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        textField.setText(combomBox.getSelectedItem().toString());
+                    }
+                });
+            }
+            else {
+                promptMessageFrame("   There is no data match the selection!  ");
+            }
         }else {
-            promptMessageFrame("         Please select genre or country first!        ");
+            promptMessageFrame("         Please select country first!        ");
         }
 
     }
@@ -199,6 +249,16 @@ public class Hw3 {
         addCheckBoxToPanel(resultSet, panel, countriesCheckBoxList, countryCheckboxActionListener);
     }
 
+    public void setTagsCheckBoxToPanel(ResultSet resultSet, JPanel panel) throws SQLException {
+        ActionListener tagCheckboxActionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        };
+        addCheckBoxToPanel(resultSet, panel, tagsCheckBoxList, tagCheckboxActionListener);
+    }
+
     public void generateCountriesCheckBoxToPanel() {
         clearAllTextFields();
         actorsList.clear();
@@ -237,11 +297,56 @@ public class Hw3 {
         //}
     }
 
+    public void generateTagsCheckBoxToPanel() {
+        //if (getSelectedCheckBox(genresCheckBoxList).size() > 0) {
+        Connection conn = null;
+        ResultSet countries = null;
+
+        StringBuilder queryTags = new StringBuilder();
+        queryTags.append("SELECT DISTINCT T.ID,T.VALUE,MD.DIRECTORNAME\n" +
+                "FROM TAGS T, MOVIE_TAGS MT,MOVIES M,MOVIE_DIRECTORS MD,\n" +
+                "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
+                "FROM MOVIE_GENRES MG  \n" +
+                "GROUP BY MG.MOVIEID) G,\n" +
+                "(SELECT MC.MOVIEID AS MOVIEID, LISTAGG(COUNTRY,',') WITHIN GROUP (ORDER BY MC.COUNTRY) AS COUNTRY\n" +
+                "FROM MOVIE_COUNTRIES MC\n" +
+                "GROUP BY MC.MOVIEID) C,\n" +
+                "(SELECT MA.MOVIEID AS MOVIEID, LISTAGG(MA.ACTORNAME,',') WITHIN GROUP (ORDER BY MA.ACTORNAME) AS ACTORNAME\n" +
+                "FROM MOVIE_ACTORS MA\n" +
+                "GROUP BY MA.MOVIEID) A\n" +
+                "WHERE T.ID = MT.TAGID AND MT.MOVIEID = M.ID AND A.MOVIEID = G.MOVIEID \n" +
+                "AND MT.MOVIEID = A.MOVIEID AND MD.MOVIEID = M.ID \n");
+
+
+        appendSelectedGenres(queryTags);
+        appendSelectedYear(queryTags);
+        appendSelectCountries(queryTags);
+        appendSelectActorsAndDirector(queryTags);
+
+        try {
+            conn = DBconnection.connectDB();
+            String sql = queryTags.toString();
+            System.out.println(sql + "\n");
+            countries = DBconnection.executeSQL(conn, sql);
+            //if(selectedGenresList.size() >0) {
+            setTagsCheckBoxToPanel(countries, gui.tagsPanel);
+           /* }else {
+                setLabelListToPanel(conn, "COUNTRY", "MOVIE_COUNTRIES", gui.countryPanel);
+            }*/
+        } catch (SQLException sqle) {
+            System.err.println("Errors occurs when communicating with the Database sever: " + sqle.getMessage());
+        } finally {
+            DBconnection.closeDB(conn);
+        }
+        //}
+    }
+
+
     public void generateActorsAndDirectorsList() {
         clearAllTextFields();
         actorsList.clear();
         directorsList.clear();
-        //if (getSelectedCheckBox(countriesCheckBoxList).size() > 0) {
+        if (getSelectedCheckBox(countriesCheckBoxList).size() > 0) {
             Connection conn = null;
             ResultSet actors = null;
 
@@ -302,7 +407,7 @@ public class Hw3 {
             } finally {
                 DBconnection.closeDB(conn);
             }
-        //}
+        }
 
     }
 
@@ -348,6 +453,26 @@ public class Hw3 {
         }
     }
 
+    public void appendSelectActorsAndDirector(StringBuilder stringBuilder){
+        if(selectedactors.size()>0 || director != ""){
+            stringBuilder.append("AND (\n");
+            for (int i = 0; i < selectedactors.size(); i++) {
+                if (i != 0) {
+                    stringBuilder.append(" " + attributesRelation + "\n");
+                }
+                stringBuilder.append("A.ACTORNAME like " + "'%" + selectedactors.get(i) + "%'");
+            }
+
+            if(director != ""){
+                if(selectedactors.size()>0){
+                    stringBuilder.append(" " + attributesRelation + "\n");
+                }
+                stringBuilder.append("MD.DIRECTORNAME like "+  "'%" + director + "%'");
+            }
+            stringBuilder.append("\n)");
+        }
+    }
+
     private ArrayList<String> getSelectedCheckBox(ArrayList<JCheckBox> checkBoxsList) {
         ArrayList<String> selectedList = new ArrayList<String>();
 
@@ -363,11 +488,22 @@ public class Hw3 {
     public void addCheckBoxToPanel(ResultSet resultSet, JPanel panel, ArrayList<JCheckBox> checkBoxs, ActionListener actionListener) throws SQLException {
         checkBoxs.clear();
         panel.removeAll();
-        while (resultSet.next()) {
-            if (resultSet.getString(1) != null) {
-                JCheckBox newCheckBox = new JCheckBox(resultSet.getString(1));
-                newCheckBox.addActionListener(actionListener);
-                checkBoxs.add(newCheckBox);
+        ResultSetMetaData metaData = resultSet.getMetaData();
+        if(metaData.getColumnCount() > 1){
+            while (resultSet.next()) {
+                if (resultSet.getString(1) != null) {
+                    JCheckBox newCheckBox = new JCheckBox(resultSet.getInt(1)+"   "+resultSet.getString(2));
+                    newCheckBox.addActionListener(actionListener);
+                    checkBoxs.add(newCheckBox);
+                }
+            }
+        }else {
+            while (resultSet.next()) {
+                if (resultSet.getString(1) != null) {
+                    JCheckBox newCheckBox = new JCheckBox(resultSet.getString(1));
+                    newCheckBox.addActionListener(actionListener);
+                    checkBoxs.add(newCheckBox);
+                }
             }
         }
         for (JCheckBox checkBox : checkBoxs) {
@@ -511,10 +647,10 @@ public class Hw3 {
         private static final Dimension SELECTIONS_PANEL_SIZE = new Dimension(BASE * 28, BASE * 12);
         private static final Dimension GENRE_PANEL_SIZE = new Dimension(BASE * 6, BASE * 9);
         private static final Dimension YEAR_PANEL_SIZE = new Dimension(BASE * 6, BASE * 3);
-        private static final Dimension COUNTRY_PANEL_SIZE = new Dimension(BASE * 8, BASE * 12);
+        private static final Dimension COUNTRY_PANEL_SIZE = new Dimension(BASE * 7, BASE * 12);
         private static final Dimension CAST_PANEL_SIZE = new Dimension(BASE * 7, BASE * 12);
-        private static final Dimension TAG_PANEL_SIZE = new Dimension(BASE * 7, BASE * 10);
-        private static final Dimension WEIGHT_PANEL_SIZE = new Dimension(BASE * 7, BASE * 2);
+        private static final Dimension TAG_PANEL_SIZE = new Dimension(BASE * 8, BASE * 10);
+        private static final Dimension WEIGHT_PANEL_SIZE = new Dimension(BASE * 8, BASE * 2);
         private static final Dimension QUERY_PANEL_SIZE = new Dimension(BASE * 12, BASE * 14);
         private static final Dimension SELECT_AND_OR_PANEL = new Dimension(BASE * 28, BASE * 1);
         private static final Dimension TITLE_PANEL_SIZE = new Dimension(BASE * 40, BASE * 1);
