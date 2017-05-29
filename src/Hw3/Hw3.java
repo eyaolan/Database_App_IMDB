@@ -3,10 +3,7 @@ package Hw3;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,6 +23,7 @@ public class Hw3 {
     private ArrayList<JCheckBox> tagsCheckBock = new ArrayList<>();
     //store actors name depends on check box
     private ArrayList<String> actorsList = new ArrayList<>();
+    private ArrayList<String> directorsList = new ArrayList<>();
 
     //
     private String attributesRelation;
@@ -76,7 +74,7 @@ public class Hw3 {
             public void actionPerformed(ActionEvent e) {
                 fromYear = (int) gui.fromYearComboBox.getSelectedItem();
                 generateCountriesCheckBoxToPanel();
-                generateActorsList();
+                generateActorsAndDirectorsList();
                 System.out.println(fromYear);
             }
         });
@@ -86,7 +84,7 @@ public class Hw3 {
             public void actionPerformed(ActionEvent e) {
                 toYear = (int) gui.toYearComboBox.getSelectedItem();
                 generateCountriesCheckBoxToPanel();
-                generateActorsList();
+                generateActorsAndDirectorsList();
                 System.out.println(toYear);
             }
         });
@@ -96,7 +94,7 @@ public class Hw3 {
             public void actionPerformed(ActionEvent e) {
                 attributesRelation = gui.selectAndOrComboBox.getSelectedItem().toString();
                 generateCountriesCheckBoxToPanel();
-                generateActorsList();
+                generateActorsAndDirectorsList();
             }
         });
 
@@ -104,21 +102,63 @@ public class Hw3 {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                JFrame searchActorsFrame = new JFrame("Actors/Actresses");
-                JComboBox actorsCombomBox = new JComboBox(actorsList.toArray());
-                JPanel panel = new JPanel();
-                panel.add(actorsCombomBox);
-                searchActorsFrame.add(panel);
-                searchActorsFrame.setPreferredSize( new Dimension(30,20));
-                searchActorsFrame.setVisible(true);
+
             }
         };
 
-        gui.searchActorLabel1.addMouseListener(searchActorsListener);
-        gui.searchActorLabel2.addMouseListener(searchActorsListener);
-        gui.searchActorLabel3.addMouseListener(searchActorsListener);
-        gui.searchActorLabel4.addMouseListener(searchActorsListener);
+        gui.searchActorLabel1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                createNewComboxFrame(actorsList, new Point(600,150),"Actors/Actresses",gui.actor1Textfield);
+            }
+        });
+        gui.searchActorLabel2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                createNewComboxFrame(actorsList, new Point(600,200),"Actors/Actresses",gui.actor2Textfield);
+            }
+        });
+        gui.searchActorLabel3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                createNewComboxFrame(actorsList, new Point(600,250),"Actors/Actresses",gui.actor3Textfield);
+            }
+        });
+        gui.searchActorLabel4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                createNewComboxFrame(actorsList, new Point(600,300),"Actors/Actresses",gui.actor4Textfield);
+            }
+        });
 
+        gui.searchDirectorLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                createNewComboxFrame(directorsList, new Point(600,400),"Directors",gui.directorTextfield);
+            }
+        });
+
+
+    }
+
+    public void createNewComboxFrame(ArrayList<String> arrayList,Point position, String name, JTextField textField){
+        JFrame searchActorsFrame = new JFrame(name);
+        JComboBox combomBox = new JComboBox(arrayList.toArray());
+        searchActorsFrame.add(combomBox);
+        searchActorsFrame.setLocation(position);
+        searchActorsFrame.pack();
+        searchActorsFrame.setVisible(true);
+        combomBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textField.setText(combomBox.getSelectedItem().toString());
+            }
+        });
 
     }
 
@@ -137,7 +177,8 @@ public class Hw3 {
         ActionListener countryCheckboxActionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                generateActorsList();
+                generateActorsAndDirectorsList();
+                //generateDirectorsList();
             }
         };
         addCheckBoxToPanel(resultSet, panel, countriesCheckBoxList, countryCheckboxActionListener);
@@ -179,7 +220,7 @@ public class Hw3 {
         }
     }
 
-    public void generateActorsList() {
+    public void generateActorsAndDirectorsList() {
 
         if (getSelectedCheckBox(countriesCheckBoxList).size() > 0) {
             Connection conn = null;
@@ -200,17 +241,45 @@ public class Hw3 {
             appendSelectedYear(queryActors);
             appendSelectCountries(queryActors);
 
+            ResultSet directors = null;
+
+            StringBuilder queryDirectors = new StringBuilder();
+            queryDirectors.append("SELECT DISTINCT MD.DIRECTORNAME\n" +
+                    "FROM MOVIE_DIRECTORS MD,MOVIES M,\n" +
+                    "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
+                    "FROM MOVIE_GENRES MG  \n" +
+                    "GROUP BY MG.MOVIEID) G,\n" +
+                    "(SELECT MC.MOVIEID AS MOVIEID, LISTAGG(COUNTRY,',') WITHIN GROUP (ORDER BY MC.COUNTRY) AS COUNTRY\n" +
+                    "FROM MOVIE_COUNTRIES MC\n" +
+                    "GROUP BY MC.MOVIEID) C\n" +
+                    "WHERE MD.MOVIEID = G.MOVIEID AND C.MOVIEID = MD.MOVIEID AND M.ID = MD.MOVIEID \n");
+
+            appendSelectedGenres(queryDirectors);
+            appendSelectedYear(queryDirectors);
+            appendSelectCountries(queryDirectors);
+
             try {
                 conn = DBconnection.connectDB();
-                String sql = queryActors.toString();
-                System.out.println(sql + "\n");
-                actors = DBconnection.executeSQL(conn, sql);
+                String sqlActors = queryActors.toString();
+                System.out.println(sqlActors + "\n");
+                actors = DBconnection.executeSQL(conn, sqlActors);
 
                 actorsList.clear();
                 while (actors.next()) {
                     System.out.println(actors.getMetaData().getColumnCount());
                     actorsList.add(actors.getString(1));
                 }
+
+                String sqlDirectors = queryDirectors.toString();
+                System.out.println(sqlDirectors + "\n");
+                directors = DBconnection.executeSQL(conn, sqlDirectors);
+
+                directorsList.clear();
+                while (directors.next()) {
+                    System.out.println(directors.getMetaData().getColumnCount());
+                    directorsList.add(directors.getString(1));
+                }
+
 
                 // setCountriesCheckBoxToPanel(countries, gui.countryPanel);
             } catch (SQLException sqle) {
