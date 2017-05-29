@@ -33,7 +33,7 @@ public class Hw3 {
     private int toYear;
 
     //store selected actors and director
-    private ArrayList<String> selectedactors = new ArrayList<>();
+    private ArrayList<String> selectedactorsAndDirector = new ArrayList<>();
     private String director = "";
 
     //sql constant
@@ -66,7 +66,7 @@ public class Hw3 {
             System.out.println();
             generateCountriesCheckBoxToPanel();
            // setLabelListToPanel(conn, "COUNTRY", "MOVIE_COUNTRIES", gui.countryPanel);
-            setLabelListToPanel(conn, "id, value", "TAGS", gui.tagsPanel);
+            //setLabelListToPanel(conn, "id, value", "TAGS", gui.tagsPanel);
 
         } catch (SQLException sqle) {
             sqle.printStackTrace();
@@ -140,45 +140,49 @@ public class Hw3 {
             }
         });
 
-        /*gui.actor1Textfield.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addSelectActorToList(gui.actor1Textfield);
-                generateTagsCheckBoxToPanel();
-            }
-        });*/
-
-        gui.actor1Textfield.getDocument().addDocumentListener(new DocumentListener() {
+        DocumentListener actorsOrDirectorTextFieldListener = new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                /*Timer timer = new Timer(300, new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent ae) {
-                        addSelectActorToList(gui.actor1Textfield);
-                        generateTagsCheckBoxToPanel();
-                    }
-                });
-                timer.setRepeats(false);
-                timer.start();*/
-                addSelectActorToList(gui.actor1Textfield);
+                addTextFieldOfActorsAndDirectorTolist();
                 generateTagsCheckBoxToPanel();
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-
+                addTextFieldOfActorsAndDirectorTolist();
+                generateTagsCheckBoxToPanel();
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-
+                addTextFieldOfActorsAndDirectorTolist();
+                generateTagsCheckBoxToPanel();
             }
-        });
+        };
+
+        gui.actor1Textfield.getDocument().addDocumentListener(actorsOrDirectorTextFieldListener);
+        gui.actor2Textfield.getDocument().addDocumentListener(actorsOrDirectorTextFieldListener);
+        gui.actor3Textfield.getDocument().addDocumentListener(actorsOrDirectorTextFieldListener);
+        gui.actor4Textfield.getDocument().addDocumentListener(actorsOrDirectorTextFieldListener);
+        gui.directorTextfield.getDocument().addDocumentListener(actorsOrDirectorTextFieldListener);
     }
 
-    public  void  addSelectActorToList(JTextField textField){
-        if (textField.getText() != ""){
-            selectedactors.add(textField.getText());
+    public void addTextFieldOfActorsAndDirectorTolist(){
+        selectedactorsAndDirector.clear();
+        director = "";
+        addTextFieldToList(gui.actor1Textfield);
+        addTextFieldToList(gui.actor2Textfield);
+        addTextFieldToList(gui.actor3Textfield);
+        addTextFieldToList(gui.actor4Textfield);
+        if(!gui.directorTextfield.getText().isEmpty()) {
+            director = gui.directorTextfield.getText();
+        }
+
+    }
+
+    public  void addTextFieldToList(JTextField textField){
+        if (!textField.getText().isEmpty()){
+            selectedactorsAndDirector.add(textField.getText());
         }
     }
 
@@ -244,6 +248,7 @@ public class Hw3 {
             @Override
             public void actionPerformed(ActionEvent e) {
                 generateActorsAndDirectorsList();
+                generateTagsCheckBoxToPanel();
             }
         };
         addCheckBoxToPanel(resultSet, panel, countriesCheckBoxList, countryCheckboxActionListener);
@@ -263,6 +268,7 @@ public class Hw3 {
         clearAllTextFields();
         actorsList.clear();
         directorsList.clear();
+        gui.tagsPanel.removeAll();
         //if (getSelectedCheckBox(genresCheckBoxList).size() > 0) {
             Connection conn = null;
             ResultSet countries = null;
@@ -303,7 +309,7 @@ public class Hw3 {
         ResultSet countries = null;
 
         StringBuilder queryTags = new StringBuilder();
-        queryTags.append("SELECT DISTINCT T.ID,T.VALUE,MD.DIRECTORNAME\n" +
+        queryTags.append("SELECT DISTINCT T.ID,T.VALUE\n" +
                 "FROM TAGS T, MOVIE_TAGS MT,MOVIES M,MOVIE_DIRECTORS MD,\n" +
                 "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
                 "FROM MOVIE_GENRES MG  \n" +
@@ -346,6 +352,7 @@ public class Hw3 {
         clearAllTextFields();
         actorsList.clear();
         directorsList.clear();
+        gui.tagsPanel.removeAll();
         if (getSelectedCheckBox(countriesCheckBoxList).size() > 0) {
             Connection conn = null;
             ResultSet actors = null;
@@ -454,17 +461,17 @@ public class Hw3 {
     }
 
     public void appendSelectActorsAndDirector(StringBuilder stringBuilder){
-        if(selectedactors.size()>0 || director != ""){
+        if(selectedactorsAndDirector.size()>0 || director != ""){
             stringBuilder.append("AND (\n");
-            for (int i = 0; i < selectedactors.size(); i++) {
+            for (int i = 0; i < selectedactorsAndDirector.size(); i++) {
                 if (i != 0) {
                     stringBuilder.append(" " + attributesRelation + "\n");
                 }
-                stringBuilder.append("A.ACTORNAME like " + "'%" + selectedactors.get(i) + "%'");
+                stringBuilder.append("A.ACTORNAME like " + "'%" + selectedactorsAndDirector.get(i) + "%'");
             }
 
             if(director != ""){
-                if(selectedactors.size()>0){
+                if(selectedactorsAndDirector.size()>0){
                     stringBuilder.append(" " + attributesRelation + "\n");
                 }
                 stringBuilder.append("MD.DIRECTORNAME like "+  "'%" + director + "%'");

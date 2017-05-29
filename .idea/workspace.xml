@@ -44,27 +44,31 @@
       <file leaf-file-name="Hw3.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="650" column="92" selection-start-line="650" selection-start-column="92" selection-end-line="650" selection-end-column="92" />
+            <state relative-caret-position="348">
+              <caret line="304" column="0" selection-start-line="304" selection-start-column="0" selection-end-line="304" selection-end-column="0" />
               <folding>
+                <element signature="method#addTextFieldOfActorsAndDirectorTolist#0;class#Hw3#0" expanded="false" />
+                <element signature="method#addTextFieldToList#0;class#Hw3#0" expanded="false" />
+                <element signature="method#createNewComboxFrame#0;class#Hw3#0" expanded="false" />
                 <element signature="method#promptMessageFrame#0;class#Hw3#0" expanded="false" />
-                <element signature="e#7964#7965#0" expanded="true" />
-                <element signature="e#8018#8019#0" expanded="true" />
+                <element signature="e#8446#8447#0" expanded="true" />
+                <element signature="e#8500#8501#0" expanded="true" />
                 <element signature="method#setGenresCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-                <element signature="class#8448:8671" expanded="false" />
+                <element signature="class#8930:9153" expanded="false" />
                 <element signature="method#setCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-                <element signature="e#9032#9033#0" expanded="true" />
-                <element signature="e#9096#9097#0" expanded="true" />
                 <element signature="method#generateCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#generateActorsAndDirectorsList#0;class#Hw3#0" expanded="false" />
                 <element signature="method#clearAllTextFields#0;class#Hw3#0" expanded="false" />
                 <element signature="method#appendSelectedGenres#0;class#Hw3#0" expanded="false" />
                 <element signature="method#appendSelectedYear#0;class#Hw3#0" expanded="false" />
                 <element signature="method#appendSelectCountries#0;class#Hw3#0" expanded="false" />
+                <element signature="method#appendSelectActorsAndDirector#0;class#Hw3#0" expanded="false" />
                 <element signature="method#getSelectedCheckBox#0;class#Hw3#0" expanded="false" />
-                <element signature="e#18997#19005#0" expanded="true" />
+                <element signature="e#19624#19632#0" expanded="true" />
+                <element signature="method#addCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setLabelListToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#main#0;class#Hw3#0" expanded="false" />
+                <element signature="class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#prepareGUI#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setQueryPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
               </folding>
@@ -873,7 +877,7 @@
       <workItem from="1495672769114" duration="1185000" />
       <workItem from="1495756298323" duration="5523000" />
       <workItem from="1495773786729" duration="1679000" />
-      <workItem from="1495778493796" duration="43006000" />
+      <workItem from="1495778493796" duration="44768000" />
     </task>
     <task id="LOCAL-00001" summary="executeQuery works">
       <created>1495261165929</created>
@@ -1071,11 +1075,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496036413571</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="added function of generating tags values">
+      <created>1496097813739</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1496097813740</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124885000" />
+    <option name="totallyTimeSpent" value="126647000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1150,7 +1161,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="insert until 3000+ lines, error occur" />
     <MESSAGE value="populate Movie successfully" />
     <MESSAGE value="finished populate actors data" />
     <MESSAGE value="finished populate countries, directors, genres data" />
@@ -1175,7 +1185,8 @@
     <MESSAGE value="added new frame when click search actors label, but the size is not right" />
     <MESSAGE value="added generating function of actorslist and directorslist" />
     <MESSAGE value="fixed select actor and director function" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed select actor and director function" />
+    <MESSAGE value="added function of generating tags values" />
+    <option name="LAST_COMMIT_MESSAGE" value="added function of generating tags values" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1435,27 +1446,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="650" column="92" selection-start-line="650" selection-start-column="92" selection-end-line="650" selection-end-column="92" />
+        <state relative-caret-position="348">
+          <caret line="304" column="0" selection-start-line="304" selection-start-column="0" selection-end-line="304" selection-end-column="0" />
           <folding>
+            <element signature="method#addTextFieldOfActorsAndDirectorTolist#0;class#Hw3#0" expanded="false" />
+            <element signature="method#addTextFieldToList#0;class#Hw3#0" expanded="false" />
+            <element signature="method#createNewComboxFrame#0;class#Hw3#0" expanded="false" />
             <element signature="method#promptMessageFrame#0;class#Hw3#0" expanded="false" />
-            <element signature="e#7964#7965#0" expanded="true" />
-            <element signature="e#8018#8019#0" expanded="true" />
+            <element signature="e#8446#8447#0" expanded="true" />
+            <element signature="e#8500#8501#0" expanded="true" />
             <element signature="method#setGenresCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-            <element signature="class#8448:8671" expanded="false" />
+            <element signature="class#8930:9153" expanded="false" />
             <element signature="method#setCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-            <element signature="e#9032#9033#0" expanded="true" />
-            <element signature="e#9096#9097#0" expanded="true" />
             <element signature="method#generateCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#generateActorsAndDirectorsList#0;class#Hw3#0" expanded="false" />
             <element signature="method#clearAllTextFields#0;class#Hw3#0" expanded="false" />
             <element signature="method#appendSelectedGenres#0;class#Hw3#0" expanded="false" />
             <element signature="method#appendSelectedYear#0;class#Hw3#0" expanded="false" />
             <element signature="method#appendSelectCountries#0;class#Hw3#0" expanded="false" />
+            <element signature="method#appendSelectActorsAndDirector#0;class#Hw3#0" expanded="false" />
             <element signature="method#getSelectedCheckBox#0;class#Hw3#0" expanded="false" />
-            <element signature="e#18997#19005#0" expanded="true" />
+            <element signature="e#19624#19632#0" expanded="true" />
+            <element signature="method#addCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#setLabelListToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#main#0;class#Hw3#0" expanded="false" />
+            <element signature="class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#prepareGUI#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#setQueryPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
           </folding>
