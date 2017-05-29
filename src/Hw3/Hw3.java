@@ -58,7 +58,8 @@ public class Hw3 {
 
             setGenresCheckBoxToPanel(resultSet, gui.genrePanel);
             System.out.println();
-            setLabelListToPanel(conn, "COUNTRY", "MOVIE_COUNTRIES", gui.countryPanel);
+            generateCountriesCheckBoxToPanel();
+           // setLabelListToPanel(conn, "COUNTRY", "MOVIE_COUNTRIES", gui.countryPanel);
             setLabelListToPanel(conn, "id, value", "TAGS", gui.tagsPanel);
 
         } catch (SQLException sqle) {
@@ -75,7 +76,6 @@ public class Hw3 {
                 fromYear = (int) gui.fromYearComboBox.getSelectedItem();
                 generateCountriesCheckBoxToPanel();
                 generateActorsAndDirectorsList();
-                System.out.println(fromYear);
             }
         });
 
@@ -85,7 +85,6 @@ public class Hw3 {
                 toYear = (int) gui.toYearComboBox.getSelectedItem();
                 generateCountriesCheckBoxToPanel();
                 generateActorsAndDirectorsList();
-                System.out.println(toYear);
             }
         });
 
@@ -98,40 +97,32 @@ public class Hw3 {
             }
         });
 
-        MouseAdapter searchActorsListener = new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-
-            }
-        };
-
         gui.searchActorLabel1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                createNewComboxFrame(actorsList, new Point(600,150),"Actors/Actresses",gui.actor1Textfield);
+                createNewComboxFrame(actorsList, new Point(600, 150), "Actors/Actresses", gui.actor1Textfield);
             }
         });
         gui.searchActorLabel2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                createNewComboxFrame(actorsList, new Point(600,200),"Actors/Actresses",gui.actor2Textfield);
+                createNewComboxFrame(actorsList, new Point(600, 200), "Actors/Actresses", gui.actor2Textfield);
             }
         });
         gui.searchActorLabel3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                createNewComboxFrame(actorsList, new Point(600,250),"Actors/Actresses",gui.actor3Textfield);
+                createNewComboxFrame(actorsList, new Point(600, 250), "Actors/Actresses", gui.actor3Textfield);
             }
         });
         gui.searchActorLabel4.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                createNewComboxFrame(actorsList, new Point(600,300),"Actors/Actresses",gui.actor4Textfield);
+                createNewComboxFrame(actorsList, new Point(600, 300), "Actors/Actresses", gui.actor4Textfield);
             }
         });
 
@@ -139,27 +130,51 @@ public class Hw3 {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                createNewComboxFrame(directorsList, new Point(600,400),"Directors",gui.directorTextfield);
+                createNewComboxFrame(directorsList, new Point(600, 400), "Directors", gui.directorTextfield);
             }
         });
 
 
     }
 
-    public void createNewComboxFrame(ArrayList<String> arrayList,Point position, String name, JTextField textField){
-        JFrame searchActorsFrame = new JFrame(name);
-        JComboBox combomBox = new JComboBox(arrayList.toArray());
-        searchActorsFrame.add(combomBox);
-        searchActorsFrame.setLocation(position);
-        searchActorsFrame.pack();
-        searchActorsFrame.setVisible(true);
-        combomBox.addActionListener(new ActionListener() {
+    public void createNewComboxFrame(ArrayList<String> arrayList, Point position, String name, JTextField textField) {
+        if(arrayList.size()>0) {
+            JFrame searchActorsFrame = new JFrame(name);
+            JComboBox combomBox = new JComboBox(arrayList.toArray());
+            searchActorsFrame.add(combomBox);
+            searchActorsFrame.setLocation(position);
+            searchActorsFrame.pack();
+            searchActorsFrame.setVisible(true);
+            combomBox.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    textField.setText(combomBox.getSelectedItem().toString());
+                }
+            });
+        }else {
+            promptMessageFrame("         Please select genre or country first!        ");
+        }
+
+    }
+
+    public void promptMessageFrame(String message){
+        JFrame messageFrame = new JFrame();
+        JLabel messageLabel = new JLabel(message);
+        JButton button = new JButton("YES");
+        JPanel panel = new JPanel();
+        button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textField.setText(combomBox.getSelectedItem().toString());
+                messageFrame.dispose();
             }
         });
-
+        panel.setLayout(new FlowLayout());
+        panel.add(messageLabel);
+        panel.add(button);
+        messageFrame.add(panel);
+        messageFrame.pack();
+        messageFrame.setLocationRelativeTo(null);
+        messageFrame.setVisible(true);
     }
 
     public void setGenresCheckBoxToPanel(ResultSet resultSet, JPanel panel) throws SQLException {
@@ -167,6 +182,7 @@ public class Hw3 {
             @Override
             public void actionPerformed(ActionEvent e) {
                 generateCountriesCheckBoxToPanel();
+                generateActorsAndDirectorsList();
             }
         };
         addCheckBoxToPanel(resultSet, panel, genresCheckBoxList, genreCheckboxActionListener);
@@ -178,15 +194,16 @@ public class Hw3 {
             @Override
             public void actionPerformed(ActionEvent e) {
                 generateActorsAndDirectorsList();
-                //generateDirectorsList();
             }
         };
         addCheckBoxToPanel(resultSet, panel, countriesCheckBoxList, countryCheckboxActionListener);
     }
 
     public void generateCountriesCheckBoxToPanel() {
-
-        if (getSelectedCheckBox(genresCheckBoxList).size() > 0) {
+        clearAllTextFields();
+        actorsList.clear();
+        directorsList.clear();
+        //if (getSelectedCheckBox(genresCheckBoxList).size() > 0) {
             Connection conn = null;
             ResultSet countries = null;
 
@@ -217,12 +234,14 @@ public class Hw3 {
             } finally {
                 DBconnection.closeDB(conn);
             }
-        }
+        //}
     }
 
     public void generateActorsAndDirectorsList() {
-
-        if (getSelectedCheckBox(countriesCheckBoxList).size() > 0) {
+        clearAllTextFields();
+        actorsList.clear();
+        directorsList.clear();
+        //if (getSelectedCheckBox(countriesCheckBoxList).size() > 0) {
             Connection conn = null;
             ResultSet actors = null;
 
@@ -266,7 +285,6 @@ public class Hw3 {
 
                 actorsList.clear();
                 while (actors.next()) {
-                    System.out.println(actors.getMetaData().getColumnCount());
                     actorsList.add(actors.getString(1));
                 }
 
@@ -276,19 +294,24 @@ public class Hw3 {
 
                 directorsList.clear();
                 while (directors.next()) {
-                    System.out.println(directors.getMetaData().getColumnCount());
                     directorsList.add(directors.getString(1));
                 }
 
-
-                // setCountriesCheckBoxToPanel(countries, gui.countryPanel);
             } catch (SQLException sqle) {
                 System.err.println("Errors occurs when communicating with the Database sever: " + sqle.getMessage());
             } finally {
                 DBconnection.closeDB(conn);
             }
-        }
+        //}
 
+    }
+
+    public void clearAllTextFields(){
+        gui.actor1Textfield.setText("");
+        gui.actor2Textfield.setText("");
+        gui.actor3Textfield.setText("");
+        gui.actor4Textfield.setText("");
+        gui.directorTextfield.setText("");
     }
 
     public void appendSelectedGenres(StringBuilder stringBuilder) {
