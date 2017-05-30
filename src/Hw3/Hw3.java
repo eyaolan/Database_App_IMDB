@@ -48,6 +48,7 @@ public class Hw3 {
 
     //Final query string
     private String finalMovieQuery = "";
+    private String finalUserQuery = "";
 
     public Hw3() {
         gui = new Hw3GUI();
@@ -234,7 +235,9 @@ public class Hw3 {
         gui.userQueryButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                generateFinalQueryUsersStatement();
+                executeUserQuery();
+                moviesCheckBoxList.clear();
             }
         });
 
@@ -533,9 +536,9 @@ public class Hw3 {
 
     public void generateFinalQueryUsersStatement() {
 
-        StringBuilder finalMovieQueryStatement = new StringBuilder();
-        finalMovieQueryStatement.append("SELECT DISTINCT M.ID,M.TITLE,G.GENRE,M.YEAR,C.COUNTRY,M.RTAUDIENCERATING,M.RTAUDIENCENUMRATINGS\n" +
-                "FROM TAGS T, MOVIE_TAGS MT,MOVIES M,MOVIE_DIRECTORS MD,\n" +
+        StringBuilder finalUserQueryStatement = new StringBuilder();
+        finalUserQueryStatement.append("SELECT DISTINCT UT.USERID\n" +
+                "FROM TAGS T, MOVIE_TAGS MT,MOVIES M,MOVIE_DIRECTORS MD, USER_TAGGEDMOVIES UT, \n" +
                 "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
                 "FROM MOVIE_GENRES MG  \n" +
                 "GROUP BY MG.MOVIEID) G,\n" +
@@ -546,20 +549,22 @@ public class Hw3 {
                 "FROM MOVIE_ACTORS MA\n" +
                 "GROUP BY MA.MOVIEID) A\n" +
                 "WHERE T.ID = MT.TAGID AND MT.MOVIEID = M.ID AND A.MOVIEID = G.MOVIEID \n" +
-                "AND MT.MOVIEID = A.MOVIEID AND MD.MOVIEID = M.ID \n");
+                "AND MT.MOVIEID = A.MOVIEID AND MD.MOVIEID = M.ID \n" +
+                "AND UT.MOVIEID = M.ID AND UT.TAGID = T.ID \n");
 
-        appendSelectedGenres(finalMovieQueryStatement);
-        appendSelectedYear(finalMovieQueryStatement);
-        appendSelectCountries(finalMovieQueryStatement);
-        appendSelectActorsAndDirector(finalMovieQueryStatement);
+        appendSelectedGenres(finalUserQueryStatement);
+        appendSelectedYear(finalUserQueryStatement);
+        appendSelectCountries(finalUserQueryStatement);
+        appendSelectActorsAndDirector(finalUserQueryStatement);
         if(!gui.weightValueTextField.getText().isEmpty()){
-            appendTagsWeight(finalMovieQueryStatement);
+            appendTagsWeight(finalUserQueryStatement);
         }
-        appendSelectedTags(finalMovieQueryStatement);
-        finalMovieQuery = finalMovieQueryStatement.toString();
-        gui.showQuery.setText(finalMovieQuery);
-    }
+        appendSelectedTags(finalUserQueryStatement);
+        appendSelectedMovies(finalUserQueryStatement);
 
+        finalUserQuery = finalUserQueryStatement.toString();
+        gui.showQuery.setText(finalUserQuery);
+    }
 
     public void executeMovieQuery() {
 
@@ -584,15 +589,15 @@ public class Hw3 {
     public void executeUserQuery() {
 
         Connection conn = null;
-        ResultSet movies = null;
+        ResultSet userIDs = null;
 
 
         try {
             conn = DBconnection.connectDB();
 
-            System.out.println(finalMovieQuery + "\n");
-            movies = DBconnection.executeSQL(conn, finalMovieQuery);
-            setMovieResultsToPanel(movies, gui.movieResultPanel);
+            System.out.println(finalUserQuery + "\n");
+            userIDs = DBconnection.executeSQL(conn, finalUserQuery);
+            setMovieResultsToPanel(userIDs, gui.userResultPanel);
 
         } catch (SQLException sqle) {
             System.err.println("Errors occurs when communicating with the Database sever: " + sqle.getMessage());
@@ -679,11 +684,28 @@ public class Hw3 {
                     stringBuilder.append(" " + attributesRelation + "\n");
                 }
 
-                stringBuilder.append("T.ID = " + selectedTags.get(i).replaceAll("[^-?0-9]+", " "));
+                //stringBuilder.append("T.ID = " + selectedTags.get(i).replaceAll("[^-?0-9]+", " "));
+                stringBuilder.append("T.ID = " + selectedTags.get(i).substring(0,7));
             }
             stringBuilder.append("\n)");
         }
     }
+
+    public void appendSelectedMovies(StringBuilder stringBuilder){
+        ArrayList<String> selectedMovies = getSelectedCheckBox(moviesCheckBoxList);
+
+        if(selectedMovies.size() >0){
+            stringBuilder.append("AND (\n");
+            for (int i = 0; i < selectedMovies.size(); i++) {
+                if (i != 0) {
+                    stringBuilder.append(" " + attributesRelation + "\n");
+                }
+                stringBuilder.append("M.ID = " + selectedMovies.get(i).substring(0,7));
+            }
+            stringBuilder.append("\n)");
+        }
+    }
+
 
     private ArrayList<String> getSelectedCheckBox(ArrayList<JCheckBox> checkBoxsList) {
         ArrayList<String> selectedList = new ArrayList<String>();
@@ -708,8 +730,6 @@ public class Hw3 {
                     for(int i = 1; i<=metaData.getColumnCount();i++){
                         movieResult.append(resultSet.getString(i)+"             ");
                     }
-                    System.out.println(1);
-                    System.out.println(movieResult.toString());
                     JCheckBox newCheckBox = new JCheckBox(movieResult.toString());
                     newCheckBox.addActionListener(actionListener);
                     checkBoxs.add(newCheckBox);
