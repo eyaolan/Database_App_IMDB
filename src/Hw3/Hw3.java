@@ -36,6 +36,10 @@ public class Hw3 {
     private ArrayList<String> selectedactorsAndDirector = new ArrayList<>();
     private String director = "";
 
+    //store selected tag weight, selected tag value
+    private String tagWeight;
+    private int tagValue;
+
     //sql constant
     private static final String selectAllSQL = "SELECT DISTINCT ${columns} FROM ${table} ORDER BY ${columns}";
     private static final String COLUMNS_REGEX = "\\$\\{columns\\}";
@@ -47,6 +51,7 @@ public class Hw3 {
         setActionListeners();
         fromYear = (int) gui.fromYearComboBox.getSelectedItem();
         toYear = (int) gui.toYearComboBox.getSelectedItem();
+        tagWeight = gui.weightComboBox.getSelectedItem().toString();
 
     }
 
@@ -65,7 +70,7 @@ public class Hw3 {
             setGenresCheckBoxToPanel(resultSet, gui.genrePanel);
             System.out.println();
             generateCountriesCheckBoxToPanel();
-           // setLabelListToPanel(conn, "COUNTRY", "MOVIE_COUNTRIES", gui.countryPanel);
+            // setLabelListToPanel(conn, "COUNTRY", "MOVIE_COUNTRIES", gui.countryPanel);
             //setLabelListToPanel(conn, "id, value", "TAGS", gui.tagsPanel);
 
         } catch (SQLException sqle) {
@@ -165,30 +170,76 @@ public class Hw3 {
         gui.actor3Textfield.getDocument().addDocumentListener(actorsOrDirectorTextFieldListener);
         gui.actor4Textfield.getDocument().addDocumentListener(actorsOrDirectorTextFieldListener);
         gui.directorTextfield.getDocument().addDocumentListener(actorsOrDirectorTextFieldListener);
+
+        gui.weightComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tagWeight = gui.weightComboBox.getSelectedItem().toString();
+                generateTagsCheckBoxToPanel();
+            }
+        });
+
+        gui.weightValueTextField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                tagWeight = gui.weightComboBox.getSelectedItem().toString();
+                try {
+                    tagValue = Integer.parseInt(gui.weightValueTextField.getText());
+                } catch (Exception ex) {
+                    System.out.println("It's not a valid number: " + ex.getMessage());
+                    promptMessageFrame("It's not a valid number! Please enter a valid integer! ");
+                }
+                if(tagValue != 0) {
+                    generateTagsCheckBoxToPanel();
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                //gui.weightValueTextField.setText("");
+                generateTagsCheckBoxToPanel();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                tagWeight = gui.weightComboBox.getSelectedItem().toString();
+                try {
+                    tagValue = Integer.parseInt(gui.weightValueTextField.getText());
+                } catch (Exception ex) {
+                    System.out.println("It's not a valid number: " + ex.getMessage());
+                    promptMessageFrame("It's not a valid number! Please enter a valid integer! ");
+                }
+                if(tagValue != 0) {
+                    generateTagsCheckBoxToPanel();
+                }
+            }
+
+        });
+
     }
 
-    public void addTextFieldOfActorsAndDirectorTolist(){
+    public void addTextFieldOfActorsAndDirectorTolist() {
         selectedactorsAndDirector.clear();
         director = "";
         addTextFieldToList(gui.actor1Textfield);
         addTextFieldToList(gui.actor2Textfield);
         addTextFieldToList(gui.actor3Textfield);
         addTextFieldToList(gui.actor4Textfield);
-        if(!gui.directorTextfield.getText().isEmpty()) {
+        if (!gui.directorTextfield.getText().isEmpty()) {
             director = gui.directorTextfield.getText();
         }
 
     }
 
-    public  void addTextFieldToList(JTextField textField){
-        if (!textField.getText().isEmpty()){
+    public void addTextFieldToList(JTextField textField) {
+        if (!textField.getText().isEmpty()) {
             selectedactorsAndDirector.add(textField.getText());
         }
     }
 
     public void createNewComboxFrame(ArrayList<String> arrayList, Point position, String name, JTextField textField) {
-        if(getSelectedCheckBox(countriesCheckBoxList).size()>0) {
-            if(arrayList.size()>0) {
+        if (getSelectedCheckBox(countriesCheckBoxList).size() > 0) {
+            if (arrayList.size() > 0) {
                 JFrame searchActorsFrame = new JFrame(name);
                 JComboBox combomBox = new JComboBox(arrayList.toArray());
                 searchActorsFrame.add(combomBox);
@@ -201,17 +252,16 @@ public class Hw3 {
                         textField.setText(combomBox.getSelectedItem().toString());
                     }
                 });
-            }
-            else {
+            } else {
                 promptMessageFrame("   There is no data match the selection!  ");
             }
-        }else {
+        } else {
             promptMessageFrame("         Please select country first!        ");
         }
 
     }
 
-    public void promptMessageFrame(String message){
+    public void promptMessageFrame(String message) {
         JFrame messageFrame = new JFrame();
         JLabel messageLabel = new JLabel(message);
         JButton button = new JButton("YES");
@@ -270,72 +320,28 @@ public class Hw3 {
         directorsList.clear();
         gui.tagsPanel.removeAll();
         //if (getSelectedCheckBox(genresCheckBoxList).size() > 0) {
-            Connection conn = null;
-            ResultSet countries = null;
-
-            StringBuilder queryCountries = new StringBuilder();
-            queryCountries.append("SELECT DISTINCT MC.country\n" +
-                    "FROM MOVIE_COUNTRIES MC, MOVIES M,\n" +
-                    "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
-                    "FROM MOVIE_GENRES MG  \n" +
-                    "GROUP BY MG.MOVIEID) G\n" +
-                    "WHERE MC.MOVIEID = G.MOVIEID AND M.ID = MC.MOVIEID \n");
-
-
-            appendSelectedGenres(queryCountries);
-            appendSelectedYear(queryCountries);
-
-            try {
-                conn = DBconnection.connectDB();
-                String sql = queryCountries.toString();
-                System.out.println(sql + "\n");
-                countries = DBconnection.executeSQL(conn, sql);
-                //if(selectedGenresList.size() >0) {
-                setCountriesCheckBoxToPanel(countries, gui.countryPanel);
-           /* }else {
-                setLabelListToPanel(conn, "COUNTRY", "MOVIE_COUNTRIES", gui.countryPanel);
-            }*/
-            } catch (SQLException sqle) {
-                System.err.println("Errors occurs when communicating with the Database sever: " + sqle.getMessage());
-            } finally {
-                DBconnection.closeDB(conn);
-            }
-        //}
-    }
-
-    public void generateTagsCheckBoxToPanel() {
-        //if (getSelectedCheckBox(genresCheckBoxList).size() > 0) {
         Connection conn = null;
         ResultSet countries = null;
 
-        StringBuilder queryTags = new StringBuilder();
-        queryTags.append("SELECT DISTINCT T.ID,T.VALUE\n" +
-                "FROM TAGS T, MOVIE_TAGS MT,MOVIES M,MOVIE_DIRECTORS MD,\n" +
+        StringBuilder queryCountries = new StringBuilder();
+        queryCountries.append("SELECT DISTINCT MC.country\n" +
+                "FROM MOVIE_COUNTRIES MC, MOVIES M,\n" +
                 "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
                 "FROM MOVIE_GENRES MG  \n" +
-                "GROUP BY MG.MOVIEID) G,\n" +
-                "(SELECT MC.MOVIEID AS MOVIEID, LISTAGG(COUNTRY,',') WITHIN GROUP (ORDER BY MC.COUNTRY) AS COUNTRY\n" +
-                "FROM MOVIE_COUNTRIES MC\n" +
-                "GROUP BY MC.MOVIEID) C,\n" +
-                "(SELECT MA.MOVIEID AS MOVIEID, LISTAGG(MA.ACTORNAME,',') WITHIN GROUP (ORDER BY MA.ACTORNAME) AS ACTORNAME\n" +
-                "FROM MOVIE_ACTORS MA\n" +
-                "GROUP BY MA.MOVIEID) A\n" +
-                "WHERE T.ID = MT.TAGID AND MT.MOVIEID = M.ID AND A.MOVIEID = G.MOVIEID \n" +
-                "AND MT.MOVIEID = A.MOVIEID AND MD.MOVIEID = M.ID \n");
+                "GROUP BY MG.MOVIEID) G\n" +
+                "WHERE MC.MOVIEID = G.MOVIEID AND M.ID = MC.MOVIEID \n");
 
 
-        appendSelectedGenres(queryTags);
-        appendSelectedYear(queryTags);
-        appendSelectCountries(queryTags);
-        appendSelectActorsAndDirector(queryTags);
+        appendSelectedGenres(queryCountries);
+        appendSelectedYear(queryCountries);
 
         try {
             conn = DBconnection.connectDB();
-            String sql = queryTags.toString();
+            String sql = queryCountries.toString();
             System.out.println(sql + "\n");
             countries = DBconnection.executeSQL(conn, sql);
             //if(selectedGenresList.size() >0) {
-            setTagsCheckBoxToPanel(countries, gui.tagsPanel);
+            setCountriesCheckBoxToPanel(countries, gui.countryPanel);
            /* }else {
                 setLabelListToPanel(conn, "COUNTRY", "MOVIE_COUNTRIES", gui.countryPanel);
             }*/
@@ -346,7 +352,6 @@ public class Hw3 {
         }
         //}
     }
-
 
     public void generateActorsAndDirectorsList() {
         clearAllTextFields();
@@ -418,7 +423,54 @@ public class Hw3 {
 
     }
 
-    public void clearAllTextFields(){
+    public void generateTagsCheckBoxToPanel() {
+        //if (getSelectedCheckBox(genresCheckBoxList).size() > 0) {
+        Connection conn = null;
+        ResultSet countries = null;
+
+        StringBuilder queryTags = new StringBuilder();
+        queryTags.append("SELECT DISTINCT T.ID,T.VALUE\n" +
+                "FROM TAGS T, MOVIE_TAGS MT,MOVIES M,MOVIE_DIRECTORS MD,\n" +
+                "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
+                "FROM MOVIE_GENRES MG  \n" +
+                "GROUP BY MG.MOVIEID) G,\n" +
+                "(SELECT MC.MOVIEID AS MOVIEID, LISTAGG(COUNTRY,',') WITHIN GROUP (ORDER BY MC.COUNTRY) AS COUNTRY\n" +
+                "FROM MOVIE_COUNTRIES MC\n" +
+                "GROUP BY MC.MOVIEID) C,\n" +
+                "(SELECT MA.MOVIEID AS MOVIEID, LISTAGG(MA.ACTORNAME,',') WITHIN GROUP (ORDER BY MA.ACTORNAME) AS ACTORNAME\n" +
+                "FROM MOVIE_ACTORS MA\n" +
+                "GROUP BY MA.MOVIEID) A\n" +
+                "WHERE T.ID = MT.TAGID AND MT.MOVIEID = M.ID AND A.MOVIEID = G.MOVIEID \n" +
+                "AND MT.MOVIEID = A.MOVIEID AND MD.MOVIEID = M.ID \n");
+
+
+        appendSelectedGenres(queryTags);
+        appendSelectedYear(queryTags);
+        appendSelectCountries(queryTags);
+        appendSelectActorsAndDirector(queryTags);
+        if(!gui.weightValueTextField.getText().isEmpty()){
+            appendTagsWeight(queryTags);
+        }
+
+        try {
+            conn = DBconnection.connectDB();
+            String sql = queryTags.toString();
+            System.out.println(sql + "\n");
+            countries = DBconnection.executeSQL(conn, sql);
+            //if(selectedGenresList.size() >0) {
+            setTagsCheckBoxToPanel(countries, gui.tagsPanel);
+           /* }else {
+                setLabelListToPanel(conn, "COUNTRY", "MOVIE_COUNTRIES", gui.countryPanel);
+            }*/
+        } catch (SQLException sqle) {
+            System.err.println("Errors occurs when communicating with the Database sever: " + sqle.getMessage());
+        } finally {
+            DBconnection.closeDB(conn);
+        }
+        //}
+    }
+
+    public void clearAllTextFields() {
         gui.actor1Textfield.setText("");
         gui.actor2Textfield.setText("");
         gui.actor3Textfield.setText("");
@@ -460,8 +512,8 @@ public class Hw3 {
         }
     }
 
-    public void appendSelectActorsAndDirector(StringBuilder stringBuilder){
-        if(selectedactorsAndDirector.size()>0 || director != ""){
+    public void appendSelectActorsAndDirector(StringBuilder stringBuilder) {
+        if (selectedactorsAndDirector.size() > 0 || director != "") {
             stringBuilder.append("AND (\n");
             for (int i = 0; i < selectedactorsAndDirector.size(); i++) {
                 if (i != 0) {
@@ -470,14 +522,25 @@ public class Hw3 {
                 stringBuilder.append("A.ACTORNAME like " + "'%" + selectedactorsAndDirector.get(i) + "%'");
             }
 
-            if(director != ""){
-                if(selectedactorsAndDirector.size()>0){
+            if (director != "") {
+                if (selectedactorsAndDirector.size() > 0) {
                     stringBuilder.append(" " + attributesRelation + "\n");
                 }
-                stringBuilder.append("MD.DIRECTORNAME like "+  "'%" + director + "%'");
+                stringBuilder.append("MD.DIRECTORNAME like " + "'%" + director + "%'");
             }
             stringBuilder.append("\n)");
         }
+    }
+
+    public void appendTagsWeight(StringBuilder stringBuilder) {
+        if(!gui.weightValueTextField.getText().isEmpty()){
+            stringBuilder.append("AND MT.TAGWEIGHT"+ tagWeight + tagValue + "\n");
+
+        }
+    }
+
+    public void generateFinalQueryStatement(){
+
     }
 
     private ArrayList<String> getSelectedCheckBox(ArrayList<JCheckBox> checkBoxsList) {
@@ -496,15 +559,15 @@ public class Hw3 {
         checkBoxs.clear();
         panel.removeAll();
         ResultSetMetaData metaData = resultSet.getMetaData();
-        if(metaData.getColumnCount() > 1){
+        if (metaData.getColumnCount() > 1) {
             while (resultSet.next()) {
                 if (resultSet.getString(1) != null) {
-                    JCheckBox newCheckBox = new JCheckBox(resultSet.getInt(1)+"   "+resultSet.getString(2));
+                    JCheckBox newCheckBox = new JCheckBox(resultSet.getInt(1) + "   " + resultSet.getString(2));
                     newCheckBox.addActionListener(actionListener);
                     checkBoxs.add(newCheckBox);
                 }
             }
-        }else {
+        } else {
             while (resultSet.next()) {
                 if (resultSet.getString(1) != null) {
                     JCheckBox newCheckBox = new JCheckBox(resultSet.getString(1));
