@@ -1,5 +1,9 @@
 package Hw3;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * Created by yaolan on 5/20/17.
  */
@@ -15,4 +19,6 @@ public class Test {
         System.out.println(template);
 
     }
+
+
 }

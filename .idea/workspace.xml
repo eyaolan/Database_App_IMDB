@@ -3,11 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="42b93bc9-920b-4c3c-93b0-c939d39d5201" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/createdb.sql" afterPath="$PROJECT_DIR$/createdb.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dropdb.sql" afterPath="$PROJECT_DIR$/dropdb.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movies.dat" afterPath="$PROJECT_DIR$/movies.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/movies.dat" afterPath="$PROJECT_DIR$/resource/movies.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Hw3/Hw3.java" afterPath="$PROJECT_DIR$/src/Hw3/Hw3.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Hw3/Test.java" afterPath="$PROJECT_DIR$/src/Hw3/Test.java" />
     </list>
     <ignored path="Coen280Assignment3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,25 +46,35 @@
       <file leaf-file-name="Hw3.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="780" column="95" selection-start-line="780" selection-start-column="95" selection-end-line="780" selection-end-column="95" />
+            <state relative-caret-position="331">
+              <caret line="697" column="5" selection-start-line="697" selection-start-column="5" selection-end-line="697" selection-end-column="5" />
               <folding>
                 <element signature="method#initialPanels#0;class#Hw3#0" expanded="false" />
-                <element signature="class#6775:7020" expanded="false" />
-                <element signature="class#7095:8576" expanded="false" />
+                <element signature="method#setActionListeners#0;class#Hw3#0" expanded="false" />
+                <element signature="class#6848:7093" expanded="false" />
+                <element signature="class#7168:8649" expanded="false" />
+                <element signature="e#8800#8801#0" expanded="true" />
+                <element signature="e#8851#8852#0" expanded="true" />
                 <element signature="method#addTextFieldOfActorsAndDirectorTolist#0;class#Hw3#0" expanded="false" />
                 <element signature="method#addTextFieldToList#0;class#Hw3#0" expanded="false" />
                 <element signature="method#createNewComboxFrame#0;class#Hw3#0" expanded="false" />
                 <element signature="method#promptMessageFrame#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setGenresCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
+                <element signature="class#12125:12343" expanded="false" />
+                <element signature="method#actionPerformed#0;class#12125:12343" expanded="false" />
                 <element signature="method#setTagsCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-                <element signature="e#12239#12240#0" expanded="true" />
-                <element signature="e#12306#12307#0" expanded="true" />
+                <element signature="class#12603:12777" expanded="false" />
+                <element signature="e#12699#12700#0" expanded="true" />
+                <element signature="e#12766#12767#0" expanded="true" />
+                <element signature="method#setMovieResultsToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#generateCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#generateActorsAndDirectorsList#0;class#Hw3#0" expanded="false" />
                 <element signature="method#generateTagsCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#generateFinalQueryMoviesStatement#0;class#Hw3#0" expanded="false" />
+                <element signature="method#generateFinalQueryUsersStatement#0;class#Hw3#0" expanded="false" />
+                <element signature="method#executeMovieQuery#0;class#Hw3#0" expanded="false" />
+                <element signature="method#executeUserQuery#0;class#Hw3#0" expanded="false" />
                 <element signature="method#clearAllTextFields#0;class#Hw3#0" expanded="false" />
                 <element signature="method#appendSelectedGenres#0;class#Hw3#0" expanded="false" />
                 <element signature="method#appendSelectedYear#0;class#Hw3#0" expanded="false" />
@@ -77,12 +86,26 @@
                 <element signature="method#addCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setLabelListToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#main#0;class#Hw3#0" expanded="false" />
+                <element signature="class#Hw3GUI#0;class#Hw3#0" expanded="false" />
+                <element signature="method#Hw3GUI#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#prepareGUI#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
+                <element signature="method#setPanelBackgroundColor#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setPanelBorderTitledBorder#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setTitlePanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
-                <element signature="method#setAttributesPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setQueryPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setTopPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Test.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Hw3/Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -154,15 +177,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3630">
               <caret line="252" column="0" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#3164#3503#0" expanded="false" />
+                <element signature="e#3502#3503#0" expanded="false" />
+                <element signature="e#8119#8120#0" expanded="false" />
+                <element signature="e#8174#8175#0" expanded="false" />
+                <element signature="e#10350#10351#0" expanded="false" />
+                <element signature="e#10393#10394#0" expanded="false" />
+              </folding>
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user_ratedmovies-timestamps.dat" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/user_ratedmovies-timestamps.dat">
-          <provider selected="true" editor-type-id="LargeFileEditor">
-            <state />
           </provider>
         </entry>
       </file>
@@ -213,9 +237,9 @@
         <option value="$PROJECT_DIR$/src/Populate/Populate.java" />
         <option value="$PROJECT_DIR$/createdb1.sql" />
         <option value="$PROJECT_DIR$/src/Hw3/DBconnection.java" />
-        <option value="$PROJECT_DIR$/src/Hw3/Test.java" />
         <option value="$PROJECT_DIR$/createdb.sql" />
         <option value="$PROJECT_DIR$/dropdb.sql" />
+        <option value="$PROJECT_DIR$/src/Hw3/Test.java" />
         <option value="$PROJECT_DIR$/src/Hw3/Hw3.java" />
       </list>
     </option>
@@ -277,6 +301,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Coen280Assignment3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Coen280Assignment3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Coen280Assignment3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Coen280Assignment3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Coen280Assignment3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hw3" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -868,7 +924,7 @@
       <workItem from="1495756298323" duration="5523000" />
       <workItem from="1495773786729" duration="1679000" />
       <workItem from="1495778493796" duration="48987000" />
-      <workItem from="1496112027064" duration="3119000" />
+      <workItem from="1496112027064" duration="6999000" />
     </task>
     <task id="LOCAL-00001" summary="executeQuery works">
       <created>1495261165929</created>
@@ -1087,11 +1143,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496103195667</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="finished show query function, added two create index statements">
+      <created>1496117568467</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1496117568467</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133985000" />
+    <option name="totallyTimeSpent" value="137865000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1166,8 +1229,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="finished populate countries, directors, genres data" />
-    <MESSAGE value="using preparestatement method" />
     <MESSAGE value="finished coding without running whole program" />
     <MESSAGE value="add gui" />
     <MESSAGE value="added dat files, modified populate1.java that can be executed with parameters passed" />
@@ -1191,11 +1252,13 @@
     <MESSAGE value="added function of generating tags values" />
     <MESSAGE value="added function of generating tags values 2" />
     <MESSAGE value="added function of tag weight" />
-    <option name="LAST_COMMIT_MESSAGE" value="added function of tag weight" />
+    <MESSAGE value="finished show query function" />
+    <MESSAGE value="finished show query function, added two create index statements" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished show query function, added two create index statements" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="71" />
+      <option name="time" value="75" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1358,15 +1421,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3630">
           <caret line="252" column="0" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Hw3/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#3164#3503#0" expanded="false" />
+            <element signature="e#3502#3503#0" expanded="false" />
+            <element signature="e#8119#8120#0" expanded="false" />
+            <element signature="e#8174#8175#0" expanded="false" />
+            <element signature="e#10350#10351#0" expanded="false" />
+            <element signature="e#10393#10394#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1450,27 +1513,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Hw3/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="780" column="95" selection-start-line="780" selection-start-column="95" selection-end-line="780" selection-end-column="95" />
+        <state relative-caret-position="331">
+          <caret line="697" column="5" selection-start-line="697" selection-start-column="5" selection-end-line="697" selection-end-column="5" />
           <folding>
             <element signature="method#initialPanels#0;class#Hw3#0" expanded="false" />
-            <element signature="class#6775:7020" expanded="false" />
-            <element signature="class#7095:8576" expanded="false" />
+            <element signature="method#setActionListeners#0;class#Hw3#0" expanded="false" />
+            <element signature="class#6848:7093" expanded="false" />
+            <element signature="class#7168:8649" expanded="false" />
+            <element signature="e#8800#8801#0" expanded="true" />
+            <element signature="e#8851#8852#0" expanded="true" />
             <element signature="method#addTextFieldOfActorsAndDirectorTolist#0;class#Hw3#0" expanded="false" />
             <element signature="method#addTextFieldToList#0;class#Hw3#0" expanded="false" />
             <element signature="method#createNewComboxFrame#0;class#Hw3#0" expanded="false" />
             <element signature="method#promptMessageFrame#0;class#Hw3#0" expanded="false" />
             <element signature="method#setGenresCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#setCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
+            <element signature="class#12125:12343" expanded="false" />
+            <element signature="method#actionPerformed#0;class#12125:12343" expanded="false" />
             <element signature="method#setTagsCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-            <element signature="e#12239#12240#0" expanded="true" />
-            <element signature="e#12306#12307#0" expanded="true" />
+            <element signature="class#12603:12777" expanded="false" />
+            <element signature="e#12699#12700#0" expanded="true" />
+            <element signature="e#12766#12767#0" expanded="true" />
+            <element signature="method#setMovieResultsToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#generateCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#generateActorsAndDirectorsList#0;class#Hw3#0" expanded="false" />
             <element signature="method#generateTagsCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#generateFinalQueryMoviesStatement#0;class#Hw3#0" expanded="false" />
+            <element signature="method#generateFinalQueryUsersStatement#0;class#Hw3#0" expanded="false" />
+            <element signature="method#executeMovieQuery#0;class#Hw3#0" expanded="false" />
+            <element signature="method#executeUserQuery#0;class#Hw3#0" expanded="false" />
             <element signature="method#clearAllTextFields#0;class#Hw3#0" expanded="false" />
             <element signature="method#appendSelectedGenres#0;class#Hw3#0" expanded="false" />
             <element signature="method#appendSelectedYear#0;class#Hw3#0" expanded="false" />
@@ -1482,10 +1565,12 @@
             <element signature="method#addCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#setLabelListToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#main#0;class#Hw3#0" expanded="false" />
+            <element signature="class#Hw3GUI#0;class#Hw3#0" expanded="false" />
+            <element signature="method#Hw3GUI#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#prepareGUI#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
+            <element signature="method#setPanelBackgroundColor#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#setPanelBorderTitledBorder#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#setTitlePanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
-            <element signature="method#setAttributesPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#setQueryPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#setTopPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
           </folding>
