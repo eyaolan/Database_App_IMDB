@@ -45,6 +45,9 @@ public class Hw3 {
     private static final String COLUMNS_REGEX = "\\$\\{columns\\}";
     private static final String TABLE_REGEX = "\\$\\{table\\}";
 
+    //Final query string
+    private String finalMovieQuery = "";
+
     public Hw3() {
         gui = new Hw3GUI();
         attributesRelation = "AND";
@@ -155,7 +158,11 @@ public class Hw3 {
             @Override
             public void removeUpdate(DocumentEvent e) {
                 addTextFieldOfActorsAndDirectorTolist();
-                generateTagsCheckBoxToPanel();
+                gui.tagsPanel.removeAll();
+                if(actorsList.size()>0 || director != "") {
+                    generateTagsCheckBoxToPanel();
+                }
+
             }
 
             @Override
@@ -227,7 +234,7 @@ public class Hw3 {
         addTextFieldToList(gui.actor4Textfield);
         if (!gui.directorTextfield.getText().isEmpty()) {
             director = gui.directorTextfield.getText();
-        }
+        }else director = "";
 
     }
 
@@ -298,7 +305,7 @@ public class Hw3 {
             @Override
             public void actionPerformed(ActionEvent e) {
                 generateActorsAndDirectorsList();
-                generateTagsCheckBoxToPanel();
+                //generateTagsCheckBoxToPanel();
             }
         };
         addCheckBoxToPanel(resultSet, panel, countriesCheckBoxList, countryCheckboxActionListener);
@@ -308,7 +315,7 @@ public class Hw3 {
         ActionListener tagCheckboxActionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                generateFinalQueryMoviesStatement();
             }
         };
         addCheckBoxToPanel(resultSet, panel, tagsCheckBoxList, tagCheckboxActionListener);
@@ -319,6 +326,7 @@ public class Hw3 {
         actorsList.clear();
         directorsList.clear();
         gui.tagsPanel.removeAll();
+        gui.showQuery.setText("");
         //if (getSelectedCheckBox(genresCheckBoxList).size() > 0) {
         Connection conn = null;
         ResultSet countries = null;
@@ -358,6 +366,7 @@ public class Hw3 {
         actorsList.clear();
         directorsList.clear();
         gui.tagsPanel.removeAll();
+        gui.showQuery.setText("");
         if (getSelectedCheckBox(countriesCheckBoxList).size() > 0) {
             Connection conn = null;
             ResultSet actors = null;
@@ -425,6 +434,7 @@ public class Hw3 {
 
     public void generateTagsCheckBoxToPanel() {
         //if (getSelectedCheckBox(genresCheckBoxList).size() > 0) {
+        gui.showQuery.setText("");
         Connection conn = null;
         ResultSet countries = null;
 
@@ -468,6 +478,35 @@ public class Hw3 {
             DBconnection.closeDB(conn);
         }
         //}
+    }
+
+    public void generateFinalQueryMoviesStatement() {
+
+        StringBuilder finalMovieQueryStatement = new StringBuilder();
+        finalMovieQueryStatement.append("SELECT DISTINCT M.ID,M.TITLE,G.GENRE,M.YEAR,C.COUNTRY,M.RTAUDIENCERATING,M.RTAUDIENCENUMRATINGS\n" +
+                "FROM TAGS T, MOVIE_TAGS MT,MOVIES M,MOVIE_DIRECTORS MD,\n" +
+                "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
+                "FROM MOVIE_GENRES MG  \n" +
+                "GROUP BY MG.MOVIEID) G,\n" +
+                "(SELECT MC.MOVIEID AS MOVIEID, LISTAGG(COUNTRY,',') WITHIN GROUP (ORDER BY MC.COUNTRY) AS COUNTRY\n" +
+                "FROM MOVIE_COUNTRIES MC\n" +
+                "GROUP BY MC.MOVIEID) C,\n" +
+                "(SELECT MA.MOVIEID AS MOVIEID, LISTAGG(MA.ACTORNAME,',') WITHIN GROUP (ORDER BY MA.ACTORNAME) AS ACTORNAME\n" +
+                "FROM MOVIE_ACTORS MA\n" +
+                "GROUP BY MA.MOVIEID) A\n" +
+                "WHERE T.ID = MT.TAGID AND MT.MOVIEID = M.ID AND A.MOVIEID = G.MOVIEID \n" +
+                "AND MT.MOVIEID = A.MOVIEID AND MD.MOVIEID = M.ID \n");
+
+        appendSelectedGenres(finalMovieQueryStatement);
+        appendSelectedYear(finalMovieQueryStatement);
+        appendSelectCountries(finalMovieQueryStatement);
+        appendSelectActorsAndDirector(finalMovieQueryStatement);
+        if(!gui.weightValueTextField.getText().isEmpty()){
+            appendTagsWeight(finalMovieQueryStatement);
+        }
+        appendSelectedTags(finalMovieQueryStatement);
+        finalMovieQuery = finalMovieQueryStatement.toString();
+        gui.showQuery.setText(finalMovieQuery);
     }
 
     public void clearAllTextFields() {
@@ -535,12 +574,23 @@ public class Hw3 {
     public void appendTagsWeight(StringBuilder stringBuilder) {
         if(!gui.weightValueTextField.getText().isEmpty()){
             stringBuilder.append("AND MT.TAGWEIGHT"+ tagWeight + tagValue + "\n");
-
         }
     }
 
-    public void generateFinalQueryStatement(){
+    public void appendSelectedTags(StringBuilder stringBuilder){
+        ArrayList<String> selectedTags = getSelectedCheckBox(tagsCheckBoxList);
 
+        if(selectedTags.size() >0){
+            stringBuilder.append("AND (\n");
+            for (int i = 0; i < selectedTags.size(); i++) {
+                if (i != 0) {
+                    stringBuilder.append(" " + attributesRelation + "\n");
+                }
+
+                stringBuilder.append("T.ID = " + selectedTags.get(i).replaceAll("[^-?0-9]+", " "));
+            }
+            stringBuilder.append("\n)");
+        }
     }
 
     private ArrayList<String> getSelectedCheckBox(ArrayList<JCheckBox> checkBoxsList) {
@@ -677,7 +727,8 @@ public class Hw3 {
 
         //query genrePanel
         private JPanel queryPanel;
-        private JTextField showQuery;
+        private JScrollPane showQueryScrollPane;
+        private JTextArea showQuery;
         private JPanel executeQueryPanel;
         private JButton movieQueryButton;
         private JButton userQueryButton;
@@ -728,6 +779,7 @@ public class Hw3 {
         private static final Dimension EXECUTE_QUERY_PANEL_SIZE = new Dimension(BASE * 8, BASE * 1);
         private static final Dimension ACTORS_PANEL_SIZE = new Dimension(BASE * 7, BASE * 9);
         private static final Dimension DIRECTOR_PANEL_SIZE = new Dimension(BASE * 7, BASE * 3);
+        private static final Dimension MOVIE_RESULT_PANEL_SIZE = new Dimension(BASE * 24, BASE * 7);
 
 
         //Color Constants
@@ -944,8 +996,11 @@ public class Hw3 {
             queryPanel.setPreferredSize(QUERY_PANEL_SIZE);
             queryPanel.setLayout(new BoxLayout(queryPanel, BoxLayout.Y_AXIS));
 
-            showQuery = new JTextField();
-            showQuery.setPreferredSize(QUERY_TEXT_SIZE);
+            showQuery = new JTextArea();
+            //showQuery.setPreferredSize(QUERY_TEXT_SIZE);
+
+            showQueryScrollPane = new JScrollPane(showQuery);
+            showQueryScrollPane.setPreferredSize(QUERY_TEXT_SIZE);
 
             executeQueryPanel = new JPanel();
             executeQueryPanel.setPreferredSize(EXECUTE_QUERY_PANEL_SIZE);
@@ -956,7 +1011,7 @@ public class Hw3 {
             executeQueryPanel.add(movieQueryButton);
             executeQueryPanel.add(userQueryButton);
 
-            queryPanel.add(showQuery);
+            queryPanel.add(showQueryScrollPane);
             queryPanel.add(executeQueryPanel);
         }
 
@@ -979,6 +1034,8 @@ public class Hw3 {
 
             movieResultPanel = new JScrollPane();
             userResultPanel = new JScrollPane();
+
+            movieResultPanel.setPreferredSize(MOVIE_RESULT_PANEL_SIZE);
 
             bottomPanel.add(movieResultPanel);
             bottomPanel.add(userResultPanel);

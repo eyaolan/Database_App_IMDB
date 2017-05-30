@@ -3,6 +3,8 @@ DROP INDEX COUNTRY ;
 DROP INDEX ACTOR_NAME ;
 DROP INDEX TAG_VALUE;
 DROP INDEX DIRECTOR_NAME ;
+DROP INDEX MOVIE_YEAR;
+DROP INDEX TAG_WEIGHT;
 
 drop table user_taggedmovies;
 drop table user_taggedmovies_timestamps;
