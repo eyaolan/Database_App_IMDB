@@ -45,10 +45,12 @@
       <file leaf-file-name="Hw3.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="318" column="5" selection-start-line="318" selection-start-column="5" selection-end-line="318" selection-end-column="5" />
+            <state relative-caret-position="286">
+              <caret line="685" column="63" selection-start-line="685" selection-start-column="63" selection-end-line="685" selection-end-column="63" />
               <folding>
+                <element signature="docComment;class#Hw3#0" expanded="false" />
                 <element signature="method#initialPanels#0;class#Hw3#0" expanded="false" />
+                <element signature="method#setActionListeners#0;class#Hw3#0" expanded="false" />
                 <element signature="class#6888:7133" expanded="false" />
                 <element signature="class#7208:8689" expanded="false" />
                 <element signature="e#8840#8841#0" expanded="true" />
@@ -67,10 +69,6 @@
                 <element signature="e#12937#12938#0" expanded="true" />
                 <element signature="method#setMovieResultsToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#generateCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-                <element signature="method#generateActorsAndDirectorsList#0;class#Hw3#0" expanded="false" />
-                <element signature="method#generateTagsCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-                <element signature="method#generateFinalQueryMoviesStatement#0;class#Hw3#0" expanded="false" />
-                <element signature="method#generateFinalQueryUsersStatement#0;class#Hw3#0" expanded="false" />
                 <element signature="method#executeMovieQuery#0;class#Hw3#0" expanded="false" />
                 <element signature="method#executeUserQuery#0;class#Hw3#0" expanded="false" />
                 <element signature="method#clearAllTextFields#0;class#Hw3#0" expanded="false" />
@@ -79,8 +77,11 @@
                 <element signature="method#appendSelectCountries#0;class#Hw3#0" expanded="false" />
                 <element signature="method#appendSelectActorsAndDirector#0;class#Hw3#0" expanded="false" />
                 <element signature="method#appendTagsWeight#0;class#Hw3#0" expanded="false" />
+                <element signature="method#appendSelectedTags#0;class#Hw3#0" expanded="false" />
+                <element signature="method#appendSelectedMovies#0;class#Hw3#0" expanded="false" />
                 <element signature="method#getSelectedCheckBox#0;class#Hw3#0" expanded="false" />
-                <element signature="method#setLabelListToPanel#0;class#Hw3#0" expanded="false" />
+                <element signature="method#addCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
+                <element signature="method#clearComponents#0;class#Hw3#0" expanded="false" />
                 <element signature="method#main#0;class#Hw3#0" expanded="false" />
                 <element signature="class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#Hw3GUI#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
@@ -90,6 +91,7 @@
                 <element signature="method#setTitlePanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setQueryPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setTopPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
+                <element signature="method#setBottomPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -311,24 +313,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Coen280Assignment3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Coen280Assignment3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hw3" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -920,7 +904,7 @@
       <workItem from="1495756298323" duration="5523000" />
       <workItem from="1495773786729" duration="1679000" />
       <workItem from="1495778493796" duration="48987000" />
-      <workItem from="1496112027064" duration="9088000" />
+      <workItem from="1496112027064" duration="10848000" />
     </task>
     <task id="LOCAL-00001" summary="executeQuery works">
       <created>1495261165929</created>
@@ -1153,11 +1137,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496124061146</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="finished main part">
+      <created>1496126794996</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1496126794996</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139954000" />
+    <option name="totallyTimeSpent" value="141714000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1232,7 +1223,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add gui" />
     <MESSAGE value="added dat files, modified populate1.java that can be executed with parameters passed" />
     <MESSAGE value="modified gui but doesn't work,created dropdb.sql" />
     <MESSAGE value="finished data populating used populate1.java. created Hw3GUI" />
@@ -1257,11 +1247,12 @@
     <MESSAGE value="finished show query function" />
     <MESSAGE value="finished show query function, added two create index statements" />
     <MESSAGE value="added execute query function" />
-    <option name="LAST_COMMIT_MESSAGE" value="added execute query function" />
+    <MESSAGE value="finished main part" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished main part" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="76" />
+      <option name="time" value="77" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1528,10 +1519,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="318" column="5" selection-start-line="318" selection-start-column="5" selection-end-line="318" selection-end-column="5" />
+        <state relative-caret-position="286">
+          <caret line="685" column="63" selection-start-line="685" selection-start-column="63" selection-end-line="685" selection-end-column="63" />
           <folding>
+            <element signature="docComment;class#Hw3#0" expanded="false" />
             <element signature="method#initialPanels#0;class#Hw3#0" expanded="false" />
+            <element signature="method#setActionListeners#0;class#Hw3#0" expanded="false" />
             <element signature="class#6888:7133" expanded="false" />
             <element signature="class#7208:8689" expanded="false" />
             <element signature="e#8840#8841#0" expanded="true" />
@@ -1550,10 +1543,6 @@
             <element signature="e#12937#12938#0" expanded="true" />
             <element signature="method#setMovieResultsToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#generateCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-            <element signature="method#generateActorsAndDirectorsList#0;class#Hw3#0" expanded="false" />
-            <element signature="method#generateTagsCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-            <element signature="method#generateFinalQueryMoviesStatement#0;class#Hw3#0" expanded="false" />
-            <element signature="method#generateFinalQueryUsersStatement#0;class#Hw3#0" expanded="false" />
             <element signature="method#executeMovieQuery#0;class#Hw3#0" expanded="false" />
             <element signature="method#executeUserQuery#0;class#Hw3#0" expanded="false" />
             <element signature="method#clearAllTextFields#0;class#Hw3#0" expanded="false" />
@@ -1562,8 +1551,11 @@
             <element signature="method#appendSelectCountries#0;class#Hw3#0" expanded="false" />
             <element signature="method#appendSelectActorsAndDirector#0;class#Hw3#0" expanded="false" />
             <element signature="method#appendTagsWeight#0;class#Hw3#0" expanded="false" />
+            <element signature="method#appendSelectedTags#0;class#Hw3#0" expanded="false" />
+            <element signature="method#appendSelectedMovies#0;class#Hw3#0" expanded="false" />
             <element signature="method#getSelectedCheckBox#0;class#Hw3#0" expanded="false" />
-            <element signature="method#setLabelListToPanel#0;class#Hw3#0" expanded="false" />
+            <element signature="method#addCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
+            <element signature="method#clearComponents#0;class#Hw3#0" expanded="false" />
             <element signature="method#main#0;class#Hw3#0" expanded="false" />
             <element signature="class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#Hw3GUI#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
@@ -1573,6 +1565,7 @@
             <element signature="method#setTitlePanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#setQueryPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#setTopPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
+            <element signature="method#setBottomPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
           </folding>
         </state>
       </provider>

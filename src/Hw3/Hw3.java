@@ -353,7 +353,7 @@ public class Hw3 {
         clearAllTextFields();
         actorsList.clear();
         directorsList.clear();
-        gui.tagsPanel.removeAll();
+        clearComponents(gui.tagsPanel);
         gui.showQuery.setText("");
         //if (getSelectedCheckBox(genresCheckBoxList).size() > 0) {
         Connection conn = null;
@@ -370,6 +370,8 @@ public class Hw3 {
 
         appendSelectedGenres(queryCountries);
         appendSelectedYear(queryCountries);
+
+        queryCountries.append("ORDER BY MC.COUNTRY \n");
 
         try {
             conn = DBconnection.connectDB();
@@ -413,6 +415,7 @@ public class Hw3 {
             appendSelectedGenres(queryActors);
             appendSelectedYear(queryActors);
             appendSelectCountries(queryActors);
+            queryActors.append("ORDER BY MA.actorName \n");
 
             ResultSet directors = null;
 
@@ -430,6 +433,7 @@ public class Hw3 {
             appendSelectedGenres(queryDirectors);
             appendSelectedYear(queryDirectors);
             appendSelectCountries(queryDirectors);
+            queryDirectors.append("ORDER BY MD.DIRECTORNAME\n");
 
             try {
                 conn = DBconnection.connectDB();
@@ -490,6 +494,8 @@ public class Hw3 {
             appendTagsWeight(queryTags);
         }
 
+        queryTags.append("ORDER BY T.ID");
+
         try {
             conn = DBconnection.connectDB();
             String sql = queryTags.toString();
@@ -530,6 +536,7 @@ public class Hw3 {
             appendTagsWeight(finalMovieQueryStatement);
         }
         appendSelectedTags(finalMovieQueryStatement);
+        finalMovieQueryStatement.append("ORDER BY M.ID");
         finalMovieQuery = finalMovieQueryStatement.toString();
         gui.showQuery.setText(finalMovieQuery);
     }
@@ -561,6 +568,8 @@ public class Hw3 {
         }
         appendSelectedTags(finalUserQueryStatement);
         appendSelectedMovies(finalUserQueryStatement);
+
+        finalUserQueryStatement.append("ORDER BY UT.USERID");
 
         finalUserQuery = finalUserQueryStatement.toString();
         gui.showQuery.setText(finalUserQuery);
@@ -687,7 +696,7 @@ public class Hw3 {
                 //stringBuilder.append("T.ID = " + selectedTags.get(i).replaceAll("[^-?0-9]+", " "));
                 stringBuilder.append("T.ID = " + selectedTags.get(i).substring(0,7));
             }
-            stringBuilder.append("\n)");
+            stringBuilder.append("\n) \n");
         }
     }
 
@@ -702,7 +711,7 @@ public class Hw3 {
                 }
                 stringBuilder.append("M.ID = " + selectedMovies.get(i).substring(0,7));
             }
-            stringBuilder.append("\n)");
+            stringBuilder.append("\n) \n");
         }
     }
 
@@ -751,36 +760,11 @@ public class Hw3 {
         panel.repaint();
     }
 
-    public void setLabelListToPanel(Connection conn, String columns, String table, JPanel panel) {
-        String sql = selectAllSQL.replaceAll(COLUMNS_REGEX, columns);
-        sql = sql.replaceFirst(TABLE_REGEX, table);
-        ResultSet resultSet;
-        labelArrayList.clear();
-        int i = 0;
-        try {
-            resultSet = DBconnection.executeSQL(conn, sql);
-            ResultSetMetaData metaData = resultSet.getMetaData();
-            while (resultSet.next() && i < 100) {
-                if (metaData.getColumnCount() > 1) {
-                    labelArrayList.add(new JLabel(resultSet.getInt(1) + "  " + resultSet.getString(2)));
-                } else {
-                    labelArrayList.add(new JLabel(resultSet.getString(1)));
-                }
-                //if(resultSet.getString(1) !=null) {
-                i++;
-                //}
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        }
-
-        for (JLabel checkBox : labelArrayList) {
-            panel.add(checkBox);
-        }
+    public void clearComponents(JPanel panel){
+        panel.removeAll();
         panel.revalidate();
         panel.repaint();
     }
-
     public static void main(String[] args) {
 
         Hw3 hw3 = new Hw3();
@@ -1148,6 +1132,9 @@ public class Hw3 {
             bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS));
             movieResultPanel = new JPanel();
             userResultPanel = new JPanel();
+
+            movieResultPanel.setBackground(BACKGROUND_COLOR);
+            userResultPanel.setBackground(BACKGROUND_COLOR);
 
             movieResultPanel.setLayout(new BoxLayout(movieResultPanel,BoxLayout.Y_AXIS));
             userResultPanel.setLayout(new BoxLayout(userResultPanel,BoxLayout.Y_AXIS));
