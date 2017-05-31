@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="42b93bc9-920b-4c3c-93b0-c939d39d5201" name="Default" comment="">
+    <list default="true" id="42b93bc9-920b-4c3c-93b0-c939d39d5201" name="Default" comment="correcte queries">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Hw3/Hw3GUI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movies.dat" afterPath="$PROJECT_DIR$/movies.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/movies.dat" afterPath="$PROJECT_DIR$/resource/movies.dat" />
@@ -53,8 +54,8 @@
       <file leaf-file-name="Hw3.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+            <state relative-caret-position="219">
+              <caret line="642" column="0" selection-start-line="642" selection-start-column="0" selection-end-line="642" selection-end-column="0" />
               <folding>
                 <element signature="docComment;class#Hw3#0" expanded="false" />
                 <element signature="method#Hw3#0;class#Hw3#0" expanded="false" />
@@ -101,6 +102,27 @@
                 <element signature="method#setQueryPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setTopPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setBottomPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Hw3GUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3GUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="156" column="8" selection-start-line="156" selection-start-column="8" selection-end-line="156" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#setPanelBackgroundColor#0;class#Hw3GUI#0" expanded="false" />
+                <element signature="method#setPanelBorderTitledBorder#0;class#Hw3GUI#0" expanded="false" />
+                <element signature="method#setTitlePanel#0;class#Hw3GUI#0" expanded="false" />
+                <element signature="method#setAttributesPanel#0;class#Hw3GUI#0" expanded="false" />
+                <element signature="method#setQueryPanel#0;class#Hw3GUI#0" expanded="false" />
+                <element signature="method#setTopPanel#0;class#Hw3GUI#0" expanded="false" />
+                <element signature="method#setBottomPanel#0;class#Hw3GUI#0" expanded="false" />
+                <element signature="e#16938#16939#0" expanded="true" />
+                <element signature="e#16979#16980#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -188,7 +210,6 @@
         <option value="$PROJECT_DIR$/src/Populate/Main.java" />
         <option value="$PROJECT_DIR$/src/Hw3/GUI.java" />
         <option value="$PROJECT_DIR$/src/Populate/Populate1.java" />
-        <option value="$PROJECT_DIR$/src/Hw3/Hw3GUI.java" />
         <option value="$PROJECT_DIR$/src/Hw3/ShowGUI.java" />
         <option value="$PROJECT_DIR$/src/Hw3/DBconnection.java" />
         <option value="$PROJECT_DIR$/createdb.sql" />
@@ -196,6 +217,7 @@
         <option value="$PROJECT_DIR$/src/Hw3/Test.java" />
         <option value="$PROJECT_DIR$/createdb1.sql" />
         <option value="$PROJECT_DIR$/src/Populate/Populate.java" />
+        <option value="$PROJECT_DIR$/src/Hw3/Hw3GUI.java" />
         <option value="$PROJECT_DIR$/src/Hw3/Hw3.java" />
       </list>
     </option>
@@ -271,6 +293,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Coen280Assignment3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Coen280Assignment3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hw3" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -829,9 +869,9 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Application.Hw3" />
-        <item index="1" class="java.lang.String" itemvalue="Application.ShowGUI" />
-        <item index="2" class="java.lang.String" itemvalue="Application.DBconnection" />
-        <item index="3" class="java.lang.String" itemvalue="Application.Hw3GUI" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Hw3GUI" />
+        <item index="2" class="java.lang.String" itemvalue="Application.ShowGUI" />
+        <item index="3" class="java.lang.String" itemvalue="Application.DBconnection" />
         <item index="4" class="java.lang.String" itemvalue="Application.ShowGUI (1)" />
       </list>
     </recent_temporary>
@@ -862,7 +902,7 @@
       <workItem from="1495756298323" duration="5523000" />
       <workItem from="1495773786729" duration="1679000" />
       <workItem from="1495778493796" duration="48987000" />
-      <workItem from="1496112027064" duration="21039000" />
+      <workItem from="1496112027064" duration="23572000" />
     </task>
     <task id="LOCAL-00001" summary="executeQuery works">
       <created>1495261165929</created>
@@ -1137,11 +1177,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496251593592</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="chenged final user query">
+      <created>1496254379641</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1496254379641</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151905000" />
+    <option name="totallyTimeSpent" value="154438000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1216,8 +1263,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added initial labelList into countryPanel and tagPanel, added two panel into castPanel" />
-    <MESSAGE value="added execute buttons" />
     <MESSAGE value="added textfield to castpanel" />
     <MESSAGE value="added generate countries, but someproblem in query" />
     <MESSAGE value="fix the problem of query coutries from genres" />
@@ -1241,11 +1286,13 @@
     <MESSAGE value="finished" />
     <MESSAGE value="finished-removed unused files, change public to private" />
     <MESSAGE value="chenged and or Or functions signned to individual facet panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="chenged and or Or functions signned to individual facet panel" />
+    <MESSAGE value="chenged final user query" />
+    <MESSAGE value="correcte queries" />
+    <option name="LAST_COMMIT_MESSAGE" value="correcte queries" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="85" />
+      <option name="time" value="86" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1369,7 +1416,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3GUI.java" />
     <entry file="file://$PROJECT_DIR$/src/Hw3/Db.java" />
     <entry file="file://$PROJECT_DIR$/src/Hw3/GUI.java" />
     <entry file="file://$PROJECT_DIR$/tags.dat">
@@ -1504,10 +1550,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="156" column="8" selection-start-line="156" selection-start-column="8" selection-end-line="156" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#setPanelBackgroundColor#0;class#Hw3GUI#0" expanded="false" />
+            <element signature="method#setPanelBorderTitledBorder#0;class#Hw3GUI#0" expanded="false" />
+            <element signature="method#setTitlePanel#0;class#Hw3GUI#0" expanded="false" />
+            <element signature="method#setAttributesPanel#0;class#Hw3GUI#0" expanded="false" />
+            <element signature="method#setQueryPanel#0;class#Hw3GUI#0" expanded="false" />
+            <element signature="method#setTopPanel#0;class#Hw3GUI#0" expanded="false" />
+            <element signature="method#setBottomPanel#0;class#Hw3GUI#0" expanded="false" />
+            <element signature="e#16938#16939#0" expanded="true" />
+            <element signature="e#16979#16980#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+        <state relative-caret-position="219">
+          <caret line="642" column="0" selection-start-line="642" selection-start-column="0" selection-end-line="642" selection-end-column="0" />
           <folding>
             <element signature="docComment;class#Hw3#0" expanded="false" />
             <element signature="method#Hw3#0;class#Hw3#0" expanded="false" />

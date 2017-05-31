@@ -425,15 +425,12 @@ public class Hw3 {
             ResultSet actors = null;
 
             StringBuilder queryActors = new StringBuilder();
-            queryActors.append("SELECT DISTINCT MA.actorName\n" +
-                    "FROM MOVIE_ACTORS MA,MOVIES M,\n" +
+            queryActors.append("SELECT DISTINCT MA.ACTORNAME\n" +
+                    "FROM MOVIE_ACTORS MA,MOVIES M,MOVIE_COUNTRIES MC,\n" +
                     "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
                     "FROM MOVIE_GENRES MG  \n" +
-                    "GROUP BY MG.MOVIEID) G,\n" +
-                    "(SELECT MC.MOVIEID AS MOVIEID, LISTAGG(COUNTRY,',') WITHIN GROUP (ORDER BY MC.COUNTRY) AS COUNTRY\n" +
-                    "FROM MOVIE_COUNTRIES MC\n" +
-                    "GROUP BY MC.MOVIEID) C\n" +
-                    "WHERE MA.MOVIEID = G.MOVIEID AND C.MOVIEID = MA.MOVIEID AND M.ID = MA.MOVIEID\n");
+                    "GROUP BY MG.MOVIEID) G\n" +
+                    "WHERE MA.MOVIEID = G.MOVIEID AND M.ID = MA.MOVIEID AND M.ID = MC.MOVIEID\n");
 
             appendSelectedGenres(queryActors);
             appendSelectedYear(queryActors);
@@ -444,14 +441,11 @@ public class Hw3 {
 
             StringBuilder queryDirectors = new StringBuilder();
             queryDirectors.append("SELECT DISTINCT MD.DIRECTORNAME\n" +
-                    "FROM MOVIE_DIRECTORS MD,MOVIES M,\n" +
+                    "FROM MOVIE_DIRECTORS MD,MOVIES M,MOVIE_COUNTRIES MC,\n" +
                     "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
                     "FROM MOVIE_GENRES MG  \n" +
-                    "GROUP BY MG.MOVIEID) G,\n" +
-                    "(SELECT MC.MOVIEID AS MOVIEID, LISTAGG(COUNTRY,',') WITHIN GROUP (ORDER BY MC.COUNTRY) AS COUNTRY\n" +
-                    "FROM MOVIE_COUNTRIES MC\n" +
-                    "GROUP BY MC.MOVIEID) C\n" +
-                    "WHERE MD.MOVIEID = G.MOVIEID AND C.MOVIEID = MD.MOVIEID AND M.ID = MD.MOVIEID \n");
+                    "GROUP BY MG.MOVIEID) G\n" +
+                    "WHERE MD.MOVIEID = G.MOVIEID AND MC.MOVIEID = MD.MOVIEID AND M.ID = MD.MOVIEID \n");
 
             appendSelectedGenres(queryDirectors);
             appendSelectedYear(queryDirectors);
@@ -495,18 +489,15 @@ public class Hw3 {
 
         StringBuilder queryTags = new StringBuilder();
         queryTags.append("SELECT DISTINCT T.ID,T.VALUE\n" +
-                "FROM TAGS T, MOVIE_TAGS MT,MOVIES M,MOVIE_DIRECTORS MD,\n" +
+                "FROM TAGS T, MOVIE_TAGS MT,MOVIES M,MOVIE_DIRECTORS MD,MOVIE_COUNTRIES MC,\n" +
                 "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
                 "FROM MOVIE_GENRES MG  \n" +
                 "GROUP BY MG.MOVIEID) G,\n" +
-                "(SELECT MC.MOVIEID AS MOVIEID, LISTAGG(COUNTRY,',') WITHIN GROUP (ORDER BY MC.COUNTRY) AS COUNTRY\n" +
-                "FROM MOVIE_COUNTRIES MC\n" +
-                "GROUP BY MC.MOVIEID) C,\n" +
                 "(SELECT MA.MOVIEID AS MOVIEID, LISTAGG(MA.ACTORNAME,',') WITHIN GROUP (ORDER BY MA.ACTORNAME) AS ACTORNAME\n" +
                 "FROM MOVIE_ACTORS MA\n" +
                 "GROUP BY MA.MOVIEID) A\n" +
                 "WHERE T.ID = MT.TAGID AND MT.MOVIEID = M.ID AND A.MOVIEID = G.MOVIEID \n" +
-                "AND MT.MOVIEID = A.MOVIEID AND MD.MOVIEID = M.ID \n");
+                "AND MT.MOVIEID = A.MOVIEID AND MD.MOVIEID = M.ID AND M.ID = MC.MOVIEID \n");
 
 
         appendSelectedGenres(queryTags);
@@ -537,19 +528,16 @@ public class Hw3 {
     private void generateFinalQueryMoviesStatement() {
 
         StringBuilder finalMovieQueryStatement = new StringBuilder();
-        finalMovieQueryStatement.append("SELECT DISTINCT M.ID,M.TITLE,G.GENRE,M.YEAR,C.COUNTRY,M.RTAUDIENCERATING,M.RTAUDIENCENUMRATINGS\n" +
-                "FROM TAGS T, MOVIE_TAGS MT,MOVIES M,MOVIE_DIRECTORS MD,\n" +
+        finalMovieQueryStatement.append("SELECT DISTINCT M.ID,M.TITLE,G.GENRE,M.YEAR,MC.COUNTRY,M.RTAUDIENCERATING,M.RTAUDIENCENUMRATINGS\n" +
+                "FROM TAGS T, MOVIE_TAGS MT,MOVIES M,MOVIE_DIRECTORS MD,MOVIE_COUNTRIES MC,\n" +
                 "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
                 "FROM MOVIE_GENRES MG  \n" +
                 "GROUP BY MG.MOVIEID) G,\n" +
-                "(SELECT MC.MOVIEID AS MOVIEID, LISTAGG(COUNTRY,',') WITHIN GROUP (ORDER BY MC.COUNTRY) AS COUNTRY\n" +
-                "FROM MOVIE_COUNTRIES MC\n" +
-                "GROUP BY MC.MOVIEID) C,\n" +
                 "(SELECT MA.MOVIEID AS MOVIEID, LISTAGG(MA.ACTORNAME,',') WITHIN GROUP (ORDER BY MA.ACTORNAME) AS ACTORNAME\n" +
                 "FROM MOVIE_ACTORS MA\n" +
                 "GROUP BY MA.MOVIEID) A\n" +
                 "WHERE T.ID = MT.TAGID AND MT.MOVIEID = M.ID AND A.MOVIEID = G.MOVIEID \n" +
-                "AND MT.MOVIEID = A.MOVIEID AND MD.MOVIEID = M.ID \n");
+                "AND MT.MOVIEID = A.MOVIEID AND MD.MOVIEID = M.ID AND MC.MOVIEID = M.ID\n");
 
         appendSelectedGenres(finalMovieQueryStatement);
         appendSelectedYear(finalMovieQueryStatement);
@@ -625,22 +613,23 @@ public class Hw3 {
     }
 
     private void executeUserQuery() {
+        if(getSelectedCheckBox(moviesCheckBoxList).size()>0) {
+            Connection conn = null;
+            ResultSet userIDs = null;
 
-        Connection conn = null;
-        ResultSet userIDs = null;
 
+            try {
+                conn = DBconnection.connectDB();
 
-        try {
-            conn = DBconnection.connectDB();
+                System.out.println(finalUserQuery + "\n");
+                userIDs = DBconnection.executeSQL(conn, finalUserQuery);
+                setUserResultsToPanel(userIDs, gui.userResultPanel);
 
-            System.out.println(finalUserQuery + "\n");
-            userIDs = DBconnection.executeSQL(conn, finalUserQuery);
-            setUserResultsToPanel(userIDs, gui.userResultPanel);
-
-        } catch (SQLException sqle) {
-            System.err.println("Errors occurs when communicating with the Database sever: " + sqle.getMessage());
-        } finally {
-            DBconnection.closeDB(conn);
+            } catch (SQLException sqle) {
+                System.err.println("Errors occurs when communicating with the Database sever: " + sqle.getMessage());
+            } finally {
+                DBconnection.closeDB(conn);
+            }
         }
     }
 
@@ -681,7 +670,7 @@ public class Hw3 {
                 if (i != 0) {
                     stringBuilder.append(" " + attributesRelation_Country + "\n");
                 }
-                stringBuilder.append("C.COUNTRY like " + "'%" + selectedCountriesList.get(i) + "%'");
+                stringBuilder.append("MC.COUNTRY like " + "'%" + selectedCountriesList.get(i) + "%'");
             }
             stringBuilder.append("\n)");
         }
