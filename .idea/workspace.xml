@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="42b93bc9-920b-4c3c-93b0-c939d39d5201" name="Default" comment="correcte queries">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Hw3/Hw3GUI.java" />
+    <list default="true" id="42b93bc9-920b-4c3c-93b0-c939d39d5201" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Hw3/Hw3GUI.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movies.dat" afterPath="$PROJECT_DIR$/movies.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/movies.dat" afterPath="$PROJECT_DIR$/resource/movies.dat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Hw3/Hw3.java" afterPath="$PROJECT_DIR$/src/Hw3/Hw3.java" />
     </list>
     <ignored path="Coen280Assignment3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,8 +53,8 @@
       <file leaf-file-name="Hw3.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="642" column="0" selection-start-line="642" selection-start-column="0" selection-end-line="642" selection-end-column="0" />
+            <state relative-caret-position="234">
+              <caret line="656" column="5" selection-start-line="656" selection-start-column="5" selection-end-line="656" selection-end-column="5" />
               <folding>
                 <element signature="docComment;class#Hw3#0" expanded="false" />
                 <element signature="method#Hw3#0;class#Hw3#0" expanded="false" />
@@ -102,27 +101,6 @@
                 <element signature="method#setQueryPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setTopPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setBottomPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Hw3GUI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3GUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="156" column="8" selection-start-line="156" selection-start-column="8" selection-end-line="156" selection-end-column="8" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#setPanelBackgroundColor#0;class#Hw3GUI#0" expanded="false" />
-                <element signature="method#setPanelBorderTitledBorder#0;class#Hw3GUI#0" expanded="false" />
-                <element signature="method#setTitlePanel#0;class#Hw3GUI#0" expanded="false" />
-                <element signature="method#setAttributesPanel#0;class#Hw3GUI#0" expanded="false" />
-                <element signature="method#setQueryPanel#0;class#Hw3GUI#0" expanded="false" />
-                <element signature="method#setTopPanel#0;class#Hw3GUI#0" expanded="false" />
-                <element signature="method#setBottomPanel#0;class#Hw3GUI#0" expanded="false" />
-                <element signature="e#16938#16939#0" expanded="true" />
-                <element signature="e#16979#16980#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -333,19 +311,19 @@
     <property name="js.eslint.eslintPackage" value="" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="Hw3" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/resource" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Hw3">
@@ -902,7 +880,7 @@
       <workItem from="1495756298323" duration="5523000" />
       <workItem from="1495773786729" duration="1679000" />
       <workItem from="1495778493796" duration="48987000" />
-      <workItem from="1496112027064" duration="23572000" />
+      <workItem from="1496112027064" duration="23628000" />
     </task>
     <task id="LOCAL-00001" summary="executeQuery works">
       <created>1495261165929</created>
@@ -1184,11 +1162,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496254379641</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="correcte queries">
+      <created>1496268145820</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1496268145821</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154438000" />
+    <option name="totallyTimeSpent" value="154494000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1506,14 +1491,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/movies.dat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/rt.jar!/com/apple/laf/AquaComboBoxUI.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="463">
@@ -1554,25 +1531,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="156" column="8" selection-start-line="156" selection-start-column="8" selection-end-line="156" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#setPanelBackgroundColor#0;class#Hw3GUI#0" expanded="false" />
-            <element signature="method#setPanelBorderTitledBorder#0;class#Hw3GUI#0" expanded="false" />
-            <element signature="method#setTitlePanel#0;class#Hw3GUI#0" expanded="false" />
-            <element signature="method#setAttributesPanel#0;class#Hw3GUI#0" expanded="false" />
-            <element signature="method#setQueryPanel#0;class#Hw3GUI#0" expanded="false" />
-            <element signature="method#setTopPanel#0;class#Hw3GUI#0" expanded="false" />
-            <element signature="method#setBottomPanel#0;class#Hw3GUI#0" expanded="false" />
-            <element signature="e#16938#16939#0" expanded="true" />
-            <element signature="e#16979#16980#0" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/movies.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="642" column="0" selection-start-line="642" selection-start-column="0" selection-end-line="642" selection-end-column="0" />
+        <state relative-caret-position="234">
+          <caret line="656" column="5" selection-start-line="656" selection-start-column="5" selection-end-line="656" selection-end-column="5" />
           <folding>
             <element signature="docComment;class#Hw3#0" expanded="false" />
             <element signature="method#Hw3#0;class#Hw3#0" expanded="false" />
