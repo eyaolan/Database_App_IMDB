@@ -65,7 +65,6 @@ public class Hw3 {
 
     }
 
-
     private void initialPanels() {
         Connection conn = null;
         try {
@@ -568,7 +567,7 @@ public class Hw3 {
     private void generateFinalQueryUsersStatement() {
 
         StringBuilder finalUserQueryStatement = new StringBuilder();
-        finalUserQueryStatement.append("SELECT DISTINCT UT.USERID\n" +
+        /*finalUserQueryStatement.append("SELECT DISTINCT UT.USERID\n" +
                 "FROM TAGS T, MOVIE_TAGS MT,MOVIES M,MOVIE_DIRECTORS MD, USER_TAGGEDMOVIES UT, \n" +
                 "(SELECT MG.MOVIEID AS MOVIEID, LISTAGG(GENRE,',') WITHIN GROUP (ORDER BY MG.GENRE) AS GENRE\n" +
                 "FROM MOVIE_GENRES MG  \n" +
@@ -581,22 +580,28 @@ public class Hw3 {
                 "GROUP BY MA.MOVIEID) A\n" +
                 "WHERE T.ID = MT.TAGID AND MT.MOVIEID = M.ID AND A.MOVIEID = G.MOVIEID \n" +
                 "AND MT.MOVIEID = A.MOVIEID AND MD.MOVIEID = M.ID \n" +
+                "AND UT.MOVIEID = M.ID AND UT.TAGID = T.ID \n");*/
+
+        finalUserQueryStatement.append("SELECT DISTINCT UT.USERID\n" +
+                "FROM TAGS T, MOVIE_TAGS MT,MOVIES M, USER_TAGGEDMOVIES UT\n" +
+                "WHERE T.ID = MT.TAGID AND MT.MOVIEID = M.ID \n" +
                 "AND UT.MOVIEID = M.ID AND UT.TAGID = T.ID \n");
 
-        appendSelectedGenres(finalUserQueryStatement);
+        /*appendSelectedGenres(finalUserQueryStatement);
         appendSelectedYear(finalUserQueryStatement);
         appendSelectCountries(finalUserQueryStatement);
         appendSelectActorsAndDirector(finalUserQueryStatement);
         if (!gui.weightValueTextField.getText().isEmpty()) {
             appendTagsWeight(finalUserQueryStatement);
-        }
-        appendSelectedTags(finalUserQueryStatement);
+        }*/
+        //appendSelectedTags(finalUserQueryStatement);
         appendSelectedMovies(finalUserQueryStatement);
 
         finalUserQueryStatement.append("ORDER BY UT.USERID");
 
         finalUserQuery = finalUserQueryStatement.toString();
         gui.showQuery.setText(finalUserQuery);
+
     }
 
     private void executeMovieQuery() {
@@ -738,7 +743,6 @@ public class Hw3 {
                     stringBuilder.append(" " + attributesRelation_Movie + "\n");
                 }
                 stringBuilder.append("M.ID = " + selectedMovies.get(i).substring(0, 7));
-                System.out.println(selectedMovies.get(i).substring(0, 7));
             }
             stringBuilder.append("\n) \n");
         }
