@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="42b93bc9-920b-4c3c-93b0-c939d39d5201" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Hw3/Hw3GUI.java" afterPath="" />
+    <list default="true" id="42b93bc9-920b-4c3c-93b0-c939d39d5201" name="Default" comment="add println line in populate">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movies.dat" afterPath="$PROJECT_DIR$/movies.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/movies.dat" afterPath="$PROJECT_DIR$/resource/movies.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Populate/Populate.java" afterPath="$PROJECT_DIR$/src/Populate/Populate.java" />
     </list>
     <ignored path="Coen280Assignment3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,17 +27,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Populate.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Populate.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Populate/Populate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="189" column="5" selection-start-line="189" selection-start-column="5" selection-end-line="189" selection-end-column="5" />
+            <state relative-caret-position="203">
+              <caret line="180" column="26" selection-start-line="180" selection-start-column="26" selection-end-line="180" selection-end-column="26" />
               <folding>
                 <element signature="method#deleteTuples#0;class#Populate#0" expanded="false" />
-                <element signature="method#insertTuples#0;class#Populate#0" expanded="false" />
                 <element signature="method#closeConn#0;class#Populate#0" expanded="false" />
-                <element signature="method#insertToDB#0;class#Populate#0" expanded="false" />
-                <marker date="1496238416000" expanded="true" signature="2677:2689" ph="DELETE FROM " />
+                <marker date="1496274364000" expanded="true" signature="2677:2689" ph="DELETE FROM " />
               </folding>
             </state>
           </provider>
@@ -50,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Hw3.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Hw3.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="656" column="5" selection-start-line="656" selection-start-column="5" selection-end-line="656" selection-end-column="5" />
+            <state relative-caret-position="396">
+              <caret line="662" column="0" selection-start-line="662" selection-start-column="0" selection-end-line="662" selection-end-column="0" />
               <folding>
                 <element signature="docComment;class#Hw3#0" expanded="false" />
                 <element signature="method#Hw3#0;class#Hw3#0" expanded="false" />
@@ -119,7 +117,7 @@
       <file leaf-file-name="AquaComboBoxUI.class" pinned="false" current-in-tab="false">
         <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/rt.jar!/com/apple/laf/AquaComboBoxUI.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
+            <state relative-caret-position="4080">
               <caret line="344" column="0" selection-start-line="344" selection-start-column="0" selection-end-line="344" selection-end-column="0" />
               <folding />
             </state>
@@ -129,7 +127,7 @@
       <file leaf-file-name="createdb.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/createdb.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1216">
+            <state relative-caret-position="2115">
               <caret line="141" column="49" selection-start-line="141" selection-start-column="49" selection-end-line="141" selection-end-column="49" />
               <folding />
             </state>
@@ -194,9 +192,9 @@
         <option value="$PROJECT_DIR$/dropdb.sql" />
         <option value="$PROJECT_DIR$/src/Hw3/Test.java" />
         <option value="$PROJECT_DIR$/createdb1.sql" />
-        <option value="$PROJECT_DIR$/src/Populate/Populate.java" />
         <option value="$PROJECT_DIR$/src/Hw3/Hw3GUI.java" />
         <option value="$PROJECT_DIR$/src/Hw3/Hw3.java" />
+        <option value="$PROJECT_DIR$/src/Populate/Populate.java" />
       </list>
     </option>
   </component>
@@ -236,8 +234,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -288,12 +284,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Hw3" />
+              <option name="myItemId" value="Populate" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -880,7 +878,8 @@
       <workItem from="1495756298323" duration="5523000" />
       <workItem from="1495773786729" duration="1679000" />
       <workItem from="1495778493796" duration="48987000" />
-      <workItem from="1496112027064" duration="23628000" />
+      <workItem from="1496112027064" duration="23815000" />
+      <workItem from="1496274048733" duration="281000" />
     </task>
     <task id="LOCAL-00001" summary="executeQuery works">
       <created>1495261165929</created>
@@ -1169,11 +1168,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496268145821</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="removed unused file, rewrite movies.dat">
+      <created>1496268218927</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1496268218927</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154494000" />
+    <option name="totallyTimeSpent" value="154962000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1181,19 +1187,18 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26963657" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26963657" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1388889" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1204,6 +1209,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1248,8 +1254,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added textfield to castpanel" />
-    <MESSAGE value="added generate countries, but someproblem in query" />
     <MESSAGE value="fix the problem of query coutries from genres" />
     <MESSAGE value="added Actionlistener to combombox" />
     <MESSAGE value="added weight Panel" />
@@ -1273,7 +1277,9 @@
     <MESSAGE value="chenged and or Or functions signned to individual facet panel" />
     <MESSAGE value="chenged final user query" />
     <MESSAGE value="correcte queries" />
-    <option name="LAST_COMMIT_MESSAGE" value="correcte queries" />
+    <MESSAGE value="removed unused file, rewrite movies.dat" />
+    <MESSAGE value="add println line in populate" />
+    <option name="LAST_COMMIT_MESSAGE" value="add println line in populate" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1356,13 +1362,7 @@
     </entry>
     <entry file="jar://$USER_HOME$/Downloads/ojdbc6.jar!/oracle/jdbc/driver/T4CTTIoer.class" />
     <entry file="file://$PROJECT_DIR$/src/movie.dat" />
-    <entry file="file://$PROJECT_DIR$/movie.dat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/movie.dat" />
     <entry file="file://$PROJECT_DIR$/src/creatdb.sql" />
     <entry file="file://$PROJECT_DIR$/movie_locations.dat">
       <provider selected="true" editor-type-id="text-editor">
@@ -1393,10 +1393,8 @@
           <caret line="101" column="61" selection-start-line="101" selection-start-column="61" selection-end-line="101" selection-end-column="61" />
           <folding>
             <element signature="method#deleteTuples#0;class#Populate#0" expanded="false" />
-            <element signature="method#insertTuples#0;class#Populate#0" expanded="false" />
             <element signature="method#closeConn#0;class#Populate#0" expanded="false" />
-            <element signature="method#insertToDB#0;class#Populate#0" expanded="false" />
-            <marker date="1496238416000" expanded="true" signature="2677:2689" ph="DELETE FROM " />
+            <marker date="1496274364000" expanded="true" signature="2677:2689" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
@@ -1422,14 +1420,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Hw3/ShowGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3630">
-          <caret line="252" column="0" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Hw3/ShowGUI.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/src.zip!/java/awt/Container.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="363">
@@ -1443,14 +1434,7 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Hw3/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Hw3/Test.java" />
     <entry file="file://$PROJECT_DIR$/createdb1.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -1459,28 +1443,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/searching-icon.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/searching-icon.png" />
     <entry file="file://$PROJECT_DIR$/searching-icon.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Populate/Populate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="189" column="5" selection-start-line="189" selection-start-column="5" selection-end-line="189" selection-end-column="5" />
-          <folding>
-            <element signature="method#deleteTuples#0;class#Populate#0" expanded="false" />
-            <element signature="method#insertTuples#0;class#Populate#0" expanded="false" />
-            <element signature="method#closeConn#0;class#Populate#0" expanded="false" />
-            <element signature="method#insertToDB#0;class#Populate#0" expanded="false" />
-            <marker date="1496238416000" expanded="true" signature="2677:2689" ph="DELETE FROM " />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resource/movies.dat">
@@ -1493,7 +1459,7 @@
     </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/rt.jar!/com/apple/laf/AquaComboBoxUI.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
+        <state relative-caret-position="4080">
           <caret line="344" column="0" selection-start-line="344" selection-start-column="0" selection-end-line="344" selection-end-column="0" />
           <folding />
         </state>
@@ -1521,20 +1487,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/createdb.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1216">
+        <state relative-caret-position="2115">
           <caret line="141" column="49" selection-start-line="141" selection-start-column="49" selection-end-line="141" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3GUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="156" column="8" selection-start-line="156" selection-start-column="8" selection-end-line="156" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3GUI.java" />
     <entry file="file://$PROJECT_DIR$/movies.dat">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1545,8 +1504,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="656" column="5" selection-start-line="656" selection-start-column="5" selection-end-line="656" selection-end-column="5" />
+        <state relative-caret-position="396">
+          <caret line="662" column="0" selection-start-line="662" selection-start-column="0" selection-end-line="662" selection-end-column="0" />
           <folding>
             <element signature="docComment;class#Hw3#0" expanded="false" />
             <element signature="method#Hw3#0;class#Hw3#0" expanded="false" />
@@ -1593,6 +1552,18 @@
             <element signature="method#setQueryPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#setTopPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#setBottomPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Populate/Populate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="180" column="26" selection-start-line="180" selection-start-column="26" selection-end-line="180" selection-end-column="26" />
+          <folding>
+            <element signature="method#deleteTuples#0;class#Populate#0" expanded="false" />
+            <element signature="method#closeConn#0;class#Populate#0" expanded="false" />
+            <marker date="1496274364000" expanded="true" signature="2677:2689" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>

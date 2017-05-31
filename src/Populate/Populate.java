@@ -100,6 +100,7 @@ public class Populate {
                     System.out.println("Populating data into "+tableName+ "...");
                     //original idea of code in while loop comes from Xiaoxiao Shang
                     while ((line = reader.readLine()) != null) {
+                        System.out.println(line);
                         String[] values = line.split(TAB_VALUE);
                         for (int h = 0; h < numOfColumns; h++) {
                             if (h >= values.length) {
@@ -176,6 +177,7 @@ public class Populate {
                 if (stmt != null)
                     conn.close();
             } catch (SQLException se) {
+                se.printStackTrace();
             }// do nothing
             try {
                 if (conn != null)
