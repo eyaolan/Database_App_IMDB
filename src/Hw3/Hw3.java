@@ -51,7 +51,7 @@ public class Hw3 {
     private String finalMovieQuery = "";
     private String finalUserQuery = "";
 
-    public Hw3() {
+    private Hw3() {
         gui = new Hw3GUI();
         attributesRelation = "AND";
         setActionListeners();
@@ -62,7 +62,7 @@ public class Hw3 {
     }
 
 
-    public void initialPanels() {
+    private void initialPanels() {
         Connection conn = null;
         try {
             conn = DBconnection.connectDB();
@@ -86,7 +86,7 @@ public class Hw3 {
         }
     }
 
-    public void setActionListeners() {
+    private void setActionListeners() {
         gui.fromYearComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -244,7 +244,7 @@ public class Hw3 {
 
     }
 
-    public void addTextFieldOfActorsAndDirectorTolist() {
+    private void addTextFieldOfActorsAndDirectorTolist() {
         selectedactorsAndDirector.clear();
         director = "";
         addTextFieldToList(gui.actor1Textfield);
@@ -257,13 +257,13 @@ public class Hw3 {
 
     }
 
-    public void addTextFieldToList(JTextField textField) {
+    private void addTextFieldToList(JTextField textField) {
         if (!textField.getText().isEmpty()) {
             selectedactorsAndDirector.add(textField.getText());
         }
     }
 
-    public void createNewComboxFrame(ArrayList<String> arrayList, Point position, String name, JTextField textField) {
+    private void createNewComboxFrame(ArrayList<String> arrayList, Point position, String name, JTextField textField) {
         if (getSelectedCheckBox(countriesCheckBoxList).size() > 0) {
             if (arrayList.size() > 0) {
                 JFrame searchActorsFrame = new JFrame(name);
@@ -287,7 +287,7 @@ public class Hw3 {
 
     }
 
-    public void promptMessageFrame(String message) {
+    private void promptMessageFrame(String message) {
         JFrame messageFrame = new JFrame();
         JLabel messageLabel = new JLabel(message);
         JButton button = new JButton("YES");
@@ -307,7 +307,7 @@ public class Hw3 {
         messageFrame.setVisible(true);
     }
 
-    public void setGenresCheckBoxToPanel(ResultSet resultSet, JPanel panel) throws SQLException {
+    private void setGenresCheckBoxToPanel(ResultSet resultSet, JPanel panel) throws SQLException {
         ActionListener genreCheckboxActionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -319,7 +319,7 @@ public class Hw3 {
 
     }
 
-    public void setCountriesCheckBoxToPanel(ResultSet resultSet, JPanel panel) throws SQLException {
+    private void setCountriesCheckBoxToPanel(ResultSet resultSet, JPanel panel) throws SQLException {
         ActionListener countryCheckboxActionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -330,7 +330,7 @@ public class Hw3 {
         addCheckBoxToPanel(resultSet, panel, countriesCheckBoxList, countryCheckboxActionListener);
     }
 
-    public void setTagsCheckBoxToPanel(ResultSet resultSet, JPanel panel) throws SQLException {
+    private void setTagsCheckBoxToPanel(ResultSet resultSet, JPanel panel) throws SQLException {
         ActionListener tagCheckboxActionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -340,7 +340,7 @@ public class Hw3 {
         addCheckBoxToPanel(resultSet, panel, tagsCheckBoxList, tagCheckboxActionListener);
     }
 
-    public void setMovieResultsToPanel(ResultSet resultSet, JPanel panel) throws SQLException {
+    private void setMovieResultsToPanel(ResultSet resultSet, JPanel panel) throws SQLException {
         ActionListener movieResultListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -350,7 +350,7 @@ public class Hw3 {
         addCheckBoxToPanel(resultSet, panel, moviesCheckBoxList, movieResultListener);
     }
 
-    public void setUserResultsToPanel(ResultSet resultSet, JPanel panel) throws SQLException {
+    private void setUserResultsToPanel(ResultSet resultSet, JPanel panel) throws SQLException {
         panel.removeAll();
         while (resultSet.next()) {
             if (resultSet.getString(1) != null) {
@@ -363,7 +363,7 @@ public class Hw3 {
         panel.repaint();
     }
 
-    public void generateCountriesCheckBoxToPanel() {
+    private void generateCountriesCheckBoxToPanel() {
         clearAllTextFields();
         actorsList.clear();
         directorsList.clear();
@@ -405,7 +405,7 @@ public class Hw3 {
         //}
     }
 
-    public void generateActorsAndDirectorsList() {
+    private void generateActorsAndDirectorsList() {
         clearAllTextFields();
         actorsList.clear();
         directorsList.clear();
@@ -478,7 +478,7 @@ public class Hw3 {
 
     }
 
-    public void generateTagsCheckBoxToPanel() {
+    private void generateTagsCheckBoxToPanel() {
 
         gui.showQuery.setText("");
         Connection conn = null;
@@ -525,7 +525,7 @@ public class Hw3 {
         //}
     }
 
-    public void generateFinalQueryMoviesStatement() {
+    private void generateFinalQueryMoviesStatement() {
 
         StringBuilder finalMovieQueryStatement = new StringBuilder();
         finalMovieQueryStatement.append("SELECT DISTINCT M.ID,M.TITLE,G.GENRE,M.YEAR,C.COUNTRY,M.RTAUDIENCERATING,M.RTAUDIENCENUMRATINGS\n" +
@@ -555,7 +555,7 @@ public class Hw3 {
         gui.showQuery.setText(finalMovieQuery);
     }
 
-    public void generateFinalQueryUsersStatement() {
+    private void generateFinalQueryUsersStatement() {
 
         StringBuilder finalUserQueryStatement = new StringBuilder();
         finalUserQueryStatement.append("SELECT DISTINCT UT.USERID\n" +
@@ -589,7 +589,7 @@ public class Hw3 {
         gui.showQuery.setText(finalUserQuery);
     }
 
-    public void executeMovieQuery() {
+    private void executeMovieQuery() {
 
         Connection conn = null;
         ResultSet movies = null;
@@ -609,7 +609,7 @@ public class Hw3 {
         }
     }
 
-    public void executeUserQuery() {
+    private void executeUserQuery() {
 
         Connection conn = null;
         ResultSet userIDs = null;
@@ -629,7 +629,7 @@ public class Hw3 {
         }
     }
 
-    public void clearAllTextFields() {
+    private void clearAllTextFields() {
         gui.actor1Textfield.setText("");
         gui.actor2Textfield.setText("");
         gui.actor3Textfield.setText("");
@@ -637,7 +637,7 @@ public class Hw3 {
         gui.directorTextfield.setText("");
     }
 
-    public void appendSelectedGenres(StringBuilder stringBuilder) {
+    private void appendSelectedGenres(StringBuilder stringBuilder) {
         ArrayList<String> selectedGenresList = getSelectedCheckBox(genresCheckBoxList);
         if (selectedGenresList.size() != 0) {
             stringBuilder.append("AND (\n");
@@ -652,11 +652,11 @@ public class Hw3 {
 
     }
 
-    public void appendSelectedYear(StringBuilder stringBuilder) {
+    private void appendSelectedYear(StringBuilder stringBuilder) {
         stringBuilder.append("AND (M.YEAR > " + fromYear + " " + attributesRelation + " M.YEAR < " + toYear + ")");
     }
 
-    public void appendSelectCountries(StringBuilder stringBuilder) {
+    private void appendSelectCountries(StringBuilder stringBuilder) {
         ArrayList<String> selectedCountriesList = getSelectedCheckBox(countriesCheckBoxList);
 
         if (selectedCountriesList.size() != 0) {
@@ -671,7 +671,7 @@ public class Hw3 {
         }
     }
 
-    public void appendSelectActorsAndDirector(StringBuilder stringBuilder) {
+    private void appendSelectActorsAndDirector(StringBuilder stringBuilder) {
         if (selectedactorsAndDirector.size() > 0) {
             stringBuilder.append("AND (\n");
             for (int i = 0; i < selectedactorsAndDirector.size(); i++) {
@@ -693,13 +693,13 @@ public class Hw3 {
         }
     }
 
-    public void appendTagsWeight(StringBuilder stringBuilder) {
+    private void appendTagsWeight(StringBuilder stringBuilder) {
         if (!gui.weightValueTextField.getText().isEmpty()) {
             stringBuilder.append("AND MT.TAGWEIGHT" + tagWeight + tagValue + "\n");
         }
     }
 
-    public void appendSelectedTags(StringBuilder stringBuilder) {
+    private void appendSelectedTags(StringBuilder stringBuilder) {
         ArrayList<String> selectedTags = getSelectedCheckBox(tagsCheckBoxList);
 
         if (selectedTags.size() > 0) {
@@ -716,7 +716,7 @@ public class Hw3 {
         }
     }
 
-    public void appendSelectedMovies(StringBuilder stringBuilder) {
+    private void appendSelectedMovies(StringBuilder stringBuilder) {
         ArrayList<String> selectedMovies = getSelectedCheckBox(moviesCheckBoxList);
 
         if (selectedMovies.size() > 0) {
@@ -745,7 +745,7 @@ public class Hw3 {
         return selectedList;
     }
 
-    public void addCheckBoxToPanel(ResultSet resultSet, JPanel panel, ArrayList<JCheckBox> checkBoxs, ActionListener actionListener) throws SQLException {
+    private void addCheckBoxToPanel(ResultSet resultSet, JPanel panel, ArrayList<JCheckBox> checkBoxs, ActionListener actionListener) throws SQLException {
         checkBoxs.clear();
         panel.removeAll();
         ResultSetMetaData metaData = resultSet.getMetaData();
@@ -777,7 +777,7 @@ public class Hw3 {
         panel.repaint();
     }
 
-    public void clearComponents(JPanel panel) {
+    private void clearComponents(JPanel panel) {
         panel.removeAll();
         panel.revalidate();
         panel.repaint();
@@ -789,7 +789,7 @@ public class Hw3 {
         hw3.initialPanels();
     }
 
-    public static class Hw3GUI {
+    private static class Hw3GUI {
         //main Frame
         private JFrame mainFrame;
 

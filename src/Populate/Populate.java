@@ -145,7 +145,7 @@ public class Populate {
         }
     }
 
-    public void insertToDB(String[] tables) throws IOException {
+    private void insertToDB(String[] tables) throws IOException {
 
         //initial the resultSet, connection and statement
 
