@@ -24,6 +24,7 @@ public class Hw3 {
     private ArrayList<JCheckBox> countriesCheckBoxList = new ArrayList<>();
     private ArrayList<JCheckBox> tagsCheckBoxList = new ArrayList<>();
     private ArrayList<JCheckBox> moviesCheckBoxList = new ArrayList<>();
+    private ArrayList<JCheckBox> usersCheckBoxList = new ArrayList<>();
     //store actors name depends on check box
     private ArrayList<String> actorsList = new ArrayList<>();
     private ArrayList<String> directorsList = new ArrayList<>();
@@ -161,7 +162,7 @@ public class Hw3 {
             public void removeUpdate(DocumentEvent e) {
                 addTextFieldOfActorsAndDirectorTolist();
                 gui.tagsPanel.removeAll();
-                if(actorsList.size()>0 || director != "") {
+                if (actorsList.size() > 0 || director != "") {
                     generateTagsCheckBoxToPanel();
                 }
 
@@ -198,7 +199,7 @@ public class Hw3 {
                     System.out.println("It's not a valid number: " + ex.getMessage());
                     promptMessageFrame("It's not a valid number! Please enter a valid integer! ");
                 }
-                if(tagValue != 0) {
+                if (tagValue != 0) {
                     generateTagsCheckBoxToPanel();
                 }
             }
@@ -218,7 +219,7 @@ public class Hw3 {
                     System.out.println("It's not a valid number: " + ex.getMessage());
                     promptMessageFrame("It's not a valid number! Please enter a valid integer! ");
                 }
-                if(tagValue != 0) {
+                if (tagValue != 0) {
                     generateTagsCheckBoxToPanel();
                 }
             }
@@ -252,7 +253,7 @@ public class Hw3 {
         addTextFieldToList(gui.actor4Textfield);
         if (!gui.directorTextfield.getText().isEmpty()) {
             director = gui.directorTextfield.getText();
-        }else director = "";
+        } else director = "";
 
     }
 
@@ -347,6 +348,19 @@ public class Hw3 {
             }
         };
         addCheckBoxToPanel(resultSet, panel, moviesCheckBoxList, movieResultListener);
+    }
+
+    public void setUserResultsToPanel(ResultSet resultSet, JPanel panel) throws SQLException {
+        panel.removeAll();
+        while (resultSet.next()) {
+            if (resultSet.getString(1) != null) {
+                JLabel label = new JLabel("User ID:    "+resultSet.getString(1));
+                panel.add(label);
+            }
+        }
+
+        panel.revalidate();
+        panel.repaint();
     }
 
     public void generateCountriesCheckBoxToPanel() {
@@ -490,7 +504,7 @@ public class Hw3 {
         appendSelectedYear(queryTags);
         appendSelectCountries(queryTags);
         appendSelectActorsAndDirector(queryTags);
-        if(!gui.weightValueTextField.getText().isEmpty()){
+        if (!gui.weightValueTextField.getText().isEmpty()) {
             appendTagsWeight(queryTags);
         }
 
@@ -532,7 +546,7 @@ public class Hw3 {
         appendSelectedYear(finalMovieQueryStatement);
         appendSelectCountries(finalMovieQueryStatement);
         appendSelectActorsAndDirector(finalMovieQueryStatement);
-        if(!gui.weightValueTextField.getText().isEmpty()){
+        if (!gui.weightValueTextField.getText().isEmpty()) {
             appendTagsWeight(finalMovieQueryStatement);
         }
         appendSelectedTags(finalMovieQueryStatement);
@@ -563,7 +577,7 @@ public class Hw3 {
         appendSelectedYear(finalUserQueryStatement);
         appendSelectCountries(finalUserQueryStatement);
         appendSelectActorsAndDirector(finalUserQueryStatement);
-        if(!gui.weightValueTextField.getText().isEmpty()){
+        if (!gui.weightValueTextField.getText().isEmpty()) {
             appendTagsWeight(finalUserQueryStatement);
         }
         appendSelectedTags(finalUserQueryStatement);
@@ -606,7 +620,7 @@ public class Hw3 {
 
             System.out.println(finalUserQuery + "\n");
             userIDs = DBconnection.executeSQL(conn, finalUserQuery);
-            setMovieResultsToPanel(userIDs, gui.userResultPanel);
+            setUserResultsToPanel(userIDs, gui.userResultPanel);
 
         } catch (SQLException sqle) {
             System.err.println("Errors occurs when communicating with the Database sever: " + sqle.getMessage());
@@ -658,7 +672,7 @@ public class Hw3 {
     }
 
     public void appendSelectActorsAndDirector(StringBuilder stringBuilder) {
-        if (selectedactorsAndDirector.size() > 0 || director != "") {
+        if (selectedactorsAndDirector.size() > 0) {
             stringBuilder.append("AND (\n");
             for (int i = 0; i < selectedactorsAndDirector.size(); i++) {
                 if (i != 0) {
@@ -667,26 +681,28 @@ public class Hw3 {
                 stringBuilder.append("A.ACTORNAME like " + "'%" + selectedactorsAndDirector.get(i) + "%'");
             }
 
-            if (director != "") {
-                if (selectedactorsAndDirector.size() > 0) {
-                    stringBuilder.append(" " + attributesRelation + "\n");
-                }
-                stringBuilder.append("MD.DIRECTORNAME like " + "'%" + director + "%'");
-            }
             stringBuilder.append("\n)");
+            //stringBuilder.append("\n)");
+        }
+
+        if (director != "") {
+
+                stringBuilder.append(" AND \n");
+
+            stringBuilder.append("MD.DIRECTORNAME like " + "'%" + director + "%'\n");
         }
     }
 
     public void appendTagsWeight(StringBuilder stringBuilder) {
-        if(!gui.weightValueTextField.getText().isEmpty()){
-            stringBuilder.append("AND MT.TAGWEIGHT"+ tagWeight + tagValue + "\n");
+        if (!gui.weightValueTextField.getText().isEmpty()) {
+            stringBuilder.append("AND MT.TAGWEIGHT" + tagWeight + tagValue + "\n");
         }
     }
 
-    public void appendSelectedTags(StringBuilder stringBuilder){
+    public void appendSelectedTags(StringBuilder stringBuilder) {
         ArrayList<String> selectedTags = getSelectedCheckBox(tagsCheckBoxList);
 
-        if(selectedTags.size() >0){
+        if (selectedTags.size() > 0) {
             stringBuilder.append("AND (\n");
             for (int i = 0; i < selectedTags.size(); i++) {
                 if (i != 0) {
@@ -694,23 +710,24 @@ public class Hw3 {
                 }
 
                 //stringBuilder.append("T.ID = " + selectedTags.get(i).replaceAll("[^-?0-9]+", " "));
-                stringBuilder.append("T.ID = " + selectedTags.get(i).substring(0,7));
+                stringBuilder.append("T.ID = " + selectedTags.get(i).substring(0, 7));
             }
             stringBuilder.append("\n) \n");
         }
     }
 
-    public void appendSelectedMovies(StringBuilder stringBuilder){
+    public void appendSelectedMovies(StringBuilder stringBuilder) {
         ArrayList<String> selectedMovies = getSelectedCheckBox(moviesCheckBoxList);
 
-        if(selectedMovies.size() >0){
+        if (selectedMovies.size() > 0) {
             stringBuilder.append("AND (\n");
             for (int i = 0; i < selectedMovies.size(); i++) {
                 if (i != 0) {
-                    stringBuilder.append(" " + attributesRelation + "\n");
+                   // stringBuilder.append(" " + attributesRelation + "\n");
+                    stringBuilder.append(" OR \n");
                 }
-                stringBuilder.append("M.ID = " + selectedMovies.get(i).substring(0,7));
-                System.out.println(selectedMovies.get(i).substring(0,7));
+                stringBuilder.append("M.ID = " + selectedMovies.get(i).substring(0, 7));
+                System.out.println(selectedMovies.get(i).substring(0, 7));
             }
             stringBuilder.append("\n) \n");
         }
@@ -736,8 +753,8 @@ public class Hw3 {
             while (resultSet.next()) {
                 if (resultSet.getString(1) != null) {
                     StringBuilder movieResult = new StringBuilder("");
-                    for(int i = 1; i<=metaData.getColumnCount();i++){
-                        movieResult.append(resultSet.getString(i)+"             ");
+                    for (int i = 1; i <= metaData.getColumnCount(); i++) {
+                        movieResult.append(resultSet.getString(i) + "             ");
                     }
                     JCheckBox newCheckBox = new JCheckBox(movieResult.toString());
                     newCheckBox.addActionListener(actionListener);
@@ -760,11 +777,12 @@ public class Hw3 {
         panel.repaint();
     }
 
-    public void clearComponents(JPanel panel){
+    public void clearComponents(JPanel panel) {
         panel.removeAll();
         panel.revalidate();
         panel.repaint();
     }
+
     public static void main(String[] args) {
 
         Hw3 hw3 = new Hw3();
@@ -1136,8 +1154,8 @@ public class Hw3 {
             movieResultPanel.setBackground(BACKGROUND_COLOR);
             userResultPanel.setBackground(BACKGROUND_COLOR);
 
-            movieResultPanel.setLayout(new BoxLayout(movieResultPanel,BoxLayout.Y_AXIS));
-            userResultPanel.setLayout(new BoxLayout(userResultPanel,BoxLayout.Y_AXIS));
+            movieResultPanel.setLayout(new BoxLayout(movieResultPanel, BoxLayout.Y_AXIS));
+            userResultPanel.setLayout(new BoxLayout(userResultPanel, BoxLayout.Y_AXIS));
 
             movieResultScrollPanel = new JScrollPane(movieResultPanel);
             userResultScrollPanel = new JScrollPane(userResultPanel);
