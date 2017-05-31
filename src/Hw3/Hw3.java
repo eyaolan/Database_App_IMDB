@@ -228,6 +228,7 @@ public class Hw3 {
         gui.movieQueryButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                generateFinalQueryMoviesStatement();
                 executeMovieQuery();
             }
         });
@@ -237,7 +238,6 @@ public class Hw3 {
             public void actionPerformed(ActionEvent e) {
                 generateFinalQueryUsersStatement();
                 executeUserQuery();
-                moviesCheckBoxList.clear();
             }
         });
 
@@ -710,11 +710,11 @@ public class Hw3 {
                     stringBuilder.append(" " + attributesRelation + "\n");
                 }
                 stringBuilder.append("M.ID = " + selectedMovies.get(i).substring(0,7));
+                System.out.println(selectedMovies.get(i).substring(0,7));
             }
             stringBuilder.append("\n) \n");
         }
     }
-
 
     private ArrayList<String> getSelectedCheckBox(ArrayList<JCheckBox> checkBoxsList) {
         ArrayList<String> selectedList = new ArrayList<String>();
