@@ -31,6 +31,10 @@ public class Hw3 {
 
     //
     private String attributesRelation;
+    private String attributesRelation_Country;
+    private String attributesRelation_Cast;
+    private String attributesRelation_Tag;
+    private String attributesRelation_Movie;
     private int fromYear;
     private int toYear;
 
@@ -53,7 +57,7 @@ public class Hw3 {
 
     private Hw3() {
         gui = new Hw3GUI();
-        attributesRelation = "AND";
+        //attributesRelation = "AND";
         setActionListeners();
         fromYear = (int) gui.fromYearComboBox.getSelectedItem();
         toYear = (int) gui.toYearComboBox.getSelectedItem();
@@ -108,9 +112,9 @@ public class Hw3 {
         gui.selectAndOrComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                attributesRelation = gui.selectAndOrComboBox.getSelectedItem().toString();
+                /*attributesRelation = gui.selectAndOrComboBox.getSelectedItem().toString();
                 generateCountriesCheckBoxToPanel();
-                generateActorsAndDirectorsList();
+                generateActorsAndDirectorsList();*/
             }
         });
 
@@ -154,12 +158,14 @@ public class Hw3 {
         DocumentListener actorsOrDirectorTextFieldListener = new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
+                attributesRelation_Cast = gui.selectAndOrComboBox.getSelectedItem().toString();
                 addTextFieldOfActorsAndDirectorTolist();
                 generateTagsCheckBoxToPanel();
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
+                attributesRelation_Cast = gui.selectAndOrComboBox.getSelectedItem().toString();
                 addTextFieldOfActorsAndDirectorTolist();
                 gui.tagsPanel.removeAll();
                 if (actorsList.size() > 0 || director != "") {
@@ -170,6 +176,7 @@ public class Hw3 {
 
             @Override
             public void changedUpdate(DocumentEvent e) {
+                attributesRelation_Cast = gui.selectAndOrComboBox.getSelectedItem().toString();
                 addTextFieldOfActorsAndDirectorTolist();
                 generateTagsCheckBoxToPanel();
             }
@@ -311,6 +318,7 @@ public class Hw3 {
         ActionListener genreCheckboxActionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                attributesRelation = gui.selectAndOrComboBox.getSelectedItem().toString();
                 generateCountriesCheckBoxToPanel();
                 generateActorsAndDirectorsList();
             }
@@ -323,6 +331,7 @@ public class Hw3 {
         ActionListener countryCheckboxActionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                attributesRelation_Country = gui.selectAndOrComboBox.getSelectedItem().toString();
                 generateActorsAndDirectorsList();
                 generateTagsCheckBoxToPanel();
             }
@@ -334,6 +343,7 @@ public class Hw3 {
         ActionListener tagCheckboxActionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                attributesRelation_Tag = gui.selectAndOrComboBox.getSelectedItem().toString();
                 generateFinalQueryMoviesStatement();
             }
         };
@@ -344,7 +354,7 @@ public class Hw3 {
         ActionListener movieResultListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                attributesRelation_Movie = gui.selectAndOrComboBox.getSelectedItem().toString();
             }
         };
         addCheckBoxToPanel(resultSet, panel, moviesCheckBoxList, movieResultListener);
@@ -653,7 +663,8 @@ public class Hw3 {
     }
 
     private void appendSelectedYear(StringBuilder stringBuilder) {
-        stringBuilder.append("AND (M.YEAR > " + fromYear + " " + attributesRelation + " M.YEAR < " + toYear + ")");
+        //stringBuilder.append("AND (M.YEAR >= " + fromYear + " " + attributesRelation + " M.YEAR <= " + toYear + ")");
+        stringBuilder.append("AND (M.YEAR >= " + fromYear + " AND M.YEAR <= " + toYear + ")");
     }
 
     private void appendSelectCountries(StringBuilder stringBuilder) {
@@ -663,7 +674,7 @@ public class Hw3 {
             stringBuilder.append("AND (\n");
             for (int i = 0; i < selectedCountriesList.size(); i++) {
                 if (i != 0) {
-                    stringBuilder.append(" " + attributesRelation + "\n");
+                    stringBuilder.append(" " + attributesRelation_Country + "\n");
                 }
                 stringBuilder.append("C.COUNTRY like " + "'%" + selectedCountriesList.get(i) + "%'");
             }
@@ -676,7 +687,7 @@ public class Hw3 {
             stringBuilder.append("AND (\n");
             for (int i = 0; i < selectedactorsAndDirector.size(); i++) {
                 if (i != 0) {
-                    stringBuilder.append(" " + attributesRelation + "\n");
+                    stringBuilder.append(" " + attributesRelation_Cast + "\n");
                 }
                 stringBuilder.append("A.ACTORNAME like " + "'%" + selectedactorsAndDirector.get(i) + "%'");
             }
@@ -706,7 +717,7 @@ public class Hw3 {
             stringBuilder.append("AND (\n");
             for (int i = 0; i < selectedTags.size(); i++) {
                 if (i != 0) {
-                    stringBuilder.append(" " + attributesRelation + "\n");
+                    stringBuilder.append(" " + attributesRelation_Tag + "\n");
                 }
 
                 //stringBuilder.append("T.ID = " + selectedTags.get(i).replaceAll("[^-?0-9]+", " "));
@@ -724,7 +735,7 @@ public class Hw3 {
             for (int i = 0; i < selectedMovies.size(); i++) {
                 if (i != 0) {
                    // stringBuilder.append(" " + attributesRelation + "\n");
-                    stringBuilder.append(" OR \n");
+                    stringBuilder.append(" " + attributesRelation_Movie + "\n");
                 }
                 stringBuilder.append("M.ID = " + selectedMovies.get(i).substring(0, 7));
                 System.out.println(selectedMovies.get(i).substring(0, 7));

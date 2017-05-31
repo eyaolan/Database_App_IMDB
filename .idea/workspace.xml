@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="42b93bc9-920b-4c3c-93b0-c939d39d5201" name="Default" comment="added creating indexes">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/movie.dat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Hw3/ShowGUI.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Hw3/Test.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/searching-icon.png" afterPath="" />
+    <list default="true" id="42b93bc9-920b-4c3c-93b0-c939d39d5201" name="Default" comment="chenged and or Or functions signned to individual facet panel">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movies.dat" afterPath="$PROJECT_DIR$/movies.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/movies.dat" afterPath="$PROJECT_DIR$/resource/movies.dat" />
@@ -34,12 +30,14 @@
       <file leaf-file-name="Populate.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Populate/Populate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+            <state relative-caret-position="271">
+              <caret line="189" column="5" selection-start-line="189" selection-start-column="5" selection-end-line="189" selection-end-column="5" />
               <folding>
                 <element signature="method#deleteTuples#0;class#Populate#0" expanded="false" />
+                <element signature="method#insertTuples#0;class#Populate#0" expanded="false" />
                 <element signature="method#closeConn#0;class#Populate#0" expanded="false" />
-                <marker date="1495753379000" expanded="true" signature="2677:2689" ph="DELETE FROM " />
+                <element signature="method#insertToDB#0;class#Populate#0" expanded="false" />
+                <marker date="1496238416000" expanded="true" signature="2677:2689" ph="DELETE FROM " />
               </folding>
             </state>
           </provider>
@@ -55,32 +53,25 @@
       <file leaf-file-name="Hw3.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="683" column="40" selection-start-line="683" selection-start-column="40" selection-end-line="683" selection-end-column="40" />
+            <state relative-caret-position="134">
+              <caret line="276" column="38" selection-start-line="276" selection-start-column="38" selection-end-line="276" selection-end-column="38" />
               <folding>
                 <element signature="docComment;class#Hw3#0" expanded="false" />
-                <element signature="method#Hw3#0;class#Hw3#0" expanded="false" />
                 <element signature="method#initialPanels#0;class#Hw3#0" expanded="false" />
-                <element signature="class#6963:7208" expanded="false" />
-                <element signature="class#7283:8766" expanded="false" />
-                <element signature="class#8821:9032" expanded="false" />
+                <element signature="class#5856:6894" expanded="false" />
+                <element signature="class#7439:7684" expanded="false" />
+                <element signature="class#7759:9242" expanded="false" />
                 <element signature="method#addTextFieldOfActorsAndDirectorTolist#0;class#Hw3#0" expanded="false" />
                 <element signature="method#addTextFieldToList#0;class#Hw3#0" expanded="false" />
-                <element signature="method#createNewComboxFrame#0;class#Hw3#0" expanded="false" />
                 <element signature="method#promptMessageFrame#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setGenresCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-                <element signature="class#12383:12601" expanded="false" />
-                <element signature="method#actionPerformed#0;class#12383:12601" expanded="false" />
                 <element signature="method#setTagsCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-                <element signature="class#12861:13035" expanded="false" />
-                <element signature="e#12957#12958#0" expanded="true" />
-                <element signature="e#13024#13025#0" expanded="true" />
                 <element signature="method#setMovieResultsToPanel#0;class#Hw3#0" expanded="false" />
+                <element signature="method#setUserResultsToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#generateCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
                 <element signature="method#generateActorsAndDirectorsList#0;class#Hw3#0" expanded="false" />
                 <element signature="method#generateTagsCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-                <element signature="method#generateFinalQueryMoviesStatement#0;class#Hw3#0" expanded="false" />
                 <element signature="method#generateFinalQueryUsersStatement#0;class#Hw3#0" expanded="false" />
                 <element signature="method#executeMovieQuery#0;class#Hw3#0" expanded="false" />
                 <element signature="method#executeUserQuery#0;class#Hw3#0" expanded="false" />
@@ -88,6 +79,7 @@
                 <element signature="method#appendSelectedGenres#0;class#Hw3#0" expanded="false" />
                 <element signature="method#appendSelectedYear#0;class#Hw3#0" expanded="false" />
                 <element signature="method#appendSelectCountries#0;class#Hw3#0" expanded="false" />
+                <element signature="method#appendSelectActorsAndDirector#0;class#Hw3#0" expanded="false" />
                 <element signature="method#appendTagsWeight#0;class#Hw3#0" expanded="false" />
                 <element signature="method#appendSelectedTags#0;class#Hw3#0" expanded="false" />
                 <element signature="method#appendSelectedMovies#0;class#Hw3#0" expanded="false" />
@@ -101,6 +93,7 @@
                 <element signature="method#setPanelBackgroundColor#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setPanelBorderTitledBorder#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setTitlePanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
+                <element signature="method#setAttributesPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setQueryPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setTopPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
                 <element signature="method#setBottomPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
@@ -122,7 +115,7 @@
       <file leaf-file-name="AquaComboBoxUI.class" pinned="false" current-in-tab="false">
         <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/rt.jar!/com/apple/laf/AquaComboBoxUI.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4080">
+            <state relative-caret-position="463">
               <caret line="344" column="0" selection-start-line="344" selection-start-column="0" selection-end-line="344" selection-end-column="0" />
               <folding />
             </state>
@@ -132,7 +125,7 @@
       <file leaf-file-name="createdb.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/createdb.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2115">
+            <state relative-caret-position="1216">
               <caret line="141" column="49" selection-start-line="141" selection-start-column="49" selection-end-line="141" selection-end-column="49" />
               <folding />
             </state>
@@ -146,27 +139,6 @@
               <caret line="20" column="7" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DBconnection.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Hw3/DBconnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-              <folding>
-                <element signature="method#connectDB#0;class#DBconnection#0" expanded="false" />
-                <element signature="method#closeDB#0;class#DBconnection#0" expanded="false" />
-                <element signature="method#connectDB#1;class#DBconnection#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user_ratedmovies.dat" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/user_ratedmovies.dat">
-          <provider selected="true" editor-type-id="LargeFileEditor">
-            <state />
           </provider>
         </entry>
       </file>
@@ -214,12 +186,12 @@
         <option value="$PROJECT_DIR$/src/Populate/Populate1.java" />
         <option value="$PROJECT_DIR$/src/Hw3/Hw3GUI.java" />
         <option value="$PROJECT_DIR$/src/Hw3/ShowGUI.java" />
-        <option value="$PROJECT_DIR$/src/Populate/Populate.java" />
         <option value="$PROJECT_DIR$/src/Hw3/DBconnection.java" />
         <option value="$PROJECT_DIR$/createdb.sql" />
         <option value="$PROJECT_DIR$/dropdb.sql" />
         <option value="$PROJECT_DIR$/src/Hw3/Test.java" />
         <option value="$PROJECT_DIR$/createdb1.sql" />
+        <option value="$PROJECT_DIR$/src/Populate/Populate.java" />
         <option value="$PROJECT_DIR$/src/Hw3/Hw3.java" />
       </list>
     </option>
@@ -295,6 +267,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Coen280Assignment3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Coen280Assignment3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Populate" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -904,7 +894,7 @@
       <workItem from="1495756298323" duration="5523000" />
       <workItem from="1495773786729" duration="1679000" />
       <workItem from="1495778493796" duration="48987000" />
-      <workItem from="1496112027064" duration="14876000" />
+      <workItem from="1496112027064" duration="19171000" />
     </task>
     <task id="LOCAL-00001" summary="executeQuery works">
       <created>1495261165929</created>
@@ -1158,11 +1148,25 @@
       <option name="project" value="LOCAL" />
       <updated>1496191250599</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="finished">
+      <created>1496238306923</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1496238306923</updated>
+    </task>
+    <task id="LOCAL-00038" summary="finished-removed unused files, change public to private">
+      <created>1496240030923</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1496240030923</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145742000" />
+    <option name="totallyTimeSpent" value="150037000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1170,12 +1174,12 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26963657" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26963657" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1237,9 +1241,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="finished data populating used populate1.java. created Hw3GUI" />
-    <MESSAGE value="changed populate" />
-    <MESSAGE value="finished main panel design, added the all list of genres and countries" />
     <MESSAGE value="added initial labelList into countryPanel and tagPanel, added two panel into castPanel" />
     <MESSAGE value="added execute buttons" />
     <MESSAGE value="added textfield to castpanel" />
@@ -1262,11 +1263,14 @@
     <MESSAGE value="finished main part" />
     <MESSAGE value="added  order by function to every query" />
     <MESSAGE value="added creating indexes" />
-    <option name="LAST_COMMIT_MESSAGE" value="added creating indexes" />
+    <MESSAGE value="finished" />
+    <MESSAGE value="finished-removed unused files, change public to private" />
+    <MESSAGE value="chenged and or Or functions signned to individual facet panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="chenged and or Or functions signned to individual facet panel" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="80" />
+      <option name="time" value="85" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1301,13 +1305,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Hw3/Db.java" />
-    <entry file="file://$PROJECT_DIR$/resource/movies.dat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/src.zip!/java/lang/AbstractStringBuilder.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/src.zip!/java/lang/StringBuilder.java" />
     <entry file="file://$PROJECT_DIR$/README.md">
@@ -1389,8 +1386,10 @@
           <caret line="101" column="61" selection-start-line="101" selection-start-column="61" selection-end-line="101" selection-end-column="61" />
           <folding>
             <element signature="method#deleteTuples#0;class#Populate#0" expanded="false" />
+            <element signature="method#insertTuples#0;class#Populate#0" expanded="false" />
             <element signature="method#closeConn#0;class#Populate#0" expanded="false" />
-            <marker date="1495753379000" expanded="true" signature="2677:2689" ph="DELETE FROM " />
+            <element signature="method#insertToDB#0;class#Populate#0" expanded="false" />
+            <marker date="1496238416000" expanded="true" signature="2677:2689" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
@@ -1433,37 +1432,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/movies.dat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152970">
-          <caret line="10198" column="0" selection-start-line="10198" selection-start-column="0" selection-end-line="10198" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/user_ratedmovies.dat">
       <provider selected="true" editor-type-id="LargeFileEditor">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Hw3/DBconnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-          <folding>
-            <element signature="method#connectDB#0;class#DBconnection#0" expanded="false" />
-            <element signature="method#closeDB#0;class#DBconnection#0" expanded="false" />
-            <element signature="method#connectDB#1;class#DBconnection#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/rt.jar!/com/apple/laf/AquaComboBoxUI.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4080">
-          <caret line="344" column="0" selection-start-line="344" selection-start-column="0" selection-end-line="344" selection-end-column="0" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Hw3/Test.java">
@@ -1474,39 +1445,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dropdb.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="7" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/createdb.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2115">
-          <caret line="141" column="49" selection-start-line="141" selection-start-column="49" selection-end-line="141" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/createdb1.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Populate/Populate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding>
-            <element signature="method#deleteTuples#0;class#Populate#0" expanded="false" />
-            <element signature="method#closeConn#0;class#Populate#0" expanded="false" />
-            <marker date="1495753379000" expanded="true" signature="2677:2689" ph="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1520,34 +1463,93 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Populate/Populate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="189" column="5" selection-start-line="189" selection-start-column="5" selection-end-line="189" selection-end-column="5" />
+          <folding>
+            <element signature="method#deleteTuples#0;class#Populate#0" expanded="false" />
+            <element signature="method#insertTuples#0;class#Populate#0" expanded="false" />
+            <element signature="method#closeConn#0;class#Populate#0" expanded="false" />
+            <element signature="method#insertToDB#0;class#Populate#0" expanded="false" />
+            <marker date="1496238416000" expanded="true" signature="2677:2689" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/movies.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/movies.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/rt.jar!/com/apple/laf/AquaComboBoxUI.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="344" column="0" selection-start-line="344" selection-start-column="0" selection-end-line="344" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Hw3/DBconnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+          <folding>
+            <element signature="method#connectDB#0;class#DBconnection#0" expanded="false" />
+            <element signature="method#closeDB#0;class#DBconnection#0" expanded="false" />
+            <element signature="method#connectDB#1;class#DBconnection#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dropdb.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="7" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/createdb.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1216">
+          <caret line="141" column="49" selection-start-line="141" selection-start-column="49" selection-end-line="141" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Hw3/Hw3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="683" column="40" selection-start-line="683" selection-start-column="40" selection-end-line="683" selection-end-column="40" />
+        <state relative-caret-position="134">
+          <caret line="276" column="38" selection-start-line="276" selection-start-column="38" selection-end-line="276" selection-end-column="38" />
           <folding>
             <element signature="docComment;class#Hw3#0" expanded="false" />
-            <element signature="method#Hw3#0;class#Hw3#0" expanded="false" />
             <element signature="method#initialPanels#0;class#Hw3#0" expanded="false" />
-            <element signature="class#6963:7208" expanded="false" />
-            <element signature="class#7283:8766" expanded="false" />
-            <element signature="class#8821:9032" expanded="false" />
+            <element signature="class#5856:6894" expanded="false" />
+            <element signature="class#7439:7684" expanded="false" />
+            <element signature="class#7759:9242" expanded="false" />
             <element signature="method#addTextFieldOfActorsAndDirectorTolist#0;class#Hw3#0" expanded="false" />
             <element signature="method#addTextFieldToList#0;class#Hw3#0" expanded="false" />
-            <element signature="method#createNewComboxFrame#0;class#Hw3#0" expanded="false" />
             <element signature="method#promptMessageFrame#0;class#Hw3#0" expanded="false" />
             <element signature="method#setGenresCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#setCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-            <element signature="class#12383:12601" expanded="false" />
-            <element signature="method#actionPerformed#0;class#12383:12601" expanded="false" />
             <element signature="method#setTagsCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-            <element signature="class#12861:13035" expanded="false" />
-            <element signature="e#12957#12958#0" expanded="true" />
-            <element signature="e#13024#13025#0" expanded="true" />
             <element signature="method#setMovieResultsToPanel#0;class#Hw3#0" expanded="false" />
+            <element signature="method#setUserResultsToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#generateCountriesCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
             <element signature="method#generateActorsAndDirectorsList#0;class#Hw3#0" expanded="false" />
             <element signature="method#generateTagsCheckBoxToPanel#0;class#Hw3#0" expanded="false" />
-            <element signature="method#generateFinalQueryMoviesStatement#0;class#Hw3#0" expanded="false" />
             <element signature="method#generateFinalQueryUsersStatement#0;class#Hw3#0" expanded="false" />
             <element signature="method#executeMovieQuery#0;class#Hw3#0" expanded="false" />
             <element signature="method#executeUserQuery#0;class#Hw3#0" expanded="false" />
@@ -1555,6 +1557,7 @@
             <element signature="method#appendSelectedGenres#0;class#Hw3#0" expanded="false" />
             <element signature="method#appendSelectedYear#0;class#Hw3#0" expanded="false" />
             <element signature="method#appendSelectCountries#0;class#Hw3#0" expanded="false" />
+            <element signature="method#appendSelectActorsAndDirector#0;class#Hw3#0" expanded="false" />
             <element signature="method#appendTagsWeight#0;class#Hw3#0" expanded="false" />
             <element signature="method#appendSelectedTags#0;class#Hw3#0" expanded="false" />
             <element signature="method#appendSelectedMovies#0;class#Hw3#0" expanded="false" />
@@ -1568,6 +1571,7 @@
             <element signature="method#setPanelBackgroundColor#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#setPanelBorderTitledBorder#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#setTitlePanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
+            <element signature="method#setAttributesPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#setQueryPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#setTopPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
             <element signature="method#setBottomPanel#0;class#Hw3GUI#0;class#Hw3#0" expanded="false" />
