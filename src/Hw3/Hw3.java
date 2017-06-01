@@ -683,7 +683,9 @@ public class Hw3 {
                 if (i != 0) {
                     stringBuilder.append(" " + attributesRelation_Cast + "\n");
                 }
-                stringBuilder.append("A.ACTORNAME like " + "'%" + selectedactorsAndDirector.get(i) + "%'");
+                String actor = selectedactorsAndDirector.get(i).replaceAll("'","''");
+                stringBuilder.append("A.ACTORNAME like " + "'%" + actor + "%'");
+                //stringBuilder.append("A.ACTORNAME like " + "'%" + selectedactorsAndDirector.get(i) + "%'");
             }
 
             stringBuilder.append("\n)");
